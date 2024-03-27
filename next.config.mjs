@@ -1,4 +1,10 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+import withPlaiceholder from "@plaiceholder/next";
+const nextConfig = {
+    images: {
+        domains: ["3asq.org"],
+    },
+    };
 
-export default nextConfig;
+
+export default withPlaiceholder(nextConfig);
