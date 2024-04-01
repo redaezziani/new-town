@@ -7,8 +7,10 @@ export const secret = {
     resend_api_key: env.RESEND_API_KEY,
     jwt_secret: env.JWT_SECRET,
     jwt_expiry: env.JWT_EXPIRY,
-    asq_url: env.ASQ_URL,
-    manga_arabic_url: env.MANGA_ARABIC_URL,
+    scrape_base_url: env.SCRAPE_BASE_URL,
+    secret_user_name_scraper: env.SECRET_USER_NAME_SCRAPER,
+    secret_password_scraper: env.SECRET_PASSWORD_SCRAPER,
+    secret_port_scraper: env.SECRET_PORT_SCRAPER,
 }
 
 const prismaClientSingleton = () => {

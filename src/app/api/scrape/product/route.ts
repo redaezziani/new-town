@@ -1,41 +1,59 @@
-
-
 import axios from 'axios';
-
-
-
 import cheerio from 'cheerio';
-import { NextResponse,NextRequest } from "next/server";
-
-
+import { NextResponse, NextRequest } from 'next/server';
+import { secret } from '@/(db)/secrets';
+import { proxyConfig } from '@/lib/utils';
+import { Product } from '@/app/types/scrape';
 export async function GET(req: NextRequest, res: NextResponse) {
     try {
-        const url = "https://www.amazon.fr/Annadue-Sublimation-r%C3%A9sistant-m%C3%A9canique-Sansheng/dp/B089ZQ847D/ref=sr_1_32?crid=32JR12WNPUC6O&dib=eyJ2IjoiMSJ9.NIv3tMVFT44KMmh7p65IP9aupXhwbICef5P4_TwDPP8hqpDf_CJ1XRfwF6s5W0qq5ojyWyB7HSXLE4Uv7wtIBkdI52PUOqUHUQawooTIZdivTsnZpD3Z329qO7yxLbwuCVhoShqwQhOT2VuMJveke6VfXtM4OfZRw0kPYzGOpprO7-o_hFECdOQy49KDn-yEDavfB5vMgE7CSBFFMK-LTv4f47ZaQzfIJWVEBXtgDUt1OM14cCtjvNR68De-lzYYB1t71eyzSoVUqBtj6gN6L5_nq4f3BQWTc-jp7KB26Lk.QS-j4023BXI4rPHMQbJQJzAh4CkkY2G5nURWfrXquSQ&dib_tag=se&keywords=anime+keyboard&qid=1710876343&sprefix=anime+key%2Caps%2C174&sr=8-32"
-        const usename = "brd-customer-hl_905e9b76-zone-web_unlocker1"
-        const password ="p3dtxk81nbyv"
-        const port = 22225
-        const session_id = (Math.random() * 1000000).toFixed(0) 
-        const options = {
-            auth: {
-                username: `${usename}-session-${session_id}`, 
-                password: password
-            },
-            host: "brd.superproxy.io",
-            port: port,
-            rejectUnauthorized: false,
-        }
+        const search = req.nextUrl.searchParams.get('_search');
+        const limit = parseInt(req.nextUrl.searchParams.get('_limit') || '10'); 
+        const url = `${secret.scrape_base_url}/s?k=${search}`;
+        const options = await proxyConfig();
         const response = await axios.get(url, options);
-        const body = await response.data;
+        const body = response.data;
         const $ = cheerio.load(body);
         const title = $('title').text();
-        return NextResponse.json({status: "success", data: title, "message": "manga data fetched"});
+        const products: Product[] = [];
+        var id= 0;
+        $('.s-result-item').each((_, element) => {
+            if (products.length >= limit) return; 
+            const baseUrl = secret.scrape_base_url?? ''; 
+            const product: Product = {
+                id: id,
+                image: $(element).find('.s-image').attr('src') || '',
+                title: $(element).find('h2 a').text().trim() || '',
+                rating: $(element).find('.a-icon-alt').text().trim() || '',
+                regularPrice: $(element).find('.a-price-whole').text().trim() || '',
+                discountedPrice: $(element).find('.a-price.a-text-price .a-offscreen').text().trim() || '',
+                stockAvailability: $(element).find('.a-color-price').text().trim() || '',
+                otherSellersPrice: $(element).find('.a-spacing-none.a-spacing-top-mini .a-color-base').text().trim() || '',
+                shipping: $(element).find('.s-prime .a-icon-checkmark').length > 0 ? 'Free Shipping' : 'Paid Shipping',
+                prime: $(element).find('.s-prime').length > 0,
+                sponsored: $(element).find('.s-sponsored-label-text').length > 0,
+                remainingStock: $(element).find('.a-color-price').text().trim() || '',
+                certification: $(element).find('.a-color-price').next().find('.a-section .a-text-bold').text().trim() || '',
+                productURL: baseUrl + $(element).find('h2 a').attr('href') || '' 
+            };
+            id++;
+            if (product.title === '') return;
+            products.push(product);
+        });
+
+        return NextResponse.json({
+            status: 'success',
+            title,
+            data: products,
+            message: 'Products fetched successfully',
+        });
     } catch (error) {
         console.error(error);
+        return NextResponse.json({
+            status: 'error',
+            message: 'Failed to fetch products',
+            note: 'Please check the logs for more information , dont spam the server',
+        });
     }
 }
 
 
-
-/*
-    curl --proxy brd.superproxy.io:22225 --proxy-user brd-customer-hl_905e9b76-zone-web_unlocker1:p3dtxk81nbyv -k https://lumtest.com/myip.json
-*/

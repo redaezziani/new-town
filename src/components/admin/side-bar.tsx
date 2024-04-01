@@ -23,7 +23,9 @@ export function SideBar() {
        <Menu />
        </div>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent
+      side={'left'}
+      >
         <SideMenu/>
       </SheetContent>
     </Sheet>

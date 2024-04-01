@@ -32,7 +32,7 @@ export const verifyToken = async (token: string) => {
         const result = await jwtVerify(token, key, { algorithms: ['HS256'] });
         return result;
     } catch (error) {
-        console.log('');
+        console.log(error);
     }
 };
 

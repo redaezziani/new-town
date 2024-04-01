@@ -21,6 +21,33 @@ const data = [
   { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
   { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
   { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
+
   // Add more objects as needed
 ];
 
@@ -41,9 +68,12 @@ export function EreaChart() {
       </CardHeader>
       <CardContent className="pb-4">
         <div className="h-[200px]">
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer
+          
+          width="100%" height="100%">
             <AreaChart
-
+            title="Manga Management"
+            throttleDelay={300}
               data={data}
               margin={{
                 top: 5,

@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const SignInSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email' }),
   password: z.string().min(6).max(30, { message: 'Password must be at least 6 characters long' }),
-  rememberMe: z.string().optional()
+  send_emails: z.string().optional(),
 });
 
 export const SignUpSchema = z.object({

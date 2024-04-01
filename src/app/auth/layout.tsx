@@ -14,9 +14,11 @@ export default async function RootLayout({
     <div
     className="w-full flex flex-col gap-2 justify-center items-center h-screen overflow-hidden "
     >
+
           <div className=" absolute">
           <Toaster/>
           </div>
+          
           {children}
     </div> 
   );

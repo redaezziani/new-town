@@ -17,21 +17,20 @@ export interface Notification {
 }
 
 export const SignIn = async (result : z.infer<typeof SignInSchema>) => {
-    try {     
+    try {  
       const findUser = await db.users.findFirst({
         where: {
           email: result.email,
         },
       });
       if (!findUser) {
-        return {status : 'error', message: 'User not found'}
+        return {status: 'error', message: 'User not found. Please sign up.'};
       }
       if (!findUser.isVerified) {
         const token = await  generateRandomNumbers()
         const {
           email,
           id
-          
         } = findUser
         const name = findUser.name??'';
 
@@ -122,7 +121,48 @@ export const SignUp = async (result : SignUpSchemaType) => {
     if (!user) {
       return {status : 'error', message: 'User not created'}
     }
-    return {status : 'success', message: 'User created'}
+    const token = await  generateRandomNumbers()
+    const {
+      id
+    } = user
+    const findToken = await db.userVerificationRequest.findMany({
+      where: {
+        userId: user.id,
+      },
+    });
+    if (findToken.length > 0) {
+      await db.userVerificationRequest.deleteMany({
+        where: {
+          userId: user.id,
+        },
+      });
+    }
+    const res = await db.userVerificationRequest.create({
+      data: {
+        token:token,
+        userId: user.id,
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+      },
+    });
+    if (!res) {
+      return {status : 'error', message: 'Token not created'}
+    }
+    const send = await VereficationEmail({email,name,token,id});
+    if (!send) {
+      return {status : 'error', message: 'Email not sent'}
+    }
+    const data: Notification = {
+      title: 'Account created',
+      message: 'User created successfully. Please verify your email',
+      type: 'INFO',
+      action: 'NONE',
+      userId: user.id,
+    }
+    const resNot = await CreateNotification(data);
+    if (!resNot) {
+      return {status : 'error', message: 'Notification not created'}
+    }
+    return {status : 'success', message: 'User created successfully. Please verify your email.'}
   } catch (error) {
     return {status : 'error', message: 'Somthing Worng ! try again laiter.'}
   }

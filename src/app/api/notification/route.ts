@@ -1,12 +1,17 @@
 'use server'
 import { NextResponse,NextRequest } from "next/server";
 import db from '@/(db)/secrets';
+import { verifyToken } from "@/(db)/lib/auth";
 export async function GET(req: NextRequest, res: NextResponse) {
     try {
-       /*
+       const cookies = req.cookies.get('token')?.value;
+         if (!cookies) {
+              throw new Error("Token not found");
+         }
+         const payload = await verifyToken(cookies);
        const notifications = await db.notification.findMany({
               where: {
-                userId: '42a47bfe-0040-4efd-81e2-833e63dcc73c'
+                userId: payload.id,
               },
               select: {
                 title: true,
@@ -18,37 +23,8 @@ export async function GET(req: NextRequest, res: NextResponse) {
         });
        if (!notifications) {
            throw new Error("Failed to fetch notifications");
-       }*/
-       const data =[ {
-        title: "Session Expired in 5 minutes",
-        message: "Your session will expire in 5 minutes, please save your work",
-        type: "ERROR",
-        action: "DELETE",
-        userId: "42a47bfe-0040-4efd-81e2-833e63dcc73c"
-                    },
-                    {
-                        title: "Session Expired in 5 minutes",
-                        message: "Your session will expire in 5 minutes, please save your work",
-                        type: "INFO",
-                        action: "DELETE",
-                        userId: "42a47bfe-0040-4efd-81e2-833e63dcc73c"
-                    },
-                    {
-                        title: "Session Expired in 5 minutes",
-                        message: "Your session will expire in 5 minutes, please save your work",
-                        type: "ERROR",
-                        action: "DELETE",
-                        userId: "42a47bfe-0040-4efd-81e2-833e63dcc73c"
-            },
-            {
-                title: "Session Expired in 5 minutes",
-                message: "Your session will expire in 5 minutes, please save your work",
-                type: "INFO",
-                action: "DELETE",
-                userId: "42a47bfe-0040-4efd-81e2-833e63dcc73c"
-            },
-            ]
-        return NextResponse.json({status: "success", data: data, "message": "notifications fetched"});
+       }
+        return NextResponse.json({status: "success", data: notifications, "message": "notifications fetched"});
     } catch (error) {
         console.error(error);
     }

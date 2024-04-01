@@ -1,4 +1,3 @@
-"use client";
 import * as React from "react";
 import {
     CaretSortIcon,
@@ -48,6 +47,7 @@ export type Cell<T = any> = {
     getContext: () => {
         row: Row<T>;
     };
+
 };
 
 export type Row<T = any> = {
@@ -62,7 +62,12 @@ export function DataTable({ data, columns, loading = false, total = 0 }: DataTab
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
-    const [rowSelection, setRowSelection] = React.useState({});
+    const [rowSelection, setRowSelection] = React.useState(
+        data.reduce((acc, item, index) => {
+            acc[index] = false;
+            return acc;
+        }, {} as Record<number, boolean>)
+    );
 
     const table = useReactTable({
         data,
@@ -81,29 +86,31 @@ export function DataTable({ data, columns, loading = false, total = 0 }: DataTab
             columnVisibility,
             rowSelection,
         },
+       
     });
 
+    
+
     return (
-        <div className="w-full  p-2 rounded">
+        <div className="w-full  p-2 rounded-lg bg-background">
             <div className="flex items-center gap-3 py-4 lowercase">
                 <Input
-                    placeholder="Filter..."
-                    // @ts-ignore
-                    value={(table.getColumn(columns[1]?.accessorKey)?.getFilterValue() as string) ?? ""}
+                    placeholder="search ..."
+                    //@ts-ignore
+                    value={(table.getColumn(columns[3]?.accessorKey)?.getFilterValue() as string) ?? ""}
                     onChange={(event) =>
-                        // @ts-ignore
-                        table.getColumn(columns[1]?.accessorKey)?.setFilterValue(event.target.value)
+                        //@ts-ignore
+                        table.getColumn(columns[3]?.accessorKey)?.setFilterValue(event.target.value)
                     }
                     className="max-w-sm"
                 />
-                <DropdownMenu
-                >
-                    <DropdownMenuTrigger
-                        className=" rounded-md p-1"
-                        asChild>
-                        <button className="ml-auto flex items-center">
-                            Columns <ChevronDownIcon className="ml-2 h-4 w-4" />
-                        </button>
+                <DropdownMenu>
+                    <DropdownMenuTrigger className="rounded-md p-1" asChild>
+                        <Button
+                        variant={'outline'}
+                        className="ml-auto p-2  border-slate-300/30 rounded-lg border flex items-center">
+                            <DotsHorizontalIcon className="h-5 w-5" />
+                        </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                         {table
@@ -127,18 +134,14 @@ export function DataTable({ data, columns, loading = false, total = 0 }: DataTab
                 </DropdownMenu>
             </div>
             <div className="rounded-md border">
-                <Table
-                    className=" min-h-48 border-none"
-                >
-                    <TableHeader
-                    className=" border-none"
-                    >
+                <Table className="min-h-48">
+                    <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
                                     return (
                                         <TableHead
-                                            className={`${header.column.id === 'id' ? 'hidden' : ''}`}
+                                            className={` text-sm truncate text-slate-900 dark:text-slate-50 capitalize font-semibold ${header.column.id === 'id' ? 'hidden' : ''}`}
                                             key={header.id}>
                                             {header.isPlaceholder
                                                 ? null
@@ -153,34 +156,43 @@ export function DataTable({ data, columns, loading = false, total = 0 }: DataTab
                         ))}
                     </TableHeader>
                     <TableBody>
-    {table.getRowModel().rows?.slice(0, 8).map((row) => (
-        <TableRow
-            key={row.id}
-            data-state={row.getIsSelected() && "selected"}
-        >
-            {row.getVisibleCells().map((cell) => (
-                <TableCell
-                    className={`h-12 ${cell.column.id === 'id' ? 'hidden' : ''}`}
-                    key={cell.id}
-                >
-                    {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                    )}
-                </TableCell>
-            ))}
-        </TableRow>
-    ))}
-</TableBody>
-
-                    
+                        {table.getRowModel().rows?.length ? (
+                            table.getRowModel().rows.map((row) => (
+                                <TableRow
+                                    key={row.id}
+                                    data-state={row.getIsSelected() && "selected"}
+                                >
+                                    {row.getVisibleCells().map((cell) => (
+                                        <TableCell
+                                            className={`h-12 ${cell.column.id === 'id' ? 'hidden' : ''}`}
+                                            key={cell.id}
+                                        >
+                                            {flexRender(
+                                                cell.column.columnDef.cell,
+                                                cell.getContext()
+                                            )}
+                                        </TableCell>
+                                    ))}
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow className="w-full">
+                                <TableCell
+                                    colSpan={columns.length}
+                                    className="h-10 text-center flex justify-center items-center w-full"
+                                >
+                                    no data found
+                                </TableCell>
+                            </TableRow>
+                        )}
+                    </TableBody>
                 </Table>
             </div>
 
             <div className="flex items-center justify-end space-x-2 py-4">
                 <div className="flex-1 text-sm text-muted-foreground">
                     {table.getFilteredSelectedRowModel().rows.length} of{" "}
-                    {table.getFilteredRowModel().rows.length} selected rows.
+                    {table.getFilteredRowModel().rows.length} rows selected.
                 </div>
                 <div className=" flex gap-2 justify-center items-center">
                     <Button
@@ -189,7 +201,7 @@ export function DataTable({ data, columns, loading = false, total = 0 }: DataTab
                         onClick={() => table.previousPage()}
                         disabled={!table.getCanPreviousPage()}
                     >
-                        Previous
+                        prev
                     </Button>
                     <Button
                         variant="outline"
@@ -197,7 +209,7 @@ export function DataTable({ data, columns, loading = false, total = 0 }: DataTab
                         onClick={() => table.nextPage()}
                         disabled={!table.getCanNextPage()}
                     >
-                        Next
+                        next
                     </Button>
                 </div>
             </div>

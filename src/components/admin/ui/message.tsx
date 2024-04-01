@@ -10,7 +10,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { PartyPopper } from "lucide-react";
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 
 interface MessageAlertProps {
     title: string;
@@ -19,13 +19,21 @@ interface MessageAlertProps {
 }
 
 export function MessageAlert({ title, description, isOpen = false }: MessageAlertProps) {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(isOpen);
+
+    useEffect(() => {
+        setOpen(isOpen);
+
+        return () => {
+            setOpen(false);
+        };
+    }
+    , [isOpen]);
   return (
     <Dialog
     open={open}
     >
       <DialogTrigger asChild>
-        
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader
