@@ -20,7 +20,7 @@ export function NotificationCard() {
     <Sheet
     >
       <SheetTrigger asChild>
-      <div className="flex relative justify-center items-center flex-col gap-1">
+      <div className="flex border h-9 w-9 border-slate-300/30 rounded-full  relative justify-center items-center flex-col gap-1">
         {data && data.data.length > 0 && <span className=" bg-red-500 h-2 w-2 rounded-full absolute -top-1 -right-1"></span>}
       <Bell className="w-4 h-4 cursor-pointer text-slate-400 dark:text-slate-300" />
       </div>

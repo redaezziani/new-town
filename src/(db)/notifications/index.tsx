@@ -1,20 +1,11 @@
 'use server';
+import secrets, { secret } from "@/(db)/secrets";
 import db from "@/(db)/secrets";
 import { ActionType, NotificationType } from "@prisma/client";
+import { jwtVerify } from "jose";
+import { cookies } from "next/headers";
 
-/*
-
-  id        String    @id @default(uuid()) @db.VarChar(36)
-  title     String
-  message   String
-  type      NotificationType @default(INFO)
-  action    ActionType @default(NONE)
-  userId    String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-  user      users     @relation(fields: [userId], references: [id])
-*/
+const tokenSecret = new TextEncoder().encode(secret.jwt_secret);
 export interface Notification {
     title : string
     message : string
@@ -38,20 +29,20 @@ export const CreateNotification = async (data: Notification) => {
 }
 
 
-export const GetNotifications = async (userId: string) => {
+
+
+export const verifyToken = async () => {
+  const token = cookies().get("token")?.value;
+  if (!token) {
+      return null;
+  }
   try {
-    const res = await db.notification.findMany({
-        where: {
-            userId
-        }
-    });
-    if (!res) {
-      throw new Error("Failed to fetch notifications");
-    }
-    return res;
+      const { payload } = await jwtVerify(token, tokenSecret);
+      return payload;
   } catch (error) {
-    console.error(error);
+      return null;
   }
 }
+
 
 

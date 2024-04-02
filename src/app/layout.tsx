@@ -23,7 +23,7 @@ export default async function RootLayout({
       <body className={`${roboto.className}  min-h-screen   w-full   flex justify-start items-center flex-col relative gap-2 `}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="system"
           enableSystem={true}
         >
           {children}

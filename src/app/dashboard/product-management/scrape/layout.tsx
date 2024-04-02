@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "E-commerce-Store",
-  description: "Next js E-commerce store",
+  title: "hunter",
+  description: "Next js Scraping web site"
 };
 
 export default async function RootLayout({

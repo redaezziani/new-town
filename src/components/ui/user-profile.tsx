@@ -7,49 +7,61 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuSub
 } from "../ui/dropdown-menu"
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "../ui/avatar"
-interface User {
-  id: string;
-  username: string;
-  email: string;
-  profile: string;
-  role: string;
-}
-import { Cog, ChevronDown, LogOut, User2, Settings, LayoutDashboard } from "lucide-react";
+
+import {ChevronDown, LogOut, User2, Settings, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getUserSession, logOut } from "@/(db)/lib/auth";
+import { logOut } from "@/(db)/lib/auth";
+import { useTheme } from "next-themes";
+import { Sparkles } from "lucide-react";
+
+
 export function UserProfile() {
-  const [data, setData] = React.useState<User | null>(null);
+  const { setTheme,theme } = useTheme()
+  const [user,setUser] = useState<any>(null)
+  const togelMode =()=>{
+    if (theme === 'dark') {
+      setTheme('light')
+    }
+    else{
+      setTheme('dark')
+    }
+  }
+
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
-  const fetchUser = async () => {
-    try {
-      const res = await getUserSession() as any;
-      if (res?.status === "error") {
-        router.push("/signin");
-      }
-      setData(res);
-    } catch (error) {
-      console.error(error);
-    }
-  }
   const toggle = () => {
     setOpen(!open);
   }
+
+  const handelUser=async()=>{
+    try {
+      const res = await fetch('/api/user',{cache:'force-cache'})
+      const data = await res.json()
+      console.log(data)
+      setUser(data)
+    } catch (error) {
+    }
+  }
+
+  useEffect(()=>{
+    handelUser()
+  },[])
   const logout = async () => {
     try {
       setLoading(true);
       const res = await logOut()
       if (res?.status === "success") {
-        router.push("/signin");
+        router.push("/auth/signin");
       }
     } catch (error) {
       console.error(error);
@@ -58,14 +70,12 @@ export function UserProfile() {
       setLoading(false);
     }
   }
-  React.useEffect(() => {
-    fetchUser();
-  }, []);
+
   return (
     <DropdownMenu
       onOpenChange={toggle}
     >
-      <DropdownMenuTrigger
+        <DropdownMenuTrigger
         asChild>
         <div
 
@@ -77,11 +87,11 @@ export function UserProfile() {
           >
             <AvatarImage
               className=" aspect-square object-cover"
-              src={data?.profile ?? 'https://wallpapers.com/images/hd/violet-evergarden-pictures-t0n1ob5dhsb87rus.jpg'}
+              src={user?.data?.profile ?? ''}
               alt="User Profile Image"
             />
             <AvatarFallback>
-              {data?.username.charAt(0).toUpperCase() ?? ''}
+              {user?.data?.username.charAt(0).toUpperCase() ?? ''}
             </AvatarFallback>
           </Avatar>
           <div
@@ -90,12 +100,12 @@ export function UserProfile() {
             <p
               className="text-sm font-semibold"
             >
-              {data?.username ?? 'reda'}
+              {user?.data?.username ?? ''}
             </p>
             <p
-              className="text-xs"
+              className="text-xs text-muted-foreground"
             >
-              {data?.email ?? 'reda@admin.com'}
+              {user?.data?.email ?? ''}
             </p>
           </div>
           <ChevronDown
@@ -141,10 +151,25 @@ export function UserProfile() {
               />
             </DropdownMenuItem>
           </Link>
-
+           <DropdownMenuItem
+            onClick={togelMode}
+            className=" cursor-pointer  justify-between w-full flex gap-2 items-center"
+          >
+            <p
+              className="text-destructive-500"
+            >
+              {theme === 'dark' ? 'light mode' : 'dark mode'}
+            </p>
+            <Sparkles
+              className="w-4 h-4"
+            />
+          </DropdownMenuItem>
+          <DropdownMenuSeparator
+          className=" mt-3"
+          />
           <DropdownMenuItem
             onClick={logout}
-            className=" bg-slate-300/15  text-destructive-500 justify-between w-full flex gap-2 items-center"
+            className=" bg-slate-300/15 mt-3  text-destructive-500 justify-between w-full flex gap-2 items-center"
           >
             <p
               className="text-destructive-500"
