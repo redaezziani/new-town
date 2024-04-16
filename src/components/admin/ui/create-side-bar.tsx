@@ -19,7 +19,7 @@ export async function CreateItem() {
       <Button
               className="flex items-center gap-2"
               size={'sm'}
-              variant={"gredient-primary"}
+             
             >
                 create new {' '} <Plus size={18} />
         </Button>

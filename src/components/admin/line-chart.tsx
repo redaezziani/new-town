@@ -65,7 +65,9 @@ export function LineChartExample() {
                             <span className="text-[0.70rem] uppercase text-muted-foreground">
                               Today
                             </span>
-                            <span className={`font-bold ${payload[1].value >payload[0].value ? 'text-[#00db80]' : 'text-destructive'}`}>
+                            <span
+                            //@ts-ignore
+                            className={`font-bold ${payload[1].value >payload[0].value ? 'text-[#00db80]' : 'text-destructive'}`}>
                               {payload[1].value}
                             </span>
                           </div>

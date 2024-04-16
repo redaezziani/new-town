@@ -3,8 +3,8 @@ import { SignJWT, jwtVerify } from 'jose';
 import db, { secret } from '../secrets';
 import { cookies } from 'next/headers';
 import { Resend } from 'resend';
-import { EmailTemplate } from './email-template';
-import { ResetPasswordTemplate } from './reset-passowrd-template';
+import  EmailTemplate  from './email-template';
+import  ResetPasswordTemplate  from './reset-passowrd-template';
 
 const key = new TextEncoder().encode(secret.jwt_secret);
 

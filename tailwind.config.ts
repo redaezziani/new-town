@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+
 const config = {
   darkMode: ["class"],
   content: [
@@ -66,22 +67,10 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        flip: {
-          to: {
-            transform: "rotate(360deg)",
-          },
-        },
-        rotate: {
-          to: {
-            transform: "rotate(90deg)",
-          },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "flip": "flip 6s infinite steps(2, end)",
-        "rotate": "rotate 3s linear infinite both",
       },
     },
   },
