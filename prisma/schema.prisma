@@ -44,9 +44,11 @@ model users {
   resetRequest resetPasswordRequest?
   verification userVerificationRequest?
   Notification Notification[]
+  Order        Order[]
+  products     products[]
+  OrderItem    OrderItem[]
   @@index([email], map: "idx_user_email") 
   @@index([name], map: "idx_user_name")
-  
 }
 
 enum NotificationType {
@@ -73,4 +75,69 @@ model Notification {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
   user      users     @relation(fields: [userId], references: [id])
+}
+
+enum OrderItemStatus {
+  PENDING
+  PROCESSING
+  DELIVERED
+  CANCELLED
+}
+model Order {
+  id        String    @id @default(uuid()) @db.VarChar(36)
+  userId    String
+  name      String
+  address   String
+  phone     String
+  email     String
+  status    OrderItemStatus @default(PENDING)
+  total     Float
+  price     Float
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  user      users     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  OrderItem OrderItem[]
+}
+
+model OrderItem {
+  id        String    @id @default(uuid()) @db.VarChar(36)
+  orderId   String
+  productId String
+  quantity  Int
+  price     Float
+  userId    String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  order     Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   products  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user      users     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum currency {
+  USD
+  EUR
+  MAD
+  AED
+  SAR
+  QAR
+  KWD
+  BHD
+  OMR
+}
+
+model products {
+  id          String    @id @default(uuid()) @db.VarChar(36)
+  name        String
+  description String
+  price       Float
+  userId      String
+  image       String @default("")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  currency    currency @default(USD)
+  OrderItem   OrderItem[]
+  user        users     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

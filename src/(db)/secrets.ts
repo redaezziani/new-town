@@ -2,17 +2,18 @@ import { env } from 'process'
 import { PrismaClient } from '@prisma/client'
 
 export const secret = {
-    next_public_supabase_url: env.NEXT_PUBLIC_SUPABASE_URL,
-    next_public_supabase_key: env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     resend_api_key: env.RESEND_API_KEY,
     jwt_secret: env.JWT_SECRET,
     jwt_expiry: env.JWT_EXPIRY,
-    scrape_base_url: env.SCRAPE_BASE_URL,
-    secret_user_name_scraper: env.SECRET_USER_NAME_SCRAPER,
-    secret_password_scraper: env.SECRET_PASSWORD_SCRAPER,
-    secret_port_scraper: env.SECRET_PORT_SCRAPER,
+    edge_store_access_key: env.EDGE_STORE_ACCESS_KEY,
+    edge_store_secret_key: env.EDGE_STORE_SECRET_KEY
 }
+import { createClient } from '@supabase/supabase-js'
 
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?? ''
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ''
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 const prismaClientSingleton = () => {
   return new PrismaClient()
 }

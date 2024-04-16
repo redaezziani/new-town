@@ -11,7 +11,7 @@ import { useState } from "react"
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export function NotificationCard() {
-    const { data, error } = useSWR('http://localhost:3000/api/notification', fetcher,{refreshInterval: 5000 });
+    const { data, error } = useSWR('/api/notification', fetcher,{refreshInterval: 5000 });
     const [open, setOpen] = React.useState(false);
     const toggle = () => {
         setOpen(!open);

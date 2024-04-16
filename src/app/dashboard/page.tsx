@@ -1,45 +1,62 @@
-import { TableData } from '@/components/admin/data-table'
-import { Card } from '@/components/ui/card'
-export const revalidate = 60;// 1 minute
+import { BarChartExample } from "@/components/admin/bar-chart"
+import { LineChartExample } from "@/components/admin/line-chart"
+import DataCard from "@/components/admin/ui/analys/data-card"
+import { EreaChart } from "@/components/admin/ui/area-chart"
 
-const DashBoard = async () => {
+
+const MangaManagementPage = async () => {
+
   return (
     <main
-      className='w-full flex px-4  relative justify-start items-start gap-6 flex-col'
+      className='w-full h-fit z-10 min-h-screen flex mt-4  px-4   relative justify-start items-start gap-3 flex-col'
     >
-      <section className="w-full mt-10 grid col-span-1 md:grid-cols-2 lg:grid-cols-3 gap-3 ">
-        <Card
-          className='w-full shadow-none border-slate-300/60  col-span-1 p-2 aspect-video'
-        >
-          <div className="h-full w-full">
-            
-          </div>
-        </Card>
-        <Card
-          className='w-full shadow-none border-slate-300/60  col-span-1 p-2 aspect-video'
-        >
-          <div className="h-full w-full">
-           
-          </div>
-        </Card>
-        <Card
-          className='w-full shadow-none border-slate-300/60  col-span-1 p-2 aspect-video'
-        >
-          <div className="h-full w-full">
-           
-          </div>
-        </Card>
-      </section>
-      <section className="w-full grid grid-cols-1 lg:grid-cols-2 gap-2">
-        <Card
-          className='w-full shadow-none border-slate-300/60  col-span-2'
-        >
+      <div className="w-full  grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-3 ">
+        <DataCard
+        titel="Orders"
+        price={1200}
+        type='increase'
+        percentage={20.81}
+        descreption='Since last week'
+        />
 
-          <TableData />
-        </Card>
-      </section>
+        <DataCard
+         titel='Profit' 
+         price={240.94} 
+         type='none' 
+         percentage={50.81} 
+         descreption='Since last week'
+        />
+        <DataCard
+        titel="Users"
+        price={1200}
+        type='decrease'
+        percentage={20.81}
+        descreption='Since last week'
+        />
+      </div>
+      <div className="w-full grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-3 ">
+        <div className="w-full col-span-1 overflow-hidden">
+          <LineChartExample />
+        </div>
+        <div className="w-full col-span-1 overflow-hidden">
+          <BarChartExample />
+        </div>
+        <div className="w-full col-span-1 overflow-hidden">
+          <LineChartExample />
+        </div>
+      </div>
+
+      <div className="w-full  h-[450px] grid md:grid-cols-2 grid-cols-1 lg:grid-cols-5 gap-3 ">
+        <div className="w-full h-[450px] col-span-3 overflow-hidden">
+          <EreaChart />
+        </div>
+        <div className="w-full h-[450px] col-span-2 overflow-hidden">
+          <BarChartExample />
+        </div>
+      </div>
+
     </main>
   )
 }
 
-export default DashBoard
+export default MangaManagementPage

@@ -1,28 +1,15 @@
-
-import cheerio from 'cheerio';
-import { secret } from '@/(db)/secrets';
+'use server';
+import { supabase } from "@/(db)/secrets";
 import { NextResponse,NextRequest } from "next/server";
 
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest, res: NextResponse): Promise<void | Response> {
     try {
-        const url = secret.asq_url as string;
-        const response = await fetch(url);
-        const body = await response.text();
-        const $ = cheerio.load(body);
-        const title = $('title').text();
-        return NextResponse.json({status: "success", data: title, "message": "manga data fetched"});
-    } catch (error) {
+        const users = await supabase.from('users').select('*');
+        return Response.json({ status: 'success', users , message: 'user found' });
+    }
+     catch (error) {
         console.error(error);
+        return Response.json({ status: 'error', message: 'An error occurred while processing your request.' });
     }
 }
-
-
-/*
-https://3asq.org/
-https://mangarabic.com/
-https://lekmanga.net/
-https://mangarose.net/
-https://gatemanga.com/
-https://azoramoon.com/
-*/

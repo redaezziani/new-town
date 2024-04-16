@@ -10,10 +10,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div
-    className="w-full flex flex-col gap-2 justify-center items-center h-screen overflow-hidden "
-    >
+    <div className={`w-full  mt-4 flex px-4 h-fit overflow-hidden min-h-screen   relative justify-start items-start gap-6 flex-col`}>
       {children}
-    </div> 
+    </div>
   );
 }

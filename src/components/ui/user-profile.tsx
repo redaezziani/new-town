@@ -45,9 +45,8 @@ export function UserProfile() {
 
   const handelUser=async()=>{
     try {
-      const res = await fetch('/api/user',{cache:'force-cache'})
+      const res = await fetch('/api/user',{next:{revalidate:10}, cache:'no-cache'})
       const data = await res.json()
-      console.log(data)
       setUser(data)
     } catch (error) {
     }

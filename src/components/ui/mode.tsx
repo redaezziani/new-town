@@ -19,9 +19,9 @@ export function ModeToggle() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
-        className="relative w-10 h-10 rounded-full bg-transparent dark:bg-primary-foreground flex items-center justify-center transition-all hover:bg-muted p-2 dark:hover:bg-primary-background"
+        className="relative w-10 h-10 rounded-full bg-transparent  flex items-center justify-center transition-all hover:bg-muted p-2 dark:hover:bg-primary-background"
         >
-          <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 text-slate-900 transition-all dark:-rotate-90 dark:scale-0" />
           <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
         </button>
       </DropdownMenuTrigger>

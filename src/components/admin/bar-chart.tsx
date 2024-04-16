@@ -29,7 +29,7 @@ const data = [
 export function BarChartExample() {
   return (
     <Card
-    className="w-full h-[340px] col-span-3 overflow-hidden"
+    className="w-full  h-[340px] col-span-3 overflow-hidden"
     >
       <CardHeader>
         <CardTitle>Exercise Minutes</CardTitle>

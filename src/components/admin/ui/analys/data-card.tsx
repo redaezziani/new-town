@@ -11,7 +11,7 @@ interface DataCardProps {
 const DataCard = ({titel, price, type, percentage, descreption} : DataCardProps) => {
   return (
     <article
-    className="rounded-lg border border-slate-300/20  p-6 bg-background"
+    className="rounded-lg  border border-slate-300/20  p-6 bg-background"
   >
     <div>
       <p className="text-sm text-gray-500 dark:text-gray-400">
