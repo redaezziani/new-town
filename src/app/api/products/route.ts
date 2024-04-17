@@ -9,8 +9,9 @@ interface CreateProductsProps {
     name: string
     description: string
     price: number
-    currency: currency,
+    currency: currency
     image ?: string
+    stock ?: number
 }
 
 export async function GET(req: NextRequest, res: NextResponse): Promise<void | Response> {
@@ -37,12 +38,11 @@ export async function POST(req: NextRequest, res: NextResponse): Promise<void | 
         if (!user) {
             return Response.json({ status: 'error', message: 'User not found' });
         }
-        const { name, description, price, currency, image } = await req.json() as CreateProductsProps;
+        const { name, description, price, currency, image,stock } = await req.json() as CreateProductsProps;
 
-        if (!name || !description || !price || !currency) {
+        if (!name || !description || !price || !currency || !stock) {
             return Response.json({ status: 'error', message: 'All fields are required' });
         }
-
         const product = await db.products.create({
             data: {
                 name,
@@ -50,7 +50,8 @@ export async function POST(req: NextRequest, res: NextResponse): Promise<void | 
                 price,
                 currency,
                 userId: user?.payload.id as string,
-                image: image ?? ''
+                image: image ?? '',
+                stock: parseInt(stock.toString()) ?? 0
             }
         });
 
@@ -58,6 +59,43 @@ export async function POST(req: NextRequest, res: NextResponse): Promise<void | 
             return Response.json({ status: 'error', message: 'An error occurred while creating the product' });
         }
         return Response.json({ status: 'success', data: product, message: 'Product created' });
+    }
+    catch (error) {
+        console.error(error);
+        return Response.json({ status: 'error', message: 'An error occurred while processing your request.' });
+    }
+}
+
+
+export async function DELETE(req: NextRequest, res: NextResponse): Promise<void | Response> {
+    try {
+        const token = req.cookies.get('token')?.value;
+        if (!token) {
+            return Response.json({ status: 'error', message: 'No token found' });
+        }
+        const user = await verifyToken(token);
+
+        if (!user) {
+            return Response.json({ status: 'error', message: 'User not found' });
+        }
+        const { data } = await req.json() as { data: string[] };
+
+        if (!data) {
+            return Response.json({ status: 'error', message: 'ID is required' });
+        }
+        const product = await db.products.deleteMany({
+            where: {
+                id: {
+                    in: data
+                },
+                userId: user?.payload.id as string
+            }
+        });
+
+        if (!product) {
+            return Response.json({ status: 'error', message: 'An error occurred while deleting the product' });
+        }
+        return Response.json({ status: 'success', message: 'Product deleted' });
     }
     catch (error) {
         console.error(error);

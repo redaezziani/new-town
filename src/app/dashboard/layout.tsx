@@ -4,6 +4,7 @@ import { SideBar } from "@/components/admin/side-bar";
 import SideMenu from "@/components/admin/side-menu";
 import { ModeToggle } from "@/components/ui/mode";
 import type { Metadata } from "next";
+import { Toaster } from "@/components/ui/toaster"
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -35,7 +36,9 @@ export default async function RootLayout({
           <SideMenu />
         </div>
       <div className="w-full overflow-hidden h-fit  min-h-screen flex relative justify-start items-start gap-3 flex-col col-span-11 lg:col-span-9 ">
-      
+      <div className=" absolute ">
+        <Toaster />
+      </div>
         <SearchBar />
         <PathLine />
         {children}

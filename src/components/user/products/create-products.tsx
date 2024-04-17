@@ -26,6 +26,7 @@ interface CreateProductsProps {
     price: number
     currency: currency
     image ?: string
+    stock ?: number
 }
 const CreateProducts = () => {
     const [image, setImage] = React.useState<string | null>(null);
@@ -34,7 +35,8 @@ const CreateProducts = () => {
         description: '',
         price: 0,
         currency: 'USD',
-        image: image ?? ''
+        image: image ?? '',
+        stock: 0
     })
     const [loading, setLoading] = React.useState(false)
     const [error, setError] = React.useState<string | null>(null)
@@ -54,7 +56,9 @@ const CreateProducts = () => {
                 name: z.string(),
                 description: z.string(),
                 price: z.number(),
-                currency: z.string()
+                stock: z.number(),
+                currency: z.string(),
+                
               })
             const result = schema.parse(data)
             const Newdata = {
@@ -62,7 +66,8 @@ const CreateProducts = () => {
                 description: result.description,
                 price: result.price,
                 currency: result.currency,
-                image: image
+                image: image,
+                stock: result.stock
             }
 
             const response =await  fetch('/api/products', {
@@ -79,7 +84,9 @@ const CreateProducts = () => {
                     name: '',
                     description: '',
                     price: 0,
-                    currency: 'USD'
+                    currency: 'USD',
+                    image: '',
+                    stock: 0
                 })
                 setIsOpened(false)
             }
@@ -169,7 +176,20 @@ const CreateProducts = () => {
                         value={data.price}
                         onChange={handleChange}
                     />
-                   
+                    <Label
+                        className='text-muted-foreground dark:text-muted-foreground '
+                        htmlFor='stock'
+                    >
+                        Stock
+                    </Label>
+                    <Input
+                        type='number'
+                        name='stock'
+                        id='stock'
+                        value={data.stock}
+                        onChange={handleChange}
+                    />
+
                     <Select
                     value={data.currency}
                     //@ts-ignore    
