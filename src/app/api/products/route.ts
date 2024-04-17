@@ -16,7 +16,22 @@ interface CreateProductsProps {
 
 export async function GET(req: NextRequest, res: NextResponse): Promise<void | Response> {
     try {
-        const products = await db.products.findMany();
+        const token = req.cookies.get('token')?.value;
+        if (!token) {
+            return Response.json({ status: 'error', message: 'No token found' });
+        }
+        const user = await verifyToken(token);
+
+        if (!user) {
+            return Response.json({ status: 'error', message: 'User not found' });
+        }
+        const products = await db.products.findMany(
+            {
+                where: {
+                    userId: user?.payload.id as string
+                }
+            }
+        );
         return Response.json({ status: 'success', data: products, message: 'Products found' });
     }
  
