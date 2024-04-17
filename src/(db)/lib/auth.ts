@@ -68,8 +68,8 @@ interface dataTypes {
 export const VereficationEmail = async ({ email, name, token, id }: dataTypes) => {
     try {
         const { data, error } = await resend.emails.send({
-            to: 'klausdev2@gmail.com',
-            from: 'onboarding@resend.dev',
+            to: email,
+            from: 'zunder@dimach9.online',
             subject: 'Verify your email',
             text: 'Verify your email to continue',
             react: EmailTemplate({ firstName: name, token: token, email: email, id: id }),
@@ -121,8 +121,8 @@ export const generateRestePasswordToken = async (email: string, token: string) =
 export const ResetPassowrdEmail = async (secret: string, name: string, email: string) => {
     try {
         const { data, error } = await resend.emails.send({
-            to: 'klausdev2@gmail.com',
-            from: 'onboarding@resend.dev',
+            to: email,
+            from: 'zunder@dimach9.online',
             subject: 'Reset your password',
             text: 'Reset your password',
             react: ResetPasswordTemplate({ secret, name, email }),
