@@ -173,6 +173,7 @@ const ProductsTable = () => {
             <DialogFooter
             className="sm:justify-start flex gap-2 items-center">
             <Button
+              
               isloading={loading}
               variant={'destructive'}
               onClick={() =>
@@ -181,7 +182,7 @@ const ProductsTable = () => {
               handelDelete()
               }
               }
-              className=" flex gap-2 "
+              className=" flex gap-2 w-full mt-4 "
             >
               Delete Products
             </Button>

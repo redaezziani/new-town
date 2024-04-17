@@ -5,13 +5,8 @@ import { Area, AreaChart, CartesianGrid, Line, LineChart, ResponsiveContainer, T
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
+ 
 } from "@/components/ui/card"
-import Counter from "../admin/ui/animation/counter";
-import {  TrendingUp } from "lucide-react";
 
 const data = [
   { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
