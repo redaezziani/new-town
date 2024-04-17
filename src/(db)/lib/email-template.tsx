@@ -133,7 +133,7 @@ const EmailTemplate: React.FC<EmailTemplateProps> = ({
                 </p>
               </div>
               <a
-                href={`https://www.dimach9.online/auth/verification/${id}`}
+                href={`https://www.dimach9.online/auth/verefication/${id}`}
                 style={{
                   lineHeight: "1.25rem",
                   textDecoration: "none",
