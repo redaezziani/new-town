@@ -1,6 +1,6 @@
 'use client';
 import { VerificationOTP } from '@/components/admin/verefication';
-const VereficationPage = () => {
+const VereficationCodePage = () => {
   
   return (
     <div className=" h-screen overflow-hidden w-full relative flex justify-center items-center gap-9">
@@ -12,4 +12,4 @@ const VereficationPage = () => {
   )
 }
 
-export default VereficationPage
+export default VereficationCodePage
