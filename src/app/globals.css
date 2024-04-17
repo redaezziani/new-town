@@ -77,6 +77,10 @@
     }
   }
 
+  .color {
+    color: #0ad457;
+  }
+
 
 
   @layer utilities {

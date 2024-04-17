@@ -2,6 +2,7 @@ import { BarChartExample } from "@/components/admin/bar-chart"
 import { LineChartExample } from "@/components/admin/line-chart"
 import DataCard from "@/components/admin/ui/analys/data-card"
 import { EreaChart } from "@/components/admin/ui/area-chart"
+import ProductCardData from "@/components/user/products/card-data"
 
 
 const MangaManagementPage = async () => {
@@ -11,13 +12,7 @@ const MangaManagementPage = async () => {
       className='w-full h-fit z-10 min-h-screen flex mt-4  px-4   relative justify-start items-start gap-3 flex-col'
     >
       <div className="w-full  grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-3 ">
-        <DataCard
-        titel="Orders"
-        price={1200}
-        type='increase'
-        percentage={20.81}
-        descreption='Since last week'
-        />
+        <ProductCardData />
 
         <DataCard
          titel='Profit' 
