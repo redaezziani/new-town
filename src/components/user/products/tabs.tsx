@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProductsShart } from "@/components/prodcuts-ui/products-chart"
+import { ProductsShart } from "@/components/prodcuts-ui/product-card-chart"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 const TabsProducts = () => {
   return (
