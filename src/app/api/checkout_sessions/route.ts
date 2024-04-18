@@ -15,7 +15,7 @@ import Stripe from 'stripe';
 
 export async function POST(req: NextRequest, res: NextResponse): Promise<void | Response> {
     try {
-        const stripe = new Stripe('sk_test_51OPRuAHDE7eZdLsN9Di6UEqWNbmhvUpPJ6y73UM7L9aGxCtnpJdBomZENFReB0CSEdz56OqV9z7lmxEIszd92SIy00oeuNrWnv', { apiVersion: '2024-04-10' })
+        const stripe = new Stripe(secret.stripe_secret_key??'', { apiVersion: '2024-04-10' })
         const token = req.cookies.get('token')?.value;
         const {priceId} = await req.json();
         if (!token) {
@@ -74,8 +74,8 @@ export async function POST(req: NextRequest, res: NextResponse): Promise<void | 
               });
             return Response.json({ status: 'success', session });
         }
-        if (isMamber.account?.isActive && isMamber.account?.planId !== priceId) { 
-            return Response.json({ status: 'error', message: 'User already has an active subscription' });
+        if (isMamber.account?.isActive && isMamber.account?.planId == priceId) { 
+            return Response.json({ status: 'error', message: 'You are already subscribed to this plan' });
         }
         const session = await stripe.checkout.sessions.create({
             customer: isMamber.stripeId as string,
