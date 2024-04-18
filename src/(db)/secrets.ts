@@ -6,7 +6,9 @@ export const secret = {
     jwt_secret: env.JWT_SECRET,
     jwt_expiry: env.JWT_EXPIRY,
     edge_store_access_key: env.EDGE_STORE_ACCESS_KEY,
-    edge_store_secret_key: env.EDGE_STORE_SECRET_KEY
+    edge_store_secret_key: env.EDGE_STORE_SECRET_KEY,
+    stripe_publishable_key: env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY??'',
+    stripe_secret_key: env.STRIPE_SECRET_KEY,
 }
 import { createClient } from '@supabase/supabase-js'
 

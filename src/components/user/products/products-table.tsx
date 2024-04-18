@@ -99,14 +99,15 @@ const ProductsTable = () => {
       accessorKey: 'name',
       header: 'Name',
       cell: ({ row }) => <div
-        className=''
+        className='line-clamp-1'
       >{row.getValue('name')}</div>,
     },
     {
       accessorKey: 'description',
       header: 'Description',
-      cell: ({ row }) => <div
-        className=''
+      cell: ({ row }) => 
+      <div
+        className=' line-clamp-1 max-w-3xl'
       >{row.getValue('description')}</div>,
     },
     {
@@ -198,9 +199,10 @@ const ProductsTable = () => {
           onClick={() => setOpen(true)}
           disabled={loading}
           isloading={loading}
-          className=" flex gap-2 "
+          className=" flex gap-2 text-red-600 border-red-600 hover:text-red-600 hover:bg-red-600/5 "
         >
           <svg
+          className='text-red-600'
             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none">
             <path d="M19.5 5.5L18.8803 15.5251C18.7219 18.0864 18.6428 19.3671 18.0008 20.2879C17.6833 20.7431 17.2747 21.1273 16.8007 21.416C15.8421 22 14.559 22 11.9927 22C9.42312 22 8.1383 22 7.17905 21.4149C6.7048 21.1257 6.296 20.7408 5.97868 20.2848C5.33688 19.3626 5.25945 18.0801 5.10461 15.5152L4.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
             <path d="M9.5 12.5C9.99153 11.9943 11.2998 10 12 10M14.5 12.5C14.0085 11.9943 12.7002 10 12 10M12 10V18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />

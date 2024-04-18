@@ -29,16 +29,22 @@ model userVerificationRequest {
   deletedAt DateTime?
   user      users     @relation(fields: [userId], references: [id])
 }
-
-
+// USER AND ADMIN AND PREMIUM AND DELIVERY
+enum Role {
+  ADMIN
+  USER
+  PREMIUM
+  DELIVERY
+}
 model users {
   id           String                   @id @default(uuid()) @db.VarChar(36)
   email        String                   @unique
   name         String?
   password     String
-  role         String                   @default("user")
+  role         Role                     @default(USER)
   image        String?                  @default("")
   isVerified   Boolean                  @default(false)
+  stripeId     String?
   createdAt    DateTime                 @default(now())
   updatedAt    DateTime                 @default(now()) @updatedAt
   resetRequest resetPasswordRequest?
@@ -47,6 +53,7 @@ model users {
   Order        Order[]
   products     products[]
   OrderItem    OrderItem[]
+  account      account?
   @@index([email], map: "idx_user_email") 
   @@index([name], map: "idx_user_name")
 }
@@ -141,4 +148,15 @@ model products {
   currency    currency @default(USD)
   OrderItem   OrderItem[]
   user        users     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+// relation between user and plan is one to one
+model account {
+  id        String    @id @default(uuid()) @db.VarChar(36)
+  userId    String    @unique @db.VarChar(36)
+  planId    String    @default("free")
+  user     users      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  isActive  Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
 }
