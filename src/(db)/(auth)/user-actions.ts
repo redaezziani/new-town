@@ -281,10 +281,6 @@ export const resetPassword = async (data : z.infer<typeof resetPasswordSchema>) 
     const findToken = await db.resetPasswordRequest.findFirst({
       where: {
         userId: user.id,
-        token: userData.token,
-        expires: {
-          gt: new Date(),
-        },
       },
     });
     if (!findToken) {

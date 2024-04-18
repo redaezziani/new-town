@@ -145,7 +145,6 @@ const AuroraHero = () => {
           </motion.p>
         </motion.div>
       </AnimatePresence>
-      <HeroScrollDemo />
       <BentoGridSecondDemo />
       <PlansCards />
     </motion.section>
