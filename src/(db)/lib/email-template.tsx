@@ -70,7 +70,7 @@ const EmailTemplate: React.FC<EmailTemplateProps> = ({
               >
                 <img
                   alt="logo"
-                  src="https://bmjrnwruypztpiesasil.supabase.co/storage/v1/object/sign/profile/zunder.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcm9maWxlL3p1bmRlci5wbmciLCJpYXQiOjE3MTMzNzA0NTUsImV4cCI6MTc0NDkwNjQ1NX0.mxNSOPHZYTcmFRDh9rZFEuwjcyt2y8OnyqNGTUt8QIE&amp;t=2024-04-17T16%3A14%3A16.129Z"
+                  src="https://bmjrnwruypztpiesasil.supabase.co/storage/v1/object/sign/profile/Subtract%20(1).png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcm9maWxlL1N1YnRyYWN0ICgxKS5wbmciLCJpYXQiOjE3MTM0NTkzNjYsImV4cCI6MjM0NDE3OTM2Nn0.jcmWXEZFGGbmF35sU0U5SspijP_UZqlA4BtzUvPirzc&t=2024-04-18T16%3A56%3A06.954Z"
                   style={{
                     display: "block",
                     outline: "none",
@@ -139,11 +139,11 @@ const EmailTemplate: React.FC<EmailTemplateProps> = ({
                   textDecoration: "none",
                   display: "inline-block",
                   maxWidth: "100%",
-                  backgroundColor: "rgb(251, 189, 35)",
+                  backgroundColor: "#1e293b",
                   width: "97.5%",
                   textAlign: "center",
                   marginTop: "1.25rem",
-                  color: "rgb(51, 65, 85)",
+                  color: "#f8fafc",
                   textTransform: "lowercase",
                   fontSize: "0.875rem",
                   borderRadius: "0.5rem",

@@ -117,7 +117,15 @@ export const generateRestePasswordToken = async (email: string, token: string) =
         return { status: 'error', message: 'Something wrong! Try again later.' };
     }
 };
-
+export const getResetPasswordToken = async (secret: string) => {
+    try {
+        const result = await jwtVerify(secret, key, { algorithms: ['HS256'] });
+        return result;
+    } catch (error) {
+        console.log(error);
+        return { status: 'error', message: 'Something wrong! Try again later.' };
+    }
+}
 export const ResetPassowrdEmail = async (secret: string, name: string, email: string) => {
     try {
         const { data, error } = await resend.emails.send({

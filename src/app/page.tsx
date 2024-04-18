@@ -39,8 +39,8 @@ const AuroraHero = () => {
         <SideBar />
       </div>
       <div className={`absolute z-[1]  inset-0 bg-cover `}>
-          <div className="w-full h-full bg-repeat bg-[url('./assets/decorationBlockLight.svg')] dark:bg-[url('./assets/decorationBlockDark.svg')]" style={{WebkitMaskImage: 'radial-gradient(70% 70% at 50.00% 30%, #000 0%, rgba(0, 0, 0, 0.25) 100%)'}}></div>
-        </div>
+        <div className="w-full h-full bg-repeat bg-[url('./assets/decorationBlockLight.svg')] dark:bg-[url('./assets/decorationBlockDark.svg')]" style={{ WebkitMaskImage: 'radial-gradient(70% 70% at 50.00% 30%, #000 0%, rgba(0, 0, 0, 0.25) 100%)' }}></div>
+      </div>
       <div className=" w-full   fixed top-0 z-40 justify-center flex-col items-center flex mx-auto   ">
         <div className="w-full border border-t-transparent border-b border-border flex p-1.5 justify-center items-center gap-3 bg-foreground bg-slate-50 dark:text-slate-900 font-semibold">
           <span className="text-xs p-1">
@@ -59,9 +59,14 @@ const AuroraHero = () => {
           <Link
             href={"/"}
             className="flex gap-2 items-center">
-            <img
-              className="w-10 aspect-square h-auto object-cover"
-              src="/logo/zunder.png" alt="" />
+            <svg 
+              className="text-slate-900 dark:text-slate-50"
+            width="40" height="40" viewBox="0 0 210 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" clipRule="evenodd" d="M5.32961 43.2093C0 56.0745 0 72.3843 0 105.004C0 137.623 0 153.933 5.32961 166.798C12.4341 183.948 26.0596 197.574 43.2093 204.678C56.0745 210.008 72.3843 210.008 105.004 210.008C137.623 210.008 153.933 210.008 166.798 204.678C183.948 197.574 197.574 183.948 204.678 166.798C209.454 155.269 209.95 140.974 210.002 114.653H131.113L89.679 172.547L97.6252 114.653H59.0292L114.653 37.4608L107.274 94.2197H209.999C209.935 68.6209 209.385 54.5717 204.678 43.2093C197.574 26.0596 183.948 12.4341 166.798 5.32961C153.933 0 137.623 0 105.004 0C72.3843 0 56.0745 0 43.2093 5.32961C26.0596 12.4341 12.4341 26.0596 5.32961 43.2093Z"
+                fill="currentColor"
+              />
+            </svg>
+
             <span
               className="font-bold text-slate-900 dark:text-slate-50 "
             >
@@ -114,8 +119,8 @@ const AuroraHero = () => {
             </span>
             <span className="backdrop absolute inset-[1px] rounded-full bg-black transition-colors duration-200 group-hover:bg-slate-800" />
             <span
-          
-            className="text z-10 lowercase text-[#cbd5e1]">
+
+              className="text z-10 lowercase text-[#cbd5e1]">
               Beta Now Live! 🎉
             </span>
           </motion.button>
@@ -126,7 +131,7 @@ const AuroraHero = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="max-w-3xl mt-3 bg-gradient-to-br from-[#feb600f1] to-[#dda109] bg-clip-text text-center text-3xl font-medium leading-tight text-transparent sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight">
+            className="max-w-3xl mt-3 bg-gradient-to-br from-sky-400 to-sky-600 bg-clip-text text-center text-3xl font-medium leading-tight text-transparent sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight">
             Zunder {/* */} .
           </motion.h1>
           <motion.p

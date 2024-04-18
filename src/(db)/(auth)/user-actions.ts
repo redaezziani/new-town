@@ -1,10 +1,10 @@
 'use server';
-import {z} from 'zod'
+import {date, z} from 'zod'
 import { SignInSchema, SignUpSchema } from '@/app/types/from';
-import { createToken, generateRandomNumbers, generateRestePasswordToken, getUserByEmail, ResetPassowrdEmail, VereficationEmail } from '../lib/auth';
+import { createToken, generateRandomNumbers, generateRestePasswordToken, getResetPasswordToken, getUserByEmail, ResetPassowrdEmail, VereficationEmail } from '../lib/auth';
 import { cookies } from 'next/headers';
 import { createHash } from 'crypto';
-import db from '../secrets';
+import db, { secret } from '../secrets';
 import { SignUpSchemaType } from '@/app/types/from';
 import { CreateNotification } from '../notifications';
 import { ActionType, NotificationType } from '@prisma/client';
@@ -216,28 +216,111 @@ export const forgetPassword = async (userEmail : string) => {
   try {
     const user = await getUserByEmail(userEmail);
     if (!user) {
-      return {status : 'error', message: 'User not found'}
+      return {status : 'error', message: 'are you sure this email is correct ?'}
     }
     const token = await  generateRandomNumbers()
     const {email,name} = user
     const secret= await generateRestePasswordToken(email, token);
     if (!secret) {
-      return {status : 'error', message: 'Token not created'}
+      return {status : 'error', message: 'we can not create a reset link for you, try again laiter.'}
     }
     const send = await ResetPassowrdEmail(secret.toString(), name ?? '', email);
     if (!send) {
-      return {status : 'error', message: 'Email not sent'}
+      return {status : 'error', message: 'we can not send you a reset link, try again laiter.'}
     }
-    const res = await db.resetPasswordRequest.create({
-      data: {
+    const res = await db.resetPasswordRequest.upsert({
+      where: {
+        userId: user.id,
+      },
+      update: {
+        token: parseInt(token),
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+      },
+      create: {
         token: parseInt(token),
         userId: user.id,
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
       },
     });
-    return {status : 'success', message: 'Email sent successfully'}
+    if (!res) {
+      return {status : 'error', message: 'we can not create a reset link for you, try again laiter.'}
+    }
+    return {status : 'success', message: 'we sent you a reset link to your email, please check your email.'}  
   } catch (error) {
     console.log(error);
+    return {status : 'error', message: 'Somthing Worng ! try again laiter.'}
+  }
+}
+
+
+const resetPasswordSchema = z.object({
+  password: z.string().min(8, {
+    message: 'try to use a more secure password with at least 8 characters'
+  }),
+  secret: z.string()
+});
+
+
+export const resetPassword = async (data : z.infer<typeof resetPasswordSchema>) => {
+  try {
+    const {payload:userData} = await getResetPasswordToken(data.secret) as any;
+    if (!userData) {
+      return {status : 'error', message: 'Invalid token'}
+    }
+    const result = resetPasswordSchema.parse(data);
+  
+    const hashedPassword = createHash('sha256').update(result.password).digest('hex');
+    if (!hashedPassword) {
+      return {status : 'error', message: 'Password not hashed'}
+    }
+    // ceck if token is exist
+    const user = await getUserByEmail(userData.email) as any;
+    if (!user) {
+      return {status : 'error', message: 'User not found'}
+    }
+    const findToken = await db.resetPasswordRequest.findFirst({
+      where: {
+        userId: user.id,
+        token: userData.token,
+        expires: {
+          gt: new Date(),
+        },
+      },
+    });
+    if (!findToken) {
+      return {status : 'error', message: 'Token not found'}
+    }
+
+    const res = await db.users.update({
+      where: {
+        email: userData.email
+      },
+      data: {
+        password: hashedPassword,
+      },
+    });
+    if (!res) {
+      return {status : 'error', message: 'Password not updated'}
+    }
+    // delete token
+    
+    if (!user) {
+      return {status : 'error', message: 'User not found'}
+    }
+    await db.resetPasswordRequest.deleteMany({
+      where: {
+        userId: user.id,
+      },
+    });
+    return {status : 'success', message: 'Password updated successfully'}
+  } catch (error: any) {
+    if (error.errors) {
+      error.errors.map((err: any) => {
+        if (err.path[0] === 'password') {
+          return {status : 'error', message: err.message}
+        }
+      });
+    }
     return {status : 'error', message: 'Somthing Worng ! try again laiter.'}
   }
 }

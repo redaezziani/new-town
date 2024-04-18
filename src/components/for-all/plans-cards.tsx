@@ -174,7 +174,7 @@ const PlansCards = () => {
                 </p>
                 <Button
                     onClick={() => handelCheckout('price_1P6slOHDE7eZdLsNNRgYrCje')}
-                    className="mt-8 block w-full bg-[#fbbd23] hover:bg-[#fbbd23]/90 rounded-md py-2 text-sm font-semibold  text-center">
+                    className="mt-8 block w-full bg-sky-600 hover:bg-sky-600/90 rounded-md py-2 text-sm font-semibold  text-center">
                     Join as a Mega member
                 </Button>
             </div>
