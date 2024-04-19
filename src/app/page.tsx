@@ -43,7 +43,7 @@ const AuroraHero = () => {
         <div className="w-full h-full  bg-repeat bg-[url('/assets/decorationBlockLight.svg')] bg-image-grid dark:bg-[url('/assets/decorationBlockDark.svg')]" style={{ WebkitMaskImage: 'radial-gradient(70% 70% at 50.00% 30%, #000 0%, rgba(0, 0, 0, 0.25) 100%)' }}></div>
       </div>
       <div className=" w-full   fixed top-0 z-40 justify-center flex-col items-center flex mx-auto   ">
-        <div className="w-full border border-t-transparent border-b border-border flex p-1.5 justify-center items-center gap-3 bg-foreground bg-slate-50 dark:text-slate-900 font-semibold">
+        <div className="w-full hidden lg:flex border border-t-transparent border-b border-border  p-1.5 justify-center items-center gap-3 bg-foreground bg-slate-50 dark:text-slate-900 font-semibold">
           <span className="text-xs p-1">
             Introducing Zunder , sign up now and get 50% off
           </span>
