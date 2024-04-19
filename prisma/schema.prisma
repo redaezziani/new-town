@@ -45,6 +45,7 @@ model users {
   image        String?                  @default("")
   isVerified   Boolean                  @default(false)
   stripeId     String?
+  sendAnonce   Boolean                  @default(false)
   createdAt    DateTime                 @default(now())
   updatedAt    DateTime                 @default(now()) @updatedAt
   resetRequest resetPasswordRequest?
@@ -53,6 +54,7 @@ model users {
   Order        Order[]
   products     products[]
   OrderItem    OrderItem[]
+  Delivery     delivery[]
   account      account?
   @@index([email], map: "idx_user_email") 
   @@index([name], map: "idx_user_name")
@@ -93,6 +95,7 @@ enum OrderItemStatus {
 model Order {
   id        String    @id @default(uuid()) @db.VarChar(36)
   userId    String
+  deliveryId String
   name      String
   address   String
   phone     String
@@ -105,6 +108,7 @@ model Order {
   deletedAt DateTime?
   user      users     @relation(fields: [userId], references: [id], onDelete: Cascade)
   OrderItem OrderItem[]
+  delivery  delivery  @relation(fields: [deliveryId], references: [id], onDelete: Cascade)
 }
 
 model OrderItem {
@@ -159,4 +163,16 @@ model account {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
+}
+
+
+model delivery {
+  id        String    @id @default(uuid()) @db.VarChar(36)
+  userId    String    @unique @db.VarChar(36)
+  isActive  Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  user      users     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  order     Order[]
 }
