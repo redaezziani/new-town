@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "zunder",
+  title: "Zunder - a better way to manage your store",
   description: "track your orders and manage your store"
 };
 

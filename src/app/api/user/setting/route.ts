@@ -1,16 +1,12 @@
 import { verifyToken } from "@/(db)/lib/auth";
 import { NextResponse,NextRequest } from "next/server";
-import {
-  createHash,
-  verify,
-} from 'crypto'
 import db from "@/(db)/secrets";
-interface UserData {
-  name: string;
-  email: string;
-  image: string;
-  passsword : string;
-}
+import { z } from "zod";
+const UserData = z.object({
+    name: z.string().optional(),
+    email: z.string().email().optional(),
+    image: z.string().optional(),
+})
 export const dynamic = 'force-dynamic' 
 export async function POST(req: NextRequest, res: NextResponse): Promise<void | Response> {
     try {
@@ -19,38 +15,21 @@ export async function POST(req: NextRequest, res: NextResponse): Promise<void | 
       return Response.json({ status: 'error', message: 'No token found' });
     }
     const user = await verifyToken(token);
-    const data: UserData = await req.json();
+    if (!user) {
+      return Response.json({ status: 'error', message: 'Invalid token' });
+    }
+    const data =  UserData.parse(req.json());
     if (!data) {
       return Response.json({ status: 'error', message: 'No data found' });
-    }
-
-    if (data.passsword) {
-      // compare password with the one in the database
-      const hashedPassword = createHash('sha256').update(data.passsword).digest('hex');
-      if (hashedPassword !== user?.payload?.password) {
-        return Response.json({ status: 'error', message: 'Password is incorrect' });
-      }
-
-      const res = await db.users.update({
-        where: {
-          id: user?.payload?.id as string,
-        },
-        data: {
-        password: hashedPassword,
-        },
-      });
-      if (!res) {
-        return Response.json({ status: 'error', message: 'An error occurred while updating your password.' });
-      }
     }
     const res = await db.users.update({
       where: {
         id: user?.payload?.id as string,
       },
       data: {
-        name: data.name,
-        email: data.email,
-        image: data.image,
+        email: data.email?? user?.payload?.email as string,
+        image: data.image ?? user?.payload?.image as string,
+        name: data.name ?? user?.payload?.name as string,
       },
     }); 
 
@@ -61,6 +40,9 @@ export async function POST(req: NextRequest, res: NextResponse): Promise<void | 
     return Response.json({ status: 'success', message: 'Profile updated successfully' });
     
     } catch (error) {
+       if (error instanceof z.ZodError) {
+        return Response.json({ status: 'error', message: error.errors[0].message });
+       }
         console.error(error);
         return Response.json({ status: 'error', message: 'An error occurred while processing your request.' });
     }

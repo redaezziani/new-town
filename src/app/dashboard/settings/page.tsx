@@ -1,14 +1,14 @@
 'use client';
-import { SingleImageDropzoneUsage } from "@/components/for-all/singel-image-uploader";
+
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import InfoCardUpdate from "@/components/user/card-info-settings/info-card-update";
+
 import { useState, useEffect } from "react"
+
 const SettingPage = async () => {
   const [user, setUser] = useState<any>(null)
   const handelUser = async () => {
@@ -19,8 +19,7 @@ const SettingPage = async () => {
     } catch (error) {
     }
   }
-  const [image, setImage] = useState<string | null>(null);
-
+  
   useEffect(() => {
     handelUser()
   }, [])
@@ -51,68 +50,7 @@ const SettingPage = async () => {
           </div>
         </div>
       </div>
-      <div
-        className="w-full flex mt-32 flex-col md:flex-row  justify-start items-start  min-h-60 relative"
-      >
-        <div className="flex flex-col gap-2">
-          <h3
-            className="text-lg text-slate-600 font-semibold"
-          >
-            Personel Information
-          </h3>
-          <p
-            className="text-sm text-slate-500"
-          >
-            Update your personel information here
-          </p>
-        </div>
-        <div className="w-full lg:ml-56 lg:w-[60%] gap-4 bg-background lg:p-2 justify-start flex flex-col items-start">
-          <Label
-
-          >
-            Username
-          </Label>
-
-          <Input
-            className="w-full"
-            placeholder="Username"
-            value={user?.data?.username ?? ''}
-          />
-          <Label
-          >
-            Email
-          </Label>
-          <Input
-            className="w-full"
-            placeholder="Email"
-            value={user?.data?.email ?? ''}
-          />
-          <Label
-          >
-            Password
-          </Label>
-          <Input
-            className="w-full"
-            placeholder="Password"
-            type="password"
-          />
-          <Label
-            className='text-muted-foreground dark:text-muted-foreground '
-            htmlFor='image'
-          >
-            Image
-          </Label>
-          <SingleImageDropzoneUsage
-            onFileChange={(url) => setImage(url)}
-          />
-          <Button
-            className="w-full"
-            onClick={() => { }}
-          >
-            Update Profile
-          </Button>
-        </div>
-      </div>
+      <InfoCardUpdate user={user} />
     </main>
   )
 }
