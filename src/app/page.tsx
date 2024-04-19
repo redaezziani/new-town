@@ -13,6 +13,7 @@ import { ModeToggle } from "@/components/ui/mode";
 import { BentoGridSecondDemo } from "@/components/home/grid";
 import { HeroScrollDemo } from "@/components/home/scroll";
 import PlansCards from "@/components/for-all/plans-cards";
+import ShinyButton from "@/components/for-all/button";
 
 const COLORS_TOP = ["#fbbd23", "#fbbd23",]
 
@@ -33,13 +34,13 @@ const AuroraHero = () => {
   return (
     <motion.section
 
-      className="relative w-full flex justify-center items-center flex-col gap-2 min-h-screen place-content-center bg-background   px-4 py-24 text-gray-800"
+      className="relative w-full flex  justify-center items-center flex-col gap-2 min-h-screen place-content-center bg-background   px-4 py-24 text-gray-800"
     >
       <div className=" flex z-50 lg:hidden fixed right-4 top-3">
         <SideBar />
       </div>
       <div className={`absolute z-[1]  inset-0 bg-cover `}>
-        <div className="w-full h-full bg-repeat bg-[url('./assets/decorationBlockLight.svg')] dark:bg-[url('./assets/decorationBlockDark.svg')]" style={{ WebkitMaskImage: 'radial-gradient(70% 70% at 50.00% 30%, #000 0%, rgba(0, 0, 0, 0.25) 100%)' }}></div>
+        <div className="w-full h-full  bg-repeat bg-[url('/assets/decorationBlockLight.svg')] bg-image-grid dark:bg-[url('/assets/decorationBlockDark.svg')]" style={{ WebkitMaskImage: 'radial-gradient(70% 70% at 50.00% 30%, #000 0%, rgba(0, 0, 0, 0.25) 100%)' }}></div>
       </div>
       <div className=" w-full   fixed top-0 z-40 justify-center flex-col items-center flex mx-auto   ">
         <div className="w-full border border-t-transparent border-b border-border flex p-1.5 justify-center items-center gap-3 bg-foreground bg-slate-50 dark:text-slate-900 font-semibold">
@@ -108,22 +109,22 @@ const AuroraHero = () => {
         <motion.div
 
           className="relative z-10 mt-40 flex flex-col items-center">
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.3 }}
-            className="group relative grid overflow-hidden rounded-full px-4 py-1 shadow-[0_1000px_0_0_hsl(0_0%_20%)_inset] transition-colors duration-200">
-            <span>
-              <span className="spark mask-gradient animate-flip before:animate-rotate absolute inset-0 h-[100%] w-[100%] overflow-hidden rounded-full [mask:linear-gradient(white,_transparent_50%)] before:absolute before:aspect-square before:w-[200%] before:rotate-[-90deg] before:bg-[conic-gradient(from_0deg,transparent_0_340deg,white_360deg)] before:content-[''] before:[inset:0_auto_auto_50%] before:[translate:-50%_-15%]" />
-            </span>
-            <span className="backdrop absolute inset-[1px] rounded-full bg-black transition-colors duration-200 group-hover:bg-slate-800" />
-            <span
-
-              className="text z-10 lowercase text-[#cbd5e1]">
-              Beta Now Live! 🎉
-            </span>
-          </motion.button>
+          <ShinyButton >
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.3 }}
+              whileHover={{ scale: 1.1 }}
+              className="text  gap-4  flex justify-center items-center  lowercase text-[#cbd5e1]">
+              Beta Now Live!
+              <span>
+              🎉
+              </span>
+            </motion.div>
+          </ShinyButton>
+        
 
 
           <motion.h1
@@ -143,6 +144,7 @@ const AuroraHero = () => {
             zunder is a powerful, yet simple to use platform that allows you to
             manage your store and track your orders with ease.
           </motion.p>
+
         </motion.div>
       </AnimatePresence>
       <BentoGridSecondDemo />

@@ -55,10 +55,18 @@ import { useParams } from 'next/navigation'
       onChange={(value) => setValue(value)}
       onComplete={handelSubmit}
       maxLength={6}>
-        <InputOTPGroup>
-          <InputOTPSlot index={0} />
-          <InputOTPSlot index={1} />
-          <InputOTPSlot index={2} />
+        <InputOTPGroup
+        className=" gap-3"
+        >
+          <InputOTPSlot
+          className=" rounded"
+          index={0} />
+          <InputOTPSlot
+          className=" rounded"
+          index={1} />
+          <InputOTPSlot
+          className=" rounded"
+          index={2} />
         </InputOTPGroup>
         <InputOTPSeparator />
         <InputOTPGroup>
@@ -67,13 +75,16 @@ import { useParams } from 'next/navigation'
           <InputOTPSlot index={5} />
         </InputOTPGroup>
       </InputOTP>
-       <div className="text-center text-sm">
-       {status.status === 'error' ? (
-          <p className="text-red-500">{status.message}</p>
-       ) : (
-          <p className="text-green-500">{status.message}</p>
-       )}
-     </div>
+      {status.message && 
+       <div
+       className={`text-center w-full p-3 rounded   mt-3 text-sm ${status.status === 'error' ? 'text-red-500 bg-red-500/10' : 'text-green-500 bg-green-500/10'}`}>
+      {status.status === 'error' ? (
+         <p className="text-red-500">{status.message}</p>
+      ) : (
+         <p className="text-green-500">{status.message}</p>
+      )}
+    </div>
+      }
      </div>
     )
   }
