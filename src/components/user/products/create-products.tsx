@@ -25,8 +25,8 @@ interface CreateProductsProps {
     description: string
     price: number
     currency: currency
-    image ?: string
-    stock ?: number
+    image?: string
+    stock?: number
 }
 const CreateProducts = () => {
     const [image, setImage] = React.useState<string | null>(null);
@@ -52,14 +52,14 @@ const CreateProducts = () => {
         try {
             setLoading(true)
             setError(null)
-           const schema = z.object({
+            const schema = z.object({
                 name: z.string(),
                 description: z.string(),
                 price: z.number(),
                 stock: z.number(),
                 currency: z.string(),
-                
-              })
+
+            })
             const result = schema.parse(data)
             const Newdata = {
                 name: result.name,
@@ -70,13 +70,13 @@ const CreateProducts = () => {
                 stock: result.stock
             }
 
-            const response =await  fetch('/api/products', {
+            const response = await fetch('/api/products', {
                 method: 'POST',
                 body: JSON.stringify(Newdata),
             })
 
             const json = await response.json()
-             if (json.status === 'error') {
+            if (json.status === 'error') {
                 setError(json.message)
             }
             if (json.status === 'success') {
@@ -90,7 +90,7 @@ const CreateProducts = () => {
                 })
                 setIsOpened(false)
             }
-            
+
 
         } catch (error) {
             if (error instanceof z.ZodError) {
@@ -110,16 +110,24 @@ const CreateProducts = () => {
         >
             <SheetTrigger asChild>
                 <Button
-                    className='flex gap-2'
-                    variant={'outline'}
+                    className='flex gap-2  '
                 >
-                    <Package2 className='w-4 h-4' />
-                    <span>Create Product</span>
+                     <span
+                     className='font-semibold lowercase'
+                     >Create Product</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                        <path d="M11 22C10.1818 22 9.40019 21.6698 7.83693 21.0095C3.94564 19.3657 2 18.5438 2 17.1613C2 16.7742 2 10.0645 2 7M11 22L11 11.3548M11 22C11.7248 22 12.293 21.7409 13.5 21.2226M20 7V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M15 17.5H22M18.5 21L18.5 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        <path d="M7.32592 9.69138L4.40472 8.27785C2.80157 7.5021 2 7.11423 2 6.5C2 5.88577 2.80157 5.4979 4.40472 4.72215L7.32592 3.30862C9.12883 2.43621 10.0303 2 11 2C11.9697 2 12.8712 2.4362 14.6741 3.30862L17.5953 4.72215C19.1984 5.4979 20 5.88577 20 6.5C20 7.11423 19.1984 7.5021 17.5953 8.27785L14.6741 9.69138C12.8712 10.5638 11.9697 11 11 11C10.0303 11 9.12883 10.5638 7.32592 9.69138Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M5 12L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M16 4L6 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                   
                 </Button>
             </SheetTrigger>
             <SheetContent
                 side={'right'}
-                className='w-full'
+                className='w-full p-3'
             >
                 <div
                     onSubmit={handleSubmit}
@@ -191,9 +199,9 @@ const CreateProducts = () => {
                     />
 
                     <Select
-                    value={data.currency}
-                    //@ts-ignore    
-                    onValueChange={(value) => setData({ ...data, currency: value })}
+                        value={data.currency}
+                        //@ts-ignore    
+                        onValueChange={(value) => setData({ ...data, currency: value })}
                     >
                         <SelectTrigger className="w-full">
                             <SelectValue placeholder="Select a currency" />
@@ -240,8 +248,8 @@ const CreateProducts = () => {
                         Image
                     </Label>
                     <SingleImageDropzoneUsage
-                    onFileChange={(url) => setImage(url)}
-                     />
+                        onFileChange={(url) => setImage(url)}
+                    />
                     <Button
                         onClick={handleSubmit}
                         disabled={loading}

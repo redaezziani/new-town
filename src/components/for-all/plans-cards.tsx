@@ -5,6 +5,7 @@ import React from 'react'
 import { Button } from '../ui/button'
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Card from "./card";
 
 const PlansCards = () => {
     const router = useRouter()
@@ -44,7 +45,7 @@ const PlansCards = () => {
     </div>
     <div
         className="mt-12 space-y-3 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-6 md:max-w-5xl md:mx-auto xl:grid-cols-3">
-        <div className="border border-slate-200 rounded-lg shadow-sm divide-y divide-slate-200">
+        <div className="px-6 p-1 z-10 border  rounded-lg shadow-sm divide-y  relative dark:radial-gradient">
             <div className="p-6">
                 <h2 className="text-xl leading-6 font-bold text-primary/55 ">
                     Free mamber 
@@ -91,7 +92,7 @@ const PlansCards = () => {
                 </ul>
             </div>
         </div>
-        <div className="border border-slate-200 rounded-lg shadow-sm divide-y divide-slate-200">
+        <div className="px-6 p-1 z-10 border  rounded-lg shadow-sm divide-y  relative dark:radial-gradient">
             <div className="p-6">
                 <h2 className="text-xl leading-6 font-bold text-primary/55 ">
                     Premium member
@@ -159,7 +160,8 @@ const PlansCards = () => {
                 </ul>
             </div>
         </div>
-        <div className="border border-slate-200 rounded-lg shadow-sm divide-y divide-slate-200">
+        <Card>
+        <div className="">
             <div className="p-6">
                 <h2 className="text-xl leading-6 font-bold text-primary/55 ">
                     Mega member
@@ -239,6 +241,7 @@ const PlansCards = () => {
                 </ul>
             </div>
         </div>
+        </Card>
     </div>
 </div>
   )

@@ -34,15 +34,16 @@ const AuroraHero = () => {
   return (
     <motion.section
 
-      className="relative w-full flex  justify-center items-center flex-col gap-2 min-h-screen place-content-center bg-background   px-4 py-24 text-gray-800"
+      className="relative w-full flex bg-white dark:bg-black/75  justify-center items-center flex-col gap-2 min-h-screen place-content-center    px-4 py-24 text-gray-800"
     >
       <div className=" flex z-50 lg:hidden fixed right-4 top-3">
         <SideBar />
       </div>
+      <div className="absolute z-0 inset-0 blur-[400px] h-28 w-[90%] top-0 bg-white/55 "></div>
       <div className={`absolute z-[1]  inset-0 bg-cover `}>
         <div className="w-full h-full  bg-repeat bg-[url('/assets/decorationBlockLight.svg')] bg-image-grid dark:bg-[url('/assets/decorationBlockDark.svg')]" style={{ WebkitMaskImage: 'radial-gradient(70% 70% at 50.00% 30%, #000 0%, rgba(0, 0, 0, 0.25) 100%)' }}></div>
       </div>
-      <div className=" w-full   fixed top-0 z-40 justify-center flex-col items-center flex mx-auto   ">
+      <div className=" w-full border border-b border-slate-50/25 border-l-transparent border-r-transparent    border-t-transparent  fixed top-0 z-40 justify-center flex-col items-center flex mx-auto   ">
         <div className="w-full hidden lg:flex border border-t-transparent border-b border-border  p-1.5 justify-center items-center gap-3 bg-foreground bg-slate-50 dark:text-slate-900 font-semibold">
           <span className="text-xs p-1">
             Introducing Zunder , sign up now and get 50% off
@@ -55,7 +56,7 @@ const AuroraHero = () => {
           </svg>
         </div>
         <nav
-          className="flex w-full justify-between bg-background/15 backdrop-blur-md items-center max-w-7xl mx-auto px-4 py-4 text-gray-200"
+          className="flex w-full  justify-between bg-background/15 backdrop-blur-md items-center max-w-7xl mx-auto px-4 py-4 text-gray-200"
         >
           <Link
             href={"/"}
@@ -76,7 +77,7 @@ const AuroraHero = () => {
           </Link>
           <div className="lg:flex hidden  items-center gap-8">
 
-            <ul className="flex text-sm lowercase  items-center bg-black/30 dark:bg-white/30 backdrop-blur-sm rounded-md px-6 py-2 gap-4">
+            <ul className="flex text-sm lowercase  items-center bg-black/30 border border-slate-50/25 dark:bg-white/10 backdrop-blur-sm rounded-md px-6 py-2 gap-4">
               <li>
                 <a href="#features" className="hover:text-gray-50">
                   Features
@@ -124,23 +125,20 @@ const AuroraHero = () => {
               </span>
             </motion.div>
           </ShinyButton>
-        
-
-
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="max-w-3xl mt-3 bg-gradient-to-br from-sky-400 to-sky-600 bg-clip-text text-center text-3xl font-medium leading-tight text-transparent sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight">
-            Zunder {/* */} .
+            className="max-w-3xl mt-3 bg-gradient-to-br from-slate-50 to-slate-400 bg-clip-text text-center text-3xl font-medium leading-tight text-transparent sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight">
+            Zunder is the future of e-commerce
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="my-6 max-w-xl text-slate-400 text-center text-base leading-relaxed md:text-lg md:leading-relaxed">
+            className="my-4 max-w-xl text-slate-400 text-center text-base leading-relaxed md:text-lg md:leading-relaxed">
             zunder is a powerful, yet simple to use platform that allows you to
             manage your store and track your orders with ease.
           </motion.p>

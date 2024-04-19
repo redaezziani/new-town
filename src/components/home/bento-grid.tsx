@@ -10,10 +10,11 @@ export const BentoGrid = ({
   return (
     <div
       className={cn(
-        "grid md:auto-rows-[18rem] z-10 w-full  grid-cols-1 md:grid-cols-3 gap-4 max-w-[90rem] mx-auto ",
+        "grid md:auto-rows-[18rem] z-10 w-full relative bg-transparent  grid-cols-1 md:grid-cols-3 gap-4 max-w-[90rem] mx-auto ",
         className
       )}
     >
+      <div className=" absolute size-96 blur-[300px] bg-white/30 z-0 -bottom-16"></div>
       {children}
     </div>
   );

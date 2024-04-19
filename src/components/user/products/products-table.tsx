@@ -213,9 +213,9 @@ const ProductsTable = () => {
       )}
       </div>
       
-      <DataTable
+     {res.data.length >0&&  <DataTable
         //@ts-ignore
-        columns={columns} data={res.data} />
+        columns={columns} data={res.data} />}
     </div>
   );
 };

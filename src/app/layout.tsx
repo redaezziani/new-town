@@ -10,7 +10,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "zunder",
+  title: "Zunder - a better way to manage your store",
   description: "track your orders and manage your store"
 };
 export default async function RootLayout({

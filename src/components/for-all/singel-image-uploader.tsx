@@ -32,8 +32,8 @@ export function SingleImageDropzoneUsage({ onFileChange }: SingleImageDropzoneUs
   return (
     <div>
       <SingleImageDropzone
-        height={160}
-        width={330}
+        height={200}
+        width={355}
         value={file}
         onChange={(file) => {
           setFile(file);
