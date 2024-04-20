@@ -99,7 +99,7 @@ const ProductsTable = () => {
       accessorKey: 'name',
       header: 'Name',
       cell: ({ row }) => <div
-        className='line-clamp-1'
+        className='line-clamp-1 text-slate-600'
       >{row.getValue('name')}</div>,
     },
     {
@@ -107,27 +107,44 @@ const ProductsTable = () => {
       header: 'Description',
       cell: ({ row }) => 
       <div
-        className=' line-clamp-1 max-w-3xl'
+        className=' line-clamp-1 text-slate-600 max-w-2xl'
       >{row.getValue('description')}</div>,
     },
     {
       accessorKey: 'price',
       header: 'Price',
       cell: ({ row }) => <div
-        className=''
+        className=' text-slate-600'
       >{row.getValue('price')}</div>,
     },
     {
       accessorKey: 'stock',
       header: 'Stock',
       cell: ({ row }) => <div
-        className=''
+        className=' text-slate-600'
       >{row.getValue('stock')}</div>,
     },
     {
       accessorKey: 'currency',
       header: 'Currency',
-      cell: ({ row }) => <div>{row.getValue('currency')}</div>,
+      cell: ({ row }) => <div className='text-slate-600'>{row.getValue('currency')}</div>,
+    },
+    {
+      accessorKey: 'stock',
+      header: 'Status',
+      cell: ({ row }) => (
+        <div
+          className={`rounded-full px-1 min-w-20 py-1 text-center text-xs font-semibold text-white
+           ${
+            // @ts-ignore
+            row.getValue('stock') >= 8 ? 'bg-green-500' : row.getValue('stock') > 0 ? 'bg-amber-500' : 'bg-red-500'}`}
+        >
+          {
+            //@ts-ignore
+          row.getValue('stock') >= 8 ? 'In Stock' : row.getValue('stock') > 0 ? 'Low Stock' : 'Out of Stock'}
+        </div>
+      ),
+      
     },
 
   ];

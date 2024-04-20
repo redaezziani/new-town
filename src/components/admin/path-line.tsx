@@ -2,6 +2,7 @@ import {
     Breadcrumb,
 } from "@/components/ui/breadcrumb"
 import PathListItems from "./ui/path-list"
+import CreateOrder from "../user/orders/create-orders"
 
 
 export function PathLine() {
@@ -12,6 +13,8 @@ export function PathLine() {
             >
                 <PathListItems />
             </Breadcrumb>
+        <CreateOrder />
+
         </div>
     )
 }

@@ -130,7 +130,7 @@ const ProductsTable = () => {
   if (error) return <div>failed to load</div>
   if (!res) return (
     <div
-      className=' w-full flex h-96 justify-center gap-2 items-center mt-10 text-slate-400'
+      className=' w-full flex h-96 justify-center gap-2 items-center  text-slate-400'
     >
       <Loader2
         size='20'
@@ -188,7 +188,7 @@ const ProductsTable = () => {
         </DialogContent>
       </Dialog>
 
-      <div className="w-full h-14 justify-end items-center flex">
+      <div className="w-full  justify-end items-center flex">
       {selected.length > 0 && (
         <Button
           variant={'outline'}
