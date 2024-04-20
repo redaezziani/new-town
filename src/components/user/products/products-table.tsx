@@ -99,7 +99,7 @@ const ProductsTable = () => {
       accessorKey: 'name',
       header: 'Name',
       cell: ({ row }) => <div
-        className='line-clamp-1 text-slate-600'
+        className='line-clamp-1 text-slate-600 dark:text-slate-100'
       >{row.getValue('name')}</div>,
     },
     {
@@ -107,27 +107,27 @@ const ProductsTable = () => {
       header: 'Description',
       cell: ({ row }) => 
       <div
-        className=' line-clamp-1 text-slate-600 max-w-2xl'
+        className=' line-clamp-1 text-slate-600 dark:text-slate-100 max-w-2xl'
       >{row.getValue('description')}</div>,
     },
     {
       accessorKey: 'price',
       header: 'Price',
       cell: ({ row }) => <div
-        className=' text-slate-600'
+        className=' text-slate-600 dark:text-slate-100'
       >{row.getValue('price')}</div>,
     },
     {
       accessorKey: 'stock',
       header: 'Stock',
       cell: ({ row }) => <div
-        className=' text-slate-600'
+        className=' text-slate-600 dark:text-slate-100'
       >{row.getValue('stock')}</div>,
     },
     {
       accessorKey: 'currency',
       header: 'Currency',
-      cell: ({ row }) => <div className='text-slate-600'>{row.getValue('currency')}</div>,
+      cell: ({ row }) => <div className='text-slate-600 dark:text-slate-100'>{row.getValue('currency')}</div>,
     },
     {
       accessorKey: 'stock',
