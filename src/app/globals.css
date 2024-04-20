@@ -135,5 +135,9 @@
               0 0 40px 0 rgba(255, 255, 255, 0.05);              
 }
 
+*::-webkit-scrollbar {
+  @apply scrollbar-thin;
+}
+
 
 

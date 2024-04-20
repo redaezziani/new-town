@@ -39,7 +39,7 @@ const ProductSchema = z.object({
     id: z.string(),
     name: z.string(),
     price: z.number(),
-    quantity: z.number()
+    stock: z.number()
 })
 
 import useSWR from 'swr';
@@ -209,7 +209,7 @@ const CreateOrder = () => {
                         onValueChange={(e) => setData({ ...data, deliveryId: e })}
                     >
                         <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Select a product" />
+                            <SelectValue placeholder="Select a delivery" />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>
@@ -225,7 +225,33 @@ const CreateOrder = () => {
                             </SelectGroup>
                         </SelectContent>
                     </Select>
-                   
+                    <Label
+                        className='text-muted-foreground dark:text-muted-foreground mt-5'
+                        htmlFor='products'
+                    >
+                        Products
+                    </Label>
+                    <Select
+                        //@ts-ignore   
+                        // fix this to add the next product
+                        onValueChange={(e) => setData({ ...data, orderItems: {productId: e, quantity: 1, price: 0} })}
+                    >
+                        <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select a product" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectGroup>
+                             {
+                                //todo: add products
+                                //@ts-ignore
+                                products&&products.data.map((product) => (
+                                <SelectItem key={product.id} value={product.id}>
+                                    {product.name}
+                                </SelectItem>
+                            ))}
+                            </SelectGroup>
+                        </SelectContent>
+                    </Select>
                     <Button
                         className='w-full mt-5 font-semibold'
                     >
