@@ -31,9 +31,15 @@ const DeleteProducts = ({ selected }: DeleteProductsProps) => {
             });
             const json = await response.json();
             if (json.status === 'error') {
-                console.log(json.message);
+                toast({
+                    variant: "error",
+                    title: "Error",
+                    description: json.message,
+                })
+                return;
             }
             toast({
+                variant: "success",
                 title: "Product Deleted",
                 description: "Product has been deleted",
             })
