@@ -11,25 +11,10 @@ import Link from "next/link";
 import { SideBar } from "@/components/home/side-bar";
 import { ModeToggle } from "@/components/ui/mode";
 import { BentoGridSecondDemo } from "@/components/home/grid";
-import { HeroScrollDemo } from "@/components/home/scroll";
 import PlansCards from "@/components/for-all/plans-cards";
 import ShinyButton from "@/components/for-all/button";
 
-const COLORS_TOP = ["#fbbd23", "#fbbd23",]
-
 const AuroraHero = () => {
-  const color = useMotionValue(COLORS_TOP[0]);
-
-  useEffect(() => {
-    animate(color, COLORS_TOP, {
-      ease: "easeInOut",
-      duration: 10,
-      repeat: Infinity,
-      repeatType: "mirror",
-    });
-  }, []);
-
-
 
   return (
     <motion.section
@@ -121,7 +106,7 @@ const AuroraHero = () => {
               className="text  gap-4  flex justify-center items-center  lowercase text-[#cbd5e1]">
               Beta Now Live!
               <span>
-              🎉
+                 🎉
               </span>
             </motion.div>
           </ShinyButton>

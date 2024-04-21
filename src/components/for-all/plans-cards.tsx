@@ -161,7 +161,7 @@ const PlansCards = () => {
             </div>
         </div>
         <Card>
-        <div className="">
+        <div className=" relative z-20">
             <div className="p-6">
                 <h2 className="text-xl leading-6 font-bold text-primary/55 ">
                     Mega member

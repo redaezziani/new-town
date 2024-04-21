@@ -110,19 +110,23 @@ const CreateProducts = () => {
         >
             <SheetTrigger asChild>
                 <Button
-                    className='flex gap-2  '
+                    className='flex justify-center items-center gap-2  '
                 >
-                     <span
-                     className='font-semibold lowercase'
-                     >Create Product</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none">
-                        <path d="M11 22C10.1818 22 9.40019 21.6698 7.83693 21.0095C3.94564 19.3657 2 18.5438 2 17.1613C2 16.7742 2 10.0645 2 7M11 22L11 11.3548M11 22C11.7248 22 12.293 21.7409 13.5 21.2226M20 7V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M15 17.5H22M18.5 21L18.5 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                        <path d="M7.32592 9.69138L4.40472 8.27785C2.80157 7.5021 2 7.11423 2 6.5C2 5.88577 2.80157 5.4979 4.40472 4.72215L7.32592 3.30862C9.12883 2.43621 10.0303 2 11 2C11.9697 2 12.8712 2.4362 14.6741 3.30862L17.5953 4.72215C19.1984 5.4979 20 5.88577 20 6.5C20 7.11423 19.1984 7.5021 17.5953 8.27785L14.6741 9.69138C12.8712 10.5638 11.9697 11 11 11C10.0303 11 9.12883 10.5638 7.32592 9.69138Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M5 12L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M16 4L6 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none">
+                        <path d="M8 16.0001H15.2632C19.7508 16.0001 20.4333 13.1809 21.261 9.06916C21.4998 7.8832 21.6192 7.29022 21.3321 6.89515C21.1034 6.58048 20.7077 6.51645 20 6.50342" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        <path d="M9 6.5H17M13 10.5V2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        <path d="M8 16L5.37873 3.51493C5.15615 2.62459 4.35618 2 3.43845 2H2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        <path d="M8.88 16H8.46857C7.10522 16 6 17.1513 6 18.5714C6 18.8081 6.1842 19 6.41143 19H17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <circle cx="10.5" cy="20.5" r="1.5" stroke="currentColor" stroke-width="1.5" />
+                        <circle cx="17.5" cy="20.5" r="1.5" stroke="currentColor" stroke-width="1.5" />
                     </svg>
-                   
+                    <span
+                        className=' lowercase'
+                    >
+                        new product
+                    </span>
+
+
                 </Button>
             </SheetTrigger>
             <SheetContent
@@ -254,9 +258,9 @@ const CreateProducts = () => {
                         onClick={handleSubmit}
                         disabled={loading}
                         isloading={loading}
-                        className='w-full mt-5 font-semibold'
+                        className='w-full mt-5 '
                     >
-                        {loading ? 'Loading...' : 'create product'}
+                        create product
                     </Button>
                 </div>
             </SheetContent>

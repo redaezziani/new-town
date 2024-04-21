@@ -13,7 +13,6 @@ export function PathLine() {
             >
                 <PathListItems />
             </Breadcrumb>
-        <CreateOrder />
 
         </div>
     )

@@ -1,4 +1,4 @@
-import ProductsTable from "@/components/user/products/products-table"
+import ProductsTable from "@/components/user/orders/create-orders"
 const ProductsPage = async () => {
   return (
     <main
