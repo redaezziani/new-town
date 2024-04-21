@@ -19,7 +19,8 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
         if (!user) {
             return Response.json({ status: 'error', message: 'User not found' });
         }
-        // create a acount for the delivery if the user role is delivery
+       
+        
         const getDelivery = await db.delivery.findMany(
             {  
                 where: {

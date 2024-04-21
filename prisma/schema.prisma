@@ -100,6 +100,7 @@ model Order {
   address   String
   phone     String
   email     String
+  deliveryDate DateTime
   status    OrderItemStatus @default(PENDING)
   total     Float
   price     Float

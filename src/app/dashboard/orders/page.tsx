@@ -1,4 +1,5 @@
-import ProductsTable from "@/components/user/orders/create-orders"
+import OredrsTable from "@/components/user/orders/orders-table"
+
 const ProductsPage = async () => {
   return (
     <main
@@ -6,7 +7,7 @@ const ProductsPage = async () => {
     >
      
       <div className="w-full mt-2  flex-col gap-2 justify-start items-start">
-      <ProductsTable />
+      <OredrsTable />
       </div>
      
     </main>

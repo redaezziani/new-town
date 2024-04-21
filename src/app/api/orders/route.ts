@@ -12,12 +12,13 @@ const CreateOrderSchema = z.object({
     address: z.string(),
     phone: z.string(),
     email: z.string(),
-    total: z.number(),
-    price: z.number(),
+    deliveryDate: z.date(),
     orderItems : z.array(z.object({
-        productId: z.string(),
+        id: z.string(),
         quantity: z.number(),
-        price: z.number()
+        name: z.string(), // Added name field to the schema
+        price: z.number(), // Added price field to the schema
+        currency: z.string(),
     })),
 })
 type OrderType = z.infer<typeof CreateOrderSchema>
@@ -36,6 +37,10 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
             {
                 where: {
                     userId: user?.payload.id as string
+                },
+                orderBy: {
+                    // get the newest orders first
+                    createdAt: 'desc' 
                 }
             }
         );
@@ -67,15 +72,19 @@ export async function POST(req: NextRequest, res: NextResponse): Promise<void | 
             address,
             phone,
             email,
-            total,
-            price,
-            orderItems
-        }: OrderType = CreateOrderSchema.parse(req.json());
-
+            orderItems,
+            deliveryDate
+        } = await req.json() as OrderType;
+        
+        
         if (!deliveryId || !name ||
-            !address || !phone || !email || !total || !price) {
+            !address || !phone || !email) {
             return Response.json({ status: 'error', message: 'All fields are required' });
         }
+
+        // lets calculate the total and price
+    const total = orderItems.reduce((acc, item) => acc + item.quantity, 0);
+    const price = orderItems.reduce((acc, item) => acc + item.price, 0);
     // Begin transaction
     transaction = await db.$transaction([
       // Check delivery availability
@@ -93,10 +102,10 @@ export async function POST(req: NextRequest, res: NextResponse): Promise<void | 
           address: address,
           phone: phone,
           email: email,
-          status: 'PENDING', // Assuming you want to start with a pending status
+          status: 'PENDING', 
           total: total,
-          price: price, // Assuming this is the price of the order
-          // You can add other fields here based on your schema
+          price: price,
+          deliveryDate: deliveryDate,
         },
       }),
     ]);
@@ -114,7 +123,7 @@ export async function POST(req: NextRequest, res: NextResponse): Promise<void | 
         db.orderItem.create({
           data: {
             orderId,
-            productId: item.productId,
+            productId: item.id,
             quantity: item.quantity,
             price: item.price,
             userId: user.payload.id as string,

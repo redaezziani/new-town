@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 import withPlaiceholder from "@plaiceholder/next";
 const nextConfig = {
+    // all domains are allowed by default
     images: {
-        domains: ["3asq.org"],
+        domains: ["files.edgestore.dev"]
     },
-    };
+};
 
 
 export default withPlaiceholder(nextConfig);

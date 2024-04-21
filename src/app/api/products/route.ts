@@ -29,6 +29,10 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
             {
                 where: {
                     userId: user?.payload.id as string
+                },
+                orderBy: {
+                    // get the newest products first
+                    createdAt: 'desc' 
                 }
             }
         );

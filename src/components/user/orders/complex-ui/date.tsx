@@ -42,7 +42,8 @@ export function CalendarForm({ onValueChange }: CalendarFormProps) {
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    onValueChange(data.dob)
+    //@ts-ignore  
+    onValueChange(data)
   }
 
   return (

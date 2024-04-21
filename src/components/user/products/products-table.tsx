@@ -123,16 +123,16 @@ const ProductsTable = () => {
   return (
     <div className="w-full flex justify-start items-start gap-2 flex-col">
     
-     {res.data.length >0&&
+   
      <DataTable
         //@ts-ignore
-        columns={columns}
-        data={res.data}
+        columns={!error && columns}
+        data={!error && res.data}
         element={<>
         <DeleteProducts selected={selected} />
         <CreateProducts/>
         </>}
-        />}
+        />
     </div>
   );
 };
