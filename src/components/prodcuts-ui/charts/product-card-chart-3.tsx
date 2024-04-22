@@ -1,6 +1,6 @@
 "use client"
 
-import { Area, AreaChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
+import { Area, AreaChart,  ResponsiveContainer } from "recharts"
 
 import {
   Card,
@@ -41,33 +41,18 @@ export function ProductsShart() {
             >
                 <defs>
                 <linearGradient id="color2" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#dc2626" stopOpacity={0.4}/>
-                  <stop offset="75%" stopColor="#dc2626" stopOpacity={0.05}/>
+                  <stop offset="0%" stopColor="#1e293b" stopOpacity={0.4}/>
+                  <stop offset="75%" stopColor="#1e293b" stopOpacity={0.05}/>
                 </linearGradient>
                 </defs>
                 <Area
                 dataKey="average"
                 type={'bump'}
-                stroke="#dc2626"
+                stroke="#1e293b"
                 fill="url(#color2)"
                 className=" stroke-[1.8] fill-current"
               />
-              <Tooltip
-                cursor
-                content={({ active, payload }) => {
-                  if (active && payload && payload.length) {
-                    return (
-                      <div className=" relative flex justify-center items-center">
-                            <span className="font-bold  text-slate-900 dark:text-slate-50">
-                                {payload[0].value} €
-                            </span>
-                      </div>
-                    )
-                  }
-                  return null
-                }}
-              />
-            
+              
             </AreaChart>  
           </ResponsiveContainer>
         </div>

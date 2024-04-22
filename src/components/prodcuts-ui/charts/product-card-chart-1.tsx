@@ -1,6 +1,6 @@
 "use client"
 
-import { Area, AreaChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
+import { Area, AreaChart,  ResponsiveContainer, Tooltip} from "recharts"
 
 import {
   Card,
@@ -8,15 +8,18 @@ import {
  
 } from "@/components/ui/card"
 
-const data = [
-  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
-  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },
-  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },  
-  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },  
-  { average: Math.floor(Math.random() * 2000) + 400, today: Math.floor(Math.random() * 1000) },  
-];
+interface ProductCardProps {
+  data: {
+    todayProducts : { id: string, price: number, currency: string, createdAt: string ,
+      product: {
+        currency: string;
+    };
+    }[],
+  }[]
+}
 
-export function ProductsShart() {
+export function ProductsShart({ data }: ProductCardProps) {
+  
   return (
     <Card
     className="w-full h-[80px] border-none shadow-none p-0 col-span-3 overflow-hidden"
@@ -41,33 +44,17 @@ export function ProductsShart() {
             >
                 <defs>
                 <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#0ad457" stopOpacity={0.4}/>
-                  <stop offset="75%" stopColor="#0ad457" stopOpacity={0.05}/>
+                  <stop offset="0%" stopColor="#0d9488" stopOpacity={0.4}/>
+                  <stop offset="75%" stopColor="#0d9488" stopOpacity={0.05}/>
                 </linearGradient>
                 </defs>
                 <Area
-                dataKey="average"
+                dataKey="price"
                 type={'bump'}
-                stroke="#0ad457"
+                stroke="#0d9488"
                 fill="url(#color)"
                 className=" stroke-[1.8] fill-current"
               />
-              <Tooltip
-                cursor
-                content={({ active, payload }) => {
-                  if (active && payload && payload.length) {
-                    return (
-                      <div className=" relative flex justify-center items-center">
-                            <span className="font-bold  text-slate-900 dark:text-slate-50">
-                                {payload[0].value} €
-                            </span>
-                      </div>
-                    )
-                  }
-                  return null
-                }}
-              />
-            
             </AreaChart>  
           </ResponsiveContainer>
         </div>

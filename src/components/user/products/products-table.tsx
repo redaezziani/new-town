@@ -96,7 +96,7 @@ const ProductsTable = () => {
           className={`rounded-full px-1 min-w-20 py-1 text-center text-xs font-semibold text-white
            ${
             // @ts-ignore
-            row.getValue('stock') >= 8 ? 'bg-sky-500' : row.getValue('stock') > 0 ? 'bg-amber-500' : 'bg-red-500'}`}
+            row.getValue('stock') >= 8 ? 'bg-green-500' : row.getValue('stock') > 0 ? 'bg-amber-500' : 'bg-red-500'}`}
         >
           {
             //@ts-ignore

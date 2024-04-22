@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react'
 import { useEffect } from 'react';
+import { Button, Result } from 'antd';
 
 const page = () => {
   const router = useRouter()
@@ -31,7 +32,24 @@ const page = () => {
     <div
       className=' min-h-screen w-full justify-center items-center flex'
     >
-      {session_id && <h1 className=' text-green-500'>Success</h1>}
+      {session_id &&
+       <Result
+       style={
+          {
+            width: '30%'
+          }
+       }
+       status="success"
+       title="Successfully Purchased Cloud Server ECS!"
+       subTitle={`Order number: ${session_id} Cloud server configuration takes 1-5 minutes, please wait.`}
+       extra={[
+         <Button type="primary" key="dashboard">
+            Go Dashboard
+         </Button>,
+         <Button key="buy">Buy Again</Button>,
+       ]}
+     />
+      }
     </div>
   )
 }

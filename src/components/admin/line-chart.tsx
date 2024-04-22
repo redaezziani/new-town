@@ -16,10 +16,7 @@ const data = [
   { average: Math.floor(Math.random() * 2000), today: Math.floor(Math.random() * 1000) },
   { average: Math.floor(Math.random() * 2000), today: Math.floor(Math.random() * 1000) },
   { average: Math.floor(Math.random() * 2000), today: Math.floor(Math.random() * 1000) },
-  { average: Math.floor(Math.random() * 2000), today: Math.floor(Math.random() * 1000) },
-  { average: Math.floor(Math.random() * 2000), today: Math.floor(Math.random() * 1000) },
-  { average: Math.floor(Math.random() * 2000), today: Math.floor(Math.random() * 1000) },
-  { average: Math.floor(Math.random() * 2000), today: Math.floor(Math.random() * 1000) },
+
 ];
 
 export function LineChartExample() {
