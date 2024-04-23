@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import {  Result } from 'antd';
+import Link from 'next/link';
 const page = () => {
 
     return (
@@ -11,10 +12,13 @@ const page = () => {
                 title="500"
                 subTitle="Sorry, something went wrong."
                 extra={
-                <Button
+               <Link href="/">
+                 <Button
                 >
                     Try to create a new product .
-                </Button>}
+                </Button>
+                </Link>
+                }
             />
         </div>
 
