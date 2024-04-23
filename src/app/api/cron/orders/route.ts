@@ -29,11 +29,11 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
                 },
             },
         });
-
+        console.log(usersWithProducts);
         for (const user of usersWithProducts) {
             if (user.products.length > 0) {
                 const { data, error } = await resend.emails.send({
-                    to: user.email, // Assuming there's an email field in the user object
+                    to: user.email, 
                     from: 'zunder@dimach9.online',
                     subject: 'Products Report',
                     text: 'Here is your products report: ' + JSON.stringify(user.products),
@@ -41,9 +41,8 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
                 
                 if (error) {
                     console.error(`Error sending email to ${user.email}:`, error);
-                } else {
-                    console.log(`Email sent successfully to ${user.email}`);
                 }
+                console.log(`Email sent to ${data}`);
             } else {
                 console.log(`No products to send to ${user.email}`);
             }
