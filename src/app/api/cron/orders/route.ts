@@ -36,7 +36,7 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
                     to: user.email, 
                     from: 'zunder@dimach9.online',
                     subject: 'Products Report',
-                    text: 'Here is your products report: ' + JSON.stringify(user.products),
+                    html: `<code>${JSON.stringify(user.products)}</code>`,
                 });
                 
                 if (error) {
