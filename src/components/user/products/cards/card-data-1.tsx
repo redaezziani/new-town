@@ -75,7 +75,7 @@ const ProductCardDataA = () => {
                     <h3
                         className="text-2xl  font-bold text-gray-700 dark:text-white"
                     >
-                        {res && res.data.totalTodayPrice.toFixed(2)} {res && res.data.todayProducts[0].product.currency}
+                        {res && res.data.totalTodayPrice?.toFixed(2) || 0 } {res && res.data.todayProducts[0].product.currency}
                     </h3>
                     <div
                         className=" flex justify-start items-center gap-1 text-xs text-gray-500 dark:text-gray-400"
@@ -91,7 +91,7 @@ const ProductCardDataA = () => {
                             <span
                                 className="font-semibold text-[#0d9488] "
                             >
-                                {res && res.data.percentage.toFixed(2)}%
+                                {res && res.data?.percentage?.toFixed(2) || 0}%
                             </span>}
                         <span>
                             last week

@@ -3,6 +3,7 @@ import { LineChartExample } from "@/components/admin/line-chart"
 import ProductCardDataA from "@/components/user/products/cards/card-data-1"
 import ProductCardDataB from "@/components/user/products/cards/card-data-2"
 import ProductCardDataC from "@/components/user/products/cards/card-data-3"
+import TabsProducts from "@/components/user/products/tabs"
 
 
 const MangaManagementPage = async () => {
@@ -15,18 +16,12 @@ const MangaManagementPage = async () => {
         <ProductCardDataA />
         <ProductCardDataB />
         <ProductCardDataC />
-
       </div>
       <div className="w-full grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-3 ">
-        <div className="w-full col-span-1 overflow-hidden">
-          <LineChartExample />
+        <div className="w-full border bg-gradient-to-b from-slate-50/0 via-teal-500/10 to-transparent border-slate-300/45 rounded-lg h-[600px] col-span-2 overflow-hidden">
+       <TabsProducts />
         </div>
-        <div className="w-full col-span-1 overflow-hidden">
-          <BarChartExample />
-        </div>
-        <div className="w-full col-span-1 overflow-hidden">
-          <LineChartExample />
-        </div>
+        
       </div>
 
       

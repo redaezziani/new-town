@@ -7,18 +7,16 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-  DropdownMenuSub
 } from "../ui/dropdown-menu"
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "../ui/avatar"
-
+import { useRouter } from "next/navigation";
 import {ChevronDown, LogOut, User2, Settings, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { logOut } from "@/(db)/lib/auth";
 import { useTheme } from "next-themes";
 import { Sparkles } from "lucide-react";
@@ -120,7 +118,7 @@ export function UserProfile() {
           <Link href="/dashboard">
             <DropdownMenuItem
               className=" cursor-pointer  text-destructive-500 justify-between w-full flex gap-2 items-center"
-
+             
             >
               home
               <LayoutDashboard

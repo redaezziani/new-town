@@ -195,7 +195,6 @@ const SignInPage = () => {
         </form>
       </div>
       <div className="w-1/2 h-full py-2 hidden lg:block">
-
       <img
         className=' w-full rounded-l-lg object-cover  aspect-auto'
         src="/login.jpg" alt="login" />

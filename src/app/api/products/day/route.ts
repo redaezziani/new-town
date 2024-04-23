@@ -68,10 +68,10 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
 
         // lets get the bercentage of products created today and in the last 7 days
         // get the total price of products created today and in the last 7 days
-        const totalTodayPrice = todayProducts.reduce((acc, product) => acc + product.price * product.quantity, 0);
-        const totalLast7DaysPrice = last7DaysProducts.reduce((acc, product) => acc + product.price * product.quantity, 0);
+        const totalTodayPrice = todayProducts.reduce((acc, product) => acc + product.price * product.quantity, 0) || 0
+        const totalLast7DaysPrice = last7DaysProducts.reduce((acc, product) => acc + product.price * product.quantity, 0) || 0
         // the percentage is the revenue generated today compared to the revenue generated in the last 7 days
-        const percentage = totalTodayPrice / totalLast7DaysPrice * 100;
+        const percentage = totalTodayPrice / totalLast7DaysPrice * 100 || 0
 
         const data = {
             todayCount: todayProducts.length,

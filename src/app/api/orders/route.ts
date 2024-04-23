@@ -169,17 +169,6 @@ export async function POST(req: NextRequest, res: NextResponse): Promise<void | 
             )
         );
 
-        console.log({
-            deliveryId,
-            name,
-            address,
-            phone,
-            email,
-            groupedOrderItems,
-            deliveryDate
-        
-        })
-
         if (!resProducts) {
            return Response.json({ status: 'error', message: 'An error occurred while updating product quantity' });
         }
