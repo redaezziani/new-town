@@ -79,7 +79,6 @@ export const VereficationEmail = async ({ email, name, token, id }: dataTypes) =
         }
         return true;
     } catch (error) {
-        console.log(error);
         return { status: 'error', message: 'Something wrong! Try again later.' };
     }
 };

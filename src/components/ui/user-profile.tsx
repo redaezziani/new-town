@@ -41,9 +41,10 @@ export function UserProfile() {
     setOpen(!open);
   }
 
-  const handelUser=async()=>{
+  const handelUser=
+  async()=>{
     try {
-      const res = await fetch('/api/user',{next:{revalidate:10},})
+      const res = await fetch('/api/user',{cache:'no-cache'})
       const data = await res.json()
       setUser(data)
     } catch (error) {

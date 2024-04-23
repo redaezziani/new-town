@@ -1,8 +1,8 @@
 import { verifyToken } from "@/(db)/lib/auth";
 import db from "@/(db)/secrets";
-import { NextResponse,NextRequest } from "next/server";
-export const dynamic = 'force-dynamic' 
+import { NextResponse, NextRequest } from "next/server";
 
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest, res: NextResponse): Promise<void | Response> {
     try {
@@ -31,40 +31,42 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
                 },
                 status: 'DELIVERED'
             },
-            select  : {
+            select: {
                 id: true,
                 price: true,
                 createdAt: true,
-                total: true , // is mean count of order items
+                total: true, // is mean count of order items
             }
-
         });
-        
+
         const last7DaysOrders = await db.order.findMany({
             where: {
                 userId: user?.payload.id as string,
                 createdAt: {
-                    gte: new Date(last7Days.setHours(0, 0, 0, 0)), // Corrected usage of last7Days
+                    gte: new Date(last7Days.setHours(0, 0, 0, 0)),
                     lte: new Date(today.setHours(23, 59, 59, 999))
                 },
                 status: 'DELIVERED'
             },
-            select  : {
+            select: {
                 id: true,
                 price: true,
                 createdAt: true,
-                total: true , // is mean count of order items
+                total: true, // is mean count of order items
             }
         });
 
-        // lets get the bercentage of products created today and in the last 7 days
-        // get the total price of products created today and in the last 7 days
+        // Get the total price of products created today and in the last 7 days
         const totalTodayPrice = todayOrders.reduce((acc, product) => acc + product.price, 0);
         const totalLast7DaysPrice = last7DaysOrders.reduce((acc, product) => acc + product.price, 0);
-        // the percentage is the revenue generated today compared to the revenue generated in the last 7 days
-        const percentage = ((totalTodayPrice - totalLast7DaysPrice) / totalLast7DaysPrice) * 100 || 0;
-        // get if the percentage is positive or negative
-         const percentageStatus = totalTodayPrice > totalLast7DaysPrice ? 'positive' : 'negative';
+
+        // Calculate the percentage if there are orders, otherwise set to 0
+        const percentage = totalLast7DaysPrice !== 0 ?
+            ((totalTodayPrice - totalLast7DaysPrice) / totalLast7DaysPrice) * 100 :
+            0;
+
+        // Determine percentage status
+        const percentageStatus = totalTodayPrice > totalLast7DaysPrice ? 'positive' : 'negative';
 
         const data = {
             todayCount: todayOrders.length,
@@ -75,11 +77,11 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
             totalTodayPrice,
             totalLast7DaysPrice,
             percentageStatus
-        }
+        };
+
         return Response.json({ status: 'success', data, message: 'Products found' });
     } catch (error) {
         console.error(error);
         return Response.json({ status: 'error', message: 'An error occurred while processing your request.' });
-
     }
 }

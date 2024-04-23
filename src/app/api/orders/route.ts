@@ -172,8 +172,6 @@ export async function POST(req: NextRequest, res: NextResponse): Promise<void | 
         if (!resProducts) {
            return Response.json({ status: 'error', message: 'An error occurred while updating product quantity' });
         }
-       
-
         return Response.json({ status: 'success', message: 'Order created', data: transaction[1] });
 
     }
