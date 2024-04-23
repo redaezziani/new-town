@@ -30,9 +30,6 @@ export function CommandSearch() {
         setOpen(false)
       }
     }
-
-
-
     document.addEventListener("keydown", down)
     return () => document.removeEventListener("keydown", down)
   }, [])
