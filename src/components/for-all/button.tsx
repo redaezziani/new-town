@@ -28,9 +28,9 @@ const ShinyButton = ({ children }: ShinyButtonProps) => {
           mass: 0.1,
         },
       }}
-      className="px-6 p-1 z-10 rounded-full relative radial-gradient"
+      className="px-6 p-1 z-10 rounded-full relative bg-white/5"
     >
-      <span className="text-neutral-100 tracking-wide font-light h-full w-full block relative linear-mask">
+      <span className="text-neutral-50 tracking-wide font-light h-full w-full block relative linear-mask">
         {children}
       </span>
       <span className="block absolute inset-0 rounded-full p-px linear-overlay" />
