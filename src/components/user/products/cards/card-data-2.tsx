@@ -24,6 +24,7 @@ const OrdersDelivredCardSchema = z.object({
     })
 })
 import useSWR from 'swr';
+import Counter from "@/components/admin/ui/animation/counter";
 //@ts-ignore
 const fetcher = (url) => fetch(url).then((res) => res.json());
 type OrdersCard = z.infer<typeof OrdersDelivredCardSchema>
@@ -54,7 +55,12 @@ const ProductCardDataB = () => {
                     <h3
                         className="text-2xl  font-bold text-gray-700 dark:text-white"
                     >
-                         {res && res.data.totalTodayPrice.toFixed(2)} USD
+                        <Counter
+                        value={res && res.data.totalTodayPrice || 0}
+                        direction="up"
+                        />
+                        {" "}
+                         USD
                     </h3>
                     <div
                         className=" flex justify-start items-center gap-1 text-xs text-gray-500 dark:text-gray-400"
