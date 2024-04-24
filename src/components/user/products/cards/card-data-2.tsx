@@ -77,7 +77,8 @@ const ProductCardDataB = () => {
                     </div>
                 </div>
                <div className=" w-[60%]">
-              {res && <ProductsShart
+              {res && res.data.last7DaysOrders.length>1 &&
+              <ProductsShart
               //@ts-ignore
               data={res.data.last7DaysOrders} status={res.data.percentageStatus} />}
                </div>

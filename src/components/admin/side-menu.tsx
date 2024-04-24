@@ -14,7 +14,7 @@ const SideMenu = () => {
                     title='dashboard' path='dashboard' />
                 <SideItem
                     title='home'
-                    path='/dashboard'
+                    path='/dashboard/main'
                     icon={<svg
                         className=' text-slate-600 dark:text-slate-50'
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none">

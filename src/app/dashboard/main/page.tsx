@@ -1,3 +1,5 @@
+import PieChartComponent from "@/components/for-all/c"
+import { LastOrdersTable } from "@/components/for-all/last-orders"
 import ProductCardDataA from "@/components/user/products/cards/card-data-1"
 import ProductCardDataB from "@/components/user/products/cards/card-data-2"
 import ProductCardDataC from "@/components/user/products/cards/card-data-3"
@@ -14,8 +16,14 @@ const DashboardPage = async () => {
         <ProductCardDataC />
       </div>
       <div className="w-full grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-3 ">
-        <div className="w-full border bg-gradient-to-b from-slate-50/0 via-teal-500/10 to-transparent border-slate-300/45 rounded-lg h-[600px] col-span-2 overflow-hidden">
-          <TabsProducts />
+        <div className="w-full p-3 flex justify-start items-start gap-2 border aspect-square  rounded-lg  col-span-1 overflow-hidden">
+          <h1>
+            orders 
+          </h1>
+         <PieChartComponent />
+        </div>
+        <div className="w-full h-full  flex justify-start items-start gap-2 border rounded-lg  col-span-2 overflow-hidden">
+          <LastOrdersTable />
         </div>
       </div>
     </main>
