@@ -9,8 +9,8 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command"
-import React, { useEffect } from "react"
-import { Bot, SunMoon } from "lucide-react"
+import React from  "react"
+import {  SunMoon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
 
@@ -82,6 +82,24 @@ export function CommandSearch() {
           <CommandGroup
             className=" mt-2"
             heading="Suggestions">
+              <CommandItem
+              className=" group"
+              onSelect={() => handelRoute('/dashboard/main')}
+            >
+              <svg
+                className="mr-2 group-hover:text-primary h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={24} height={24} fill={"none"}>
+                <path d="M15.0001 17C14.2006 17.6224 13.1504 18 12.0001 18C10.8499 18 9.79965 17.6224 9.00012 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M2.35151 13.2135C1.99849 10.9162 1.82198 9.76763 2.25629 8.74938C2.69059 7.73112 3.65415 7.03443 5.58126 5.64106L7.02111 4.6C9.41841 2.86667 10.6171 2 12.0001 2C13.3832 2 14.5818 2.86667 16.9791 4.6L18.419 5.64106C20.3461 7.03443 21.3097 7.73112 21.744 8.74938C22.1783 9.76763 22.0018 10.9162 21.6487 13.2135L21.3477 15.1724C20.8473 18.4289 20.597 20.0572 19.4291 21.0286C18.2612 22 16.5538 22 13.1389 22H10.8613C7.44646 22 5.73903 22 4.57112 21.0286C3.40321 20.0572 3.15299 18.4289 2.65255 15.1724L2.35151 13.2135Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+              </svg>
+              <span
+                className="w-full flex justify-between items-center"
+              >
+                 Dashboard
+                <CommandShortcut>⌘D
+                </CommandShortcut>
+              </span>
+            </CommandItem>
             <CommandItem
               className=" group mt-2"
               onSelect={() => handelRoute('/dashboard/settings')}
@@ -97,29 +115,12 @@ export function CommandSearch() {
               >
                 Settings
                 <CommandShortcut
-                
+
                 >⌘A
                 </CommandShortcut>
               </span>
             </CommandItem>
-            <CommandItem
-              className=" group"
-              onSelect={() => handelRoute('/dashboard')}
-            >
-              <svg
-                className="mr-2 group-hover:text-primary h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={24} height={24} fill={"none"}>
-                <path d="M15.0001 17C14.2006 17.6224 13.1504 18 12.0001 18C10.8499 18 9.79965 17.6224 9.00012 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M2.35151 13.2135C1.99849 10.9162 1.82198 9.76763 2.25629 8.74938C2.69059 7.73112 3.65415 7.03443 5.58126 5.64106L7.02111 4.6C9.41841 2.86667 10.6171 2 12.0001 2C13.3832 2 14.5818 2.86667 16.9791 4.6L18.419 5.64106C20.3461 7.03443 21.3097 7.73112 21.744 8.74938C22.1783 9.76763 22.0018 10.9162 21.6487 13.2135L21.3477 15.1724C20.8473 18.4289 20.597 20.0572 19.4291 21.0286C18.2612 22 16.5538 22 13.1389 22H10.8613C7.44646 22 5.73903 22 4.57112 21.0286C3.40321 20.0572 3.15299 18.4289 2.65255 15.1724L2.35151 13.2135Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-              </svg>
-              <span
-                className="w-full flex justify-between items-center"
-              >
-                Dashboard
-                <CommandShortcut>⌘D
-                </CommandShortcut>
-              </span>
-            </CommandItem>
+            
             <CommandItem
               className=" group mt-2"
               onSelect={() => handelRoute('/dashboard/orders')}
@@ -179,6 +180,50 @@ export function CommandSearch() {
                 </CommandShortcut>
               </span>
             </CommandItem>
+            <CommandItem
+              className=" group mt-2"
+              onSelect={() => {
+                router.back()
+                setOpen(false)
+              }}
+            >
+              <svg
+                className="mr-2 group-hover:text-primary h-4 w-4"
+
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={20} height={20} fill={"none"}>
+                <path d="M11 6H15.5C17.9853 6 20 8.01472 20 10.5C20 12.9853 17.9853 15 15.5 15H4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M6.99998 12C6.99998 12 4.00001 14.2095 4 15C3.99999 15.7906 7 18 7 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span
+                className="w-full flex justify-between items-center"
+              >
+                Back
+                <CommandShortcut>⌘B
+                </CommandShortcut>
+              </span>
+            </CommandItem>
+            <CommandItem
+              className=" group mt-2"
+              onSelect={() => {
+                router.forward()
+                setOpen(false)
+              }}
+            >
+              <svg
+              className="mr-2 group-hover:text-primary h-4 w-4"
+              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={20} height={20}  fill={"none"}>
+                <path d="M13 6H8.5C6.01472 6 4 8.01472 4 10.5C4 12.9853 6.01472 15 8.5 15H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M17 12C17 12 20 14.2095 20 15C20 15.7906 17 18 17 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span
+                className="w-full flex justify-between items-center"
+              >
+                  next 
+                <CommandShortcut>⌘N
+                </CommandShortcut>
+              </span>
+            </CommandItem>
+
           </CommandGroup>
         </CommandList>
       </CommandDialog>

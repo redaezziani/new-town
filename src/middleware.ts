@@ -17,7 +17,7 @@ export const middleware= async (request: NextRequest) => {
         return NextResponse.redirect(new URL(REDIRECT_URL, request.nextUrl).toString());
     }
     if (isVerified && authRoute.includes(path)) {
-        return NextResponse.redirect(new URL('/dashboard', request.nextUrl).toString());
+        return NextResponse.redirect(new URL('/dashboard/main', request.nextUrl).toString());
     }
     return NextResponse.next();    
 }
