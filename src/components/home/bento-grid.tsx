@@ -14,7 +14,7 @@ export const BentoGrid = ({
         className
       )}
     >
-      <div className=" absolute size-96 blur-[300px] bg-[#828fff] z-0 -bottom-16"></div>
+      <div className=" absolute size-96 blur-[300px] bg-[#828fff]/50 z-0 -bottom-16"></div>
       {children}
     </div>
   );
