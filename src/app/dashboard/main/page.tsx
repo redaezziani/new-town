@@ -1,3 +1,4 @@
+import { EreaChart } from "@/components/admin/ui/area-chart"
 import PieChartComponent from "@/components/for-all/c"
 import { LastOrdersTable } from "@/components/for-all/last-orders"
 import ProductCardDataA from "@/components/user/products/cards/card-data-1"
@@ -25,9 +26,13 @@ const DashboardPage = async () => {
          <PieChartComponent />
         </div>
         <div
-        className="w-full h-full   flex justify-start items-start gap-2 border rounded-lg  col-span-2 overflow-hidden">
+        className="w-full h-full   hover:shadow-lg hover:border-slate-300/70 transition-all ease-in-out duration-300  flex justify-start items-start gap-2 border rounded-lg  col-span-2 overflow-hidden">
           <LastOrdersTable />
         </div>
+      </div>
+      <div
+      className="w-full mt-3 p-3 hover:shadow-lg hover:border-slate-300/70 transition-all ease-in-out duration-300  flex justify-start items-start gap-2 border rounded-lg   overflow-hidden ">
+        <EreaChart />
       </div>
     </main>
   )

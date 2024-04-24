@@ -12,14 +12,14 @@
       --card-foreground: 222.2 84% 4.9%;
       --popover: 0 0% 100%;
       --popover-foreground: 222.2 84% 4.9%;
-      --primary: 222.2 47.4% 11.2%;
+      --primary: 233 100% 4%;
       --primary-foreground: 210 40% 98%;
       --secondary: 210 40% 96.1%;
-      --secondary-foreground: 222.2 47.4% 11.2%;
+      --secondary-foreground: 233 100% 4%;
       --muted: 210 40% 96.1%;
       --muted-foreground: 215.4 16.3% 46.9%;
       --accent: 210 40% 96.1%;
-      --accent-foreground: 222.2 47.4% 11.2%;
+      --accent-foreground: 233 100% 4%;
       --destructive: 0 84.2% 60.2%;
       --destructive-foreground: 210 40% 98%;
       --border: 214.3 31.8% 91.4%;
@@ -36,7 +36,7 @@
       --popover: 222.2 84% 4.9%;
       --popover-foreground: 210 40% 98%;
       --primary: 210 40% 98%;
-      --primary-foreground: 222.2 47.4% 11.2%;
+      --primary-foreground: 233 100% 4%;
       --secondary: 217.2 32.6% 17.5%;
       --secondary-foreground: 210 40% 98%;
       --muted: 217.2 32.6% 17.5%;
@@ -60,8 +60,14 @@
     }
   }
 
+  @layer components {
+    .tooltip {
+      @apply after:content-["Search"] after:hidden hover:after:absolute hover:after:top-24 hover:after:flex hover:after:bg-slate-800 hover:after:text-white hover:after:px-6 hover:after:py-2 hover:after:rounded-full hover:transition hover:duration-300 hover:ease-in-out;
+    }
+  }
+
   .color {
-    color: #3b83f69c;
+    color: #000214;
   }
 
 
@@ -84,6 +90,11 @@
   --overlay-color: 255, 255, 255;
 }
 
+.colors{
+  color: hsl(250, 250, 250);
+  background-color: hsl(15, 15, 15);
+  border-color: hsl(214.3, 31.8, 91.4);
+}
 
 
 .radial-gradient {

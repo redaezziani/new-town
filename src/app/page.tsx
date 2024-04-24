@@ -19,15 +19,13 @@ const AuroraHero = () => {
   return (
     <motion.section
 
-      className="relative w-full flex bg-white dark:bg-black/75  justify-center items-center flex-col gap-2 min-h-screen place-content-center    px-4 py-24 text-gray-800"
+      className="relative w-full flex bg-white dark:bg-[#000214]  justify-center items-center flex-col gap-2 min-h-screen place-content-center    px-4 py-24 text-gray-800"
     >
       <div className=" flex z-50 lg:hidden fixed right-4 top-3">
         <SideBar />
       </div>
       <div className="absolute z-0 inset-0 blur-[400px] h-28 w-[90%] top-0 bg-white/55 "></div>
-      <div className={`absolute z-[1]  inset-0 bg-cover `}>
-        <div className="w-full h-full  bg-repeat bg-[url('/assets/decorationBlockLight.svg')] bg-image-grid dark:bg-[url('/assets/decorationBlockDark.svg')]" style={{ WebkitMaskImage: 'radial-gradient(70% 70% at 50.00% 30%, #000 0%, rgba(0, 0, 0, 0.25) 100%)' }}></div>
-      </div>
+      
       <div className=" w-full border border-b border-slate-50/25 border-l-transparent border-r-transparent    border-t-transparent  fixed top-0 z-40 justify-center flex-col items-center flex mx-auto   ">
         <div className="w-full hidden lg:flex border border-t-transparent border-b border-border  p-1.5 justify-center items-center gap-3 bg-foreground bg-slate-50 dark:text-slate-900 font-semibold">
           <span className="text-xs p-1">
