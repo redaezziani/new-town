@@ -12,9 +12,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { Menu } from "lucide-react"
-import SideMenu from "./side-menu"
 import Link from "next/link"
-import { ModeToggle } from "../ui/mode"
 
 export function SideBar() {
   return (
@@ -29,19 +27,18 @@ export function SideBar() {
             Sign in
           </Button>
           </Link>
-          <ModeToggle/>
           <div className="w-fit p-2 rounded-md border border-slate-300/60">
        <Menu
        className="w-6 h-6 text-slate-900 dark:text-slate-50"
        />
        </div>
-         </div>
+        </div>
        
       </SheetTrigger>
       <SheetContent
       side={'left'}
       >
-        <SideMenu/>
+        
       </SheetContent>
     </Sheet>
   )
