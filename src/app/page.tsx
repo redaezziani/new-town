@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { SideBar } from "@/components/home/side-bar";
 import { ModeToggle } from "@/components/ui/mode";
-import { BentoGridSecondDemo } from "@/components/home/grid";
+import { BentoDemo } from "@/components/home/grid";
 import PlansCards from "@/components/for-all/plans-cards";
 import ShinyButton from "@/components/for-all/button";
 
@@ -30,16 +30,13 @@ const AuroraHero = () => {
       <div className="absolute z-0 inset-0 blur-[400px] h-28 w-[90%] top-0 bg-white/55 "></div>
 
       <div className=" w-full   fixed top-0 z-40 justify-center flex-col items-center flex mx-auto   ">
-        <div className="w-full hidden lg:flex border border-t-transparent border-b border-border  p-1.5 justify-center items-center gap-3 bg-foreground bg-slate-50 dark:text-slate-900 font-semibold">
-          <span className="text-xs p-1">
-            Introducing Zunder , sign up now and get 50% off
+        <div className="w-full text-sm hidden lg:flex border border-t-transparent border-b border-border  p-1.5 justify-center items-center gap-3 bg-[#151830ae]  font-semibold">
+          <span className=" text-slate-100 p-1">
+            Join our beta program today
           </span>
-          <svg
-            className=" text-green-500"
-            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none">
-            <path d="M11.9982 2C8.99043 2 7.04018 4.01899 4.73371 4.7549C3.79589 5.05413 3.32697 5.20374 3.1372 5.41465C2.94743 5.62556 2.89186 5.93375 2.78072 6.55013C1.59143 13.146 4.1909 19.244 10.3903 21.6175C11.0564 21.8725 11.3894 22 12.0015 22C12.6135 22 12.9466 21.8725 13.6126 21.6175C19.8116 19.2439 22.4086 13.146 21.219 6.55013C21.1078 5.93364 21.0522 5.6254 20.8624 5.41449C20.6726 5.20358 20.2037 5.05405 19.2659 4.75499C16.9585 4.01915 15.0061 2 11.9982 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M9 13C9 13 10 13 11 15C11 15 14.1765 10 17 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={18} height={18} color={"#ffffff"} fill={"none"}>
+    <path d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+</svg>
         </div>
         <nav
           className="flex w-full  justify-between bg-background/15 backdrop-blur-md items-center max-w-7xl mx-auto px-4 py-4 text-gray-200"
@@ -92,7 +89,6 @@ const AuroraHero = () => {
                 </svg>
               </button>
             </Link>
-            <ModeToggle />
           </div>
 
         </nav>
@@ -136,7 +132,7 @@ const AuroraHero = () => {
 
         </motion.div>
       </AnimatePresence>
-      <BentoGridSecondDemo />
+      <BentoDemo />
       <div className="w-full mt-20 flex justify-center items-center flex-col gap-2">
         <p
           className=" text-lg max-w-[33rem] text-center text-[#b4bcd0b9]"
