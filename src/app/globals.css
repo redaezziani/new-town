@@ -149,15 +149,6 @@
   @apply scrollbar-thin;
 }
 
-.bg{
-  /*markerColor: [251 / 255, 100 / 255, 21 / 255], glowColor: [1, 1, 1],  baseColor: [1, 1, 1],*/
-  --marke : 251, 100, 21;
-  --glow : 1, 1, 1;
-  --base : 1, 1, 1;
-  color : rgb(21, 21, 251);
-  background-color: rgb(1, 1, 1);
-  border-color: rgb(251, 100, 21);
-}
 
 
 

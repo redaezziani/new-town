@@ -1,15 +1,11 @@
 'use client';
-import React, { useEffect } from "react";
+import React from "react";
 import {
-  useMotionValue,
   motion,
-  animate,
   AnimatePresence,
 } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { SideBar } from "@/components/home/side-bar";
-import { ModeToggle } from "@/components/ui/mode";
 import { BentoDemo } from "@/components/home/grid";
 import PlansCards from "@/components/for-all/plans-cards";
 import ShinyButton from "@/components/for-all/button";
@@ -19,7 +15,7 @@ const AuroraHero = () => {
   return (
     <motion.section
 
-      className="relative w-full flex bg-white dark:bg-[#000214]  justify-center items-center flex-col gap-2 min-h-screen place-content-center    px-4 py-24 text-gray-800"
+      className="relative w-full flex bg-[#000214]  justify-center items-center flex-col gap-2 min-h-screen place-content-center    px-4 py-24 text-gray-800"
     >
       <div className="pointer-events-none fixed inset-0 flex justify-center">
         <div className="hidden h-full w-full max-w-7xl grid-cols-3 gap-3.5 px-4 lg:grid"><div className="border-x border-white/[0.035]"></div><div className="border-x border-white/[0.035]"></div><div className="border-x border-white/[0.035]"></div></div></div>
@@ -36,7 +32,7 @@ const AuroraHero = () => {
           </span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={18} height={18} color={"#ffffff"} fill={"none"}>
     <path d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-</svg>
+      </svg>
         </div>
         <nav
           className="flex w-full  justify-between bg-background/15 backdrop-blur-md items-center max-w-7xl mx-auto px-4 py-4 text-gray-200"
