@@ -47,14 +47,14 @@ const PlansCards = () => {
         className="mt-12 space-y-3 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-6 md:max-w-5xl md:mx-auto xl:grid-cols-3">
         <div className="px-6 p-1 z-10 border  rounded-lg shadow-sm divide-y  relative dark:radial-gradient">
             <div className="p-6">
-                <h2 className="text-xl leading-6 font-bold text-primary/55 ">
+                <h2 className="text-xl leading-6 font-bold text-slate-100/90 ">
                     Free mamber 
                 </h2>
-                <p className="mt-2 text-base text-primary leading-tight line-clamp-2">
+                <p className="mt-2 text-base text-slate-50 leading-tight line-clamp-2">
                     the free plan is for those who want to test the platform before upgrading to a paid plan.
                 </p>
                 <p className="mt-8">
-                    <span className="text-4xl font-bold text-primary/55  tracking-tighter">$0</span>
+                    <span className="text-4xl font-bold text-slate-100/90  tracking-tighter">$0</span>
 
                     <span className="text-base font-medium text-slate-500">/mo</span>
                 </p>
@@ -65,7 +65,7 @@ const PlansCards = () => {
                 </Link>
             </div>
             <div className="pt-6 pb-8 px-6">
-                <h3 className="text-sm font-bold text-primary/55  tracking-wide uppercase">What's included</h3>
+                <h3 className="text-sm font-bold text-slate-100/90  tracking-wide uppercase">What's included</h3>
                 <ul role="list" className="mt-4 space-y-3">
                     <li className="flex space-x-3">
                         <svg xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 h-5 w-5 text-green-400" width="24"
@@ -74,7 +74,7 @@ const PlansCards = () => {
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M5 12l5 5l10 -10"></path>
                         </svg>
-                        <span className="text-base text-primary">
+                        <span className="text-base text-slate-50">
                             2 products to track included
                         </span>
                     </li>
@@ -85,7 +85,7 @@ const PlansCards = () => {
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M5 12l5 5l10 -10"></path>
                         </svg>
-                        <span className="text-base text-primary">
+                        <span className="text-base text-slate-50">
                            see all limeted analytics 
                         </span>
                     </li>
@@ -94,14 +94,14 @@ const PlansCards = () => {
         </div>
         <div className="px-6 p-1 z-10 border  rounded-lg shadow-sm divide-y  relative dark:radial-gradient">
             <div className="p-6">
-                <h2 className="text-xl leading-6 font-bold text-primary/55 ">
+                <h2 className="text-xl leading-6 font-bold text-slate-100/90 ">
                     Premium member
                 </h2>
-                <p className="mt-2 text-base text-primary leading-tight line-clamp-2">
+                <p className="mt-2 text-base text-slate-50 leading-tight line-clamp-2">
                     For productive individuals who want to work more efficiently.
                 </p>
                 <p className="mt-8">
-                    <span className="text-4xl font-bold text-primary/55  tracking-tighter">$15</span>
+                    <span className="text-4xl font-bold text-slate-100/90  tracking-tighter">$15</span>
                     <span className="text-base font-medium text-slate-500">/mo</span>
                 </p>
                 <Button
@@ -111,7 +111,7 @@ const PlansCards = () => {
                 </Button>
             </div>
             <div className="pt-6 pb-8 px-6">
-                <h3 className="text-sm font-bold text-primary/55  tracking-wide uppercase">What's included</h3>
+                <h3 className="text-sm font-bold text-slate-100/90  tracking-wide uppercase">What's included</h3>
                 <ul role="list" className="mt-4 space-y-3">
                     <li className="flex space-x-3">
                         <svg xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 h-5 w-5 text-green-400" width="24"
@@ -120,7 +120,7 @@ const PlansCards = () => {
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M5 12l5 5l10 -10"></path>
                         </svg>
-                        <span className="text-base text-primary">
+                        <span className="text-base text-slate-50">
                             10 products to track included
                         </span>
                     </li>
@@ -131,7 +131,7 @@ const PlansCards = () => {
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M5 12l5 5l10 -10"></path>
                         </svg>
-                        <span className="text-base text-primary">
+                        <span className="text-base text-slate-50">
                             see all analytics
                         </span>
                     </li>
@@ -142,7 +142,7 @@ const PlansCards = () => {
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M5 12l5 5l10 -10"></path>
                         </svg>
-                        <span className="text-base text-primary">
+                        <span className="text-base text-slate-50">
                             100,000 visits/mo
                         </span>
                     </li>
@@ -153,7 +153,7 @@ const PlansCards = () => {
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M5 12l5 5l10 -10"></path>
                         </svg>
-                        <span className="text-base text-primary">
+                        <span className="text-base text-slate-50">
                             1,000 conversion actions included
                         </span>
                     </li>
@@ -163,14 +163,14 @@ const PlansCards = () => {
         <Card>
         <div className=" relative z-20">
             <div className="p-6">
-                <h2 className="text-xl leading-6 font-bold text-primary/55 ">
+                <h2 className="text-xl leading-6 font-bold text-slate-100/90 ">
                     Mega member
                 </h2>
-                <p className="mt-2 text-base text-primary leading-tight line-clamp-2">
+                <p className="mt-2 text-base text-slate-50 leading-tight line-clamp-2">
                     For teams that need to track multiple products and analyze their performance.
                 </p>
                 <p className="mt-8">
-                    <span className="text-4xl font-bold text-primary/55  tracking-tighter">$30</span>
+                    <span className="text-4xl font-bold text-slate-100/90  tracking-tighter">$30</span>
 
                     <span className="text-base font-medium text-slate-500">/mo</span>
                 </p>
@@ -181,7 +181,7 @@ const PlansCards = () => {
                 </Button>
             </div>
             <div className="pt-6 pb-8 px-6">
-                <h3 className="text-sm font-bold text-primary/55  tracking-wide uppercase">What's included</h3>
+                <h3 className="text-sm font-bold text-slate-100/90  tracking-wide uppercase">What's included</h3>
                 <ul role="list" className="mt-4 space-y-3">
                     <li className="flex space-x-3">
                         <svg xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 h-5 w-5 text-green-400" width="24"
@@ -190,7 +190,7 @@ const PlansCards = () => {
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M5 12l5 5l10 -10"></path>
                         </svg>
-                        <span className="text-base text-primary">
+                        <span className="text-base text-slate-50">
                             20 products to track included
                         </span>
                     </li>
@@ -201,7 +201,7 @@ const PlansCards = () => {
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M5 12l5 5l10 -10"></path>
                         </svg>
-                        <span className="text-base text-primary">
+                        <span className="text-base text-slate-50">
                             see all analytics
                         </span>
                     </li>
@@ -212,7 +212,7 @@ const PlansCards = () => {
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M5 12l5 5l10 -10"></path>
                         </svg>
-                        <span className="text-base text-primary">
+                        <span className="text-base text-slate-50">
                             500,000 visits/mo
                         </span>
                     </li>
@@ -223,7 +223,7 @@ const PlansCards = () => {
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M5 12l5 5l10 -10"></path>
                         </svg>
-                        <span className="text-base text-primary">
+                        <span className="text-base text-slate-50">
                             5,000 conversion actions included
                         </span>
                     </li>
@@ -234,7 +234,7 @@ const PlansCards = () => {
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M5 12l5 5l10 -10"></path>
                         </svg>
-                        <span className="text-base text-primary">
+                        <span className="text-base text-slate-50">
                             contact support 24/7
                         </span>
                     </li>

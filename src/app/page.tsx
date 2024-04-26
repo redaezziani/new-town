@@ -11,14 +11,42 @@ import PlansCards from "@/components/for-all/plans-cards";
 import ShinyButton from "@/components/for-all/button";
 
 const AuroraHero = () => {
-
+  const [active , setActive] = React.useState(1);
+  const listLinks = [{
+    id: 1,
+    name: "Hero",
+    href: "#hero",
+  },
+  {
+    id: 2,
+    name: "Features",
+    href: "#features",
+  },
+  {
+    id: 3,
+    name: "Pricing",
+    href: "#pricing",
+  },
+  {
+    id: 4,
+    name: "Contact",
+    href: "#contact",
+  }]
+  const handelActive = (id:number) => {
+    setActive(id);
+  }
   return (
     <motion.section
 
       className="relative w-full flex bg-[#000214]  justify-center items-center flex-col gap-2 min-h-screen place-content-center    px-4 py-24 text-gray-800"
     >
       <div className="pointer-events-none fixed inset-0 flex justify-center">
-        <div className="hidden h-full w-full max-w-7xl grid-cols-3 gap-3.5 px-4 lg:grid"><div className="border-x border-white/[0.035]"></div><div className="border-x border-white/[0.035]"></div><div className="border-x border-white/[0.035]"></div></div></div>
+        <div className="hidden h-full w-full max-w-7xl grid-cols-3 gap-3.5 px-4 lg:grid">
+        <div className="border-x border-white/[0.035]"></div>
+        <div className="border-x border-white/[0.035]"></div>
+        <div className="border-x border-white/[0.035]"></div>
+        </div>
+      </div>
 
       <div className=" flex z-50 lg:hidden fixed right-4 top-3">
         <SideBar />
@@ -56,22 +84,30 @@ const AuroraHero = () => {
           </Link>
           <div className="lg:flex hidden  items-center gap-8">
 
-            <ul className="flex text-sm lowercase  items-center   backdrop-blur-sm  px-6 py-2 gap-4">
-              <li>
-                <a href="#features" className="hover:text-gray-50">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a href="#pricing" className="hover:text-gray-50">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="hover:text-gray-50">
-                  Contact
-                </a>
-              </li>
+            <ul className="flex text-sm lowercase  items-center   backdrop-blur-sm  px-6 py-2 gap-7">
+            <AnimatePresence>
+              {listLinks.map((link) => (
+                <motion.li
+                  key={link.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  whileHover={{ scale: 1.1 }}
+                  onClick={() => handelActive(link.id)}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ duration: 0.4 }}
+                  className={`text-slate-50 relative flex justify-center items-center hover:text-slate-100 cursor-pointer ${active === link.id ? "text-slate-100" : ""}`}
+                >
+                  <Link href={link.href}>
+                      {link.name}
+                  </Link>
+                  <motion.span
+                  className={`absolute  h-7 px-4  rounded-full min-w-16  w-full bg-slate-100/15 ${active === link.id ? "opacity-100" : "opacity-0"}`}
+                  >
+
+                  </motion.span>
+                </motion.li>
+              ))}
+            </AnimatePresence>
             </ul>
             <Link href="/auth/signin">
               <button
