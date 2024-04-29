@@ -9,8 +9,8 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command"
-import React from  "react"
-import {  SunMoon } from "lucide-react"
+import React from "react"
+import { SunMoon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
 
@@ -82,7 +82,7 @@ export function CommandSearch() {
           <CommandGroup
             className=" mt-2"
             heading="Suggestions">
-              <CommandItem
+            <CommandItem
               className=" group"
               onSelect={() => handelRoute('/dashboard/main')}
             >
@@ -95,7 +95,7 @@ export function CommandSearch() {
               <span
                 className="w-full flex justify-between items-center"
               >
-                 Dashboard
+                Dashboard
                 <CommandShortcut>⌘D
                 </CommandShortcut>
               </span>
@@ -120,7 +120,7 @@ export function CommandSearch() {
                 </CommandShortcut>
               </span>
             </CommandItem>
-            
+
             <CommandItem
               className=" group mt-2"
               onSelect={() => handelRoute('/dashboard/orders')}
@@ -164,9 +164,7 @@ export function CommandSearch() {
                 </CommandShortcut>
               </span>
             </CommandItem>
-            <CommandSeparator
-              className="mt-2"
-            />
+
             <CommandItem
               className=" group mt-2"
               onSelect={handleTheme}
@@ -181,18 +179,16 @@ export function CommandSearch() {
               </span>
             </CommandItem>
             <CommandItem
-              className=" group mt-2"
+              className=" group mt-2 flex gap-2 justify-between items-center"
               onSelect={() => {
                 router.back()
                 setOpen(false)
               }}
             >
               <svg
-                className="mr-2 group-hover:text-primary h-4 w-4"
-
-                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={20} height={20} fill={"none"}>
-                <path d="M11 6H15.5C17.9853 6 20 8.01472 20 10.5C20 12.9853 17.9853 15 15.5 15H4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M6.99998 12C6.99998 12 4.00001 14.2095 4 15C3.99999 15.7906 7 18 7 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              className="mr-2 group-hover:text-primary h-4 w-4"
+              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={20} height={20}  fill={"none"}>
+                <path d="M15 6C15 6 9.00001 10.4189 9 12C8.99999 13.5812 15 18 15 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               <span
                 className="w-full flex justify-between items-center"
@@ -202,28 +198,6 @@ export function CommandSearch() {
                 </CommandShortcut>
               </span>
             </CommandItem>
-            <CommandItem
-              className=" group mt-2"
-              onSelect={() => {
-                router.forward()
-                setOpen(false)
-              }}
-            >
-              <svg
-              className="mr-2 group-hover:text-primary h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={20} height={20}  fill={"none"}>
-                <path d="M13 6H8.5C6.01472 6 4 8.01472 4 10.5C4 12.9853 6.01472 15 8.5 15H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M17 12C17 12 20 14.2095 20 15C20 15.7906 17 18 17 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              <span
-                className="w-full flex justify-between items-center"
-              >
-                  next 
-                <CommandShortcut>⌘N
-                </CommandShortcut>
-              </span>
-            </CommandItem>
-
           </CommandGroup>
         </CommandList>
       </CommandDialog>

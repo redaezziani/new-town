@@ -82,7 +82,7 @@ const PieChartComponent = () => {
           cy="50%"
           innerRadius={60}
           outerRadius={80}
-          fill="#4ade80"
+          fill="#0369a1"
           dataKey="value"
           onMouseEnter={onPieEnter}
         />

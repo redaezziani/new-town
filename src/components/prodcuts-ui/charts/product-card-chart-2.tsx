@@ -20,13 +20,15 @@ interface OrderCardProps {
 export function ProductsShart({ data }: {data: OrderCardProps}) {
   return (
     <Card
-    className="w-full h-[80px] border-none shadow-none p-0 col-span-3 overflow-hidden"
+    className="w-full h-[80px] border-none shadow-none p-0  overflow-hidden"
     >
 
-      <CardContent className="">
+      <CardContent className="p-0">
         <div className="h-[80px] w-full">
           <ResponsiveContainer
-          
+          style={{
+            padding: "0px",
+          }}
           width="100%" height="100%">
             <AreaChart
             title=" "
@@ -44,17 +46,17 @@ export function ProductsShart({ data }: {data: OrderCardProps}) {
                 <defs>
                 <linearGradient id="color3" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%"
-                   stopColor={ data.status = "negative" ? "#dc2626" : "#0ad457"}
+                   stopColor={ data.status = "negative" ? "#0ea5e9" : "#0ea5e9"}
                     stopOpacity={0.4}/>
                   <stop offset="75%" 
-                  stopColor={data.status = "negative" ? "#dc2626" : "#0ad457"}
+                  stopColor={data.status = "negative" ? "#0ea5e9" : "#0ea5e9"}
                    stopOpacity={0.05}/>
                 </linearGradient>
                 </defs>
                 <Area
                 dataKey="price"
                 type={'bump'}
-                stroke={data.status = "negative" ? "#dc2626" : "#0ad457"}
+                stroke={data.status = "negative" ? "#0ea5e9" : "#0ea5e9"}
                 fill="url(#color3)"
                 className=" stroke-[1.8] fill-current"
               />

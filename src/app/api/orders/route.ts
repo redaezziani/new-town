@@ -52,6 +52,8 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
         return Response.json({ status: 'error', message: 'An error occurred while processing your request.' });
     }
 }
+
+
 export async function POST(req: NextRequest, res: NextResponse): Promise<void | Response> {
     let transaction;
     try {

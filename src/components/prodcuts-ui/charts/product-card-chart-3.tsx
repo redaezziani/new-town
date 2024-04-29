@@ -22,7 +22,7 @@ export function ProductsShart() {
     className="w-full h-[80px] border-none shadow-none p-0 col-span-3 overflow-hidden"
     >
 
-      <CardContent className="">
+      <CardContent className="p-0">
         <div className="h-[80px] w-full">
           <ResponsiveContainer
           
@@ -41,14 +41,14 @@ export function ProductsShart() {
             >
                 <defs>
                 <linearGradient id="color2" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#1e293b" stopOpacity={0.4}/>
-                  <stop offset="75%" stopColor="#1e293b" stopOpacity={0.05}/>
+                  <stop offset="0%" stopColor="#0ea5e9" stopOpacity={0.4}/>
+                  <stop offset="75%" stopColor="#0ea5e9" stopOpacity={0.05}/>
                 </linearGradient>
                 </defs>
                 <Area
                 dataKey="average"
                 type={'bump'}
-                stroke="#1e293b"
+                stroke="#0ea5e9"
                 fill="url(#color2)"
                 className=" stroke-[1.8] fill-current"
               />
