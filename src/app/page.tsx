@@ -4,51 +4,28 @@ import {
   motion,
   AnimatePresence,
 } from "framer-motion";
-import Link from "next/link";
 import { SideBar } from "@/components/home/side-bar";
 import { BentoDemo } from "@/components/home/grid";
 import PlansCards from "@/components/for-all/plans-cards";
 import ShinyButton from "@/components/for-all/button";
+import NavBar from "@/components/home/nav-bar";
 
 const AuroraHero = () => {
-  const [active , setActive] = React.useState(1);
-  const listLinks = [{
-    id: 1,
-    name: "Hero",
-    href: "#hero",
-  },
-  {
-    id: 2,
-    name: "Features",
-    href: "#features",
-  },
-  {
-    id: 3,
-    name: "Pricing",
-    href: "#pricing",
-  },
-  {
-    id: 4,
-    name: "Contact",
-    href: "#contact",
-  }]
-  const handelActive = (id:number) => {
-    setActive(id);
-  }
+
   return (
     <motion.section
 
-      className="relative w-full flex bg-[#000214]  justify-center items-center flex-col gap-2 min-h-screen place-content-center    px-4 py-24 text-gray-800"
+      className="relative overflow-x-hidden w-full flex bg-[#000214]  justify-center items-center flex-col gap-2 min-h-screen place-content-center    px-4 py-24 text-gray-800"
     >
       <div className="pointer-events-none fixed inset-0 flex justify-center">
         <div className="hidden h-full w-full max-w-7xl grid-cols-3 gap-3.5 px-4 lg:grid">
-        <div className="border-x border-white/[0.035]"></div>
-        <div className="border-x border-white/[0.035]"></div>
-        <div className="border-x border-white/[0.035]"></div>
+          <div className="border-x border-white/[0.035]"></div>
+          <div className="border-x border-white/[0.035]"></div>
+          <div className="border-x border-white/[0.035]"></div>
         </div>
       </div>
 
-      <div className=" flex z-50 lg:hidden fixed right-4 top-3">
+      <div className=" flex  z-50 md:hidden fixed right-4 top-3">
         <SideBar />
       </div>
       <div className="absolute z-0 inset-0 blur-[400px] h-28 w-[90%] top-0 bg-white/55 "></div>
@@ -59,71 +36,10 @@ const AuroraHero = () => {
             Join our beta program today
           </span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={18} height={18} color={"#ffffff"} fill={"none"}>
-    <path d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
+            <path d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </div>
-        <nav
-          className="flex w-full  justify-between bg-background/15 backdrop-blur-md items-center max-w-7xl mx-auto px-4 py-4 text-gray-200"
-        >
-          <Link
-            href={"/"}
-            className="flex gap-2 items-center">
-            <svg
-              className="text-slate-900 dark:text-slate-50"
-              width="40" height="40" viewBox="0 0 210 210" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd" clipRule="evenodd" d="M5.32961 43.2093C0 56.0745 0 72.3843 0 105.004C0 137.623 0 153.933 5.32961 166.798C12.4341 183.948 26.0596 197.574 43.2093 204.678C56.0745 210.008 72.3843 210.008 105.004 210.008C137.623 210.008 153.933 210.008 166.798 204.678C183.948 197.574 197.574 183.948 204.678 166.798C209.454 155.269 209.95 140.974 210.002 114.653H131.113L89.679 172.547L97.6252 114.653H59.0292L114.653 37.4608L107.274 94.2197H209.999C209.935 68.6209 209.385 54.5717 204.678 43.2093C197.574 26.0596 183.948 12.4341 166.798 5.32961C153.933 0 137.623 0 105.004 0C72.3843 0 56.0745 0 43.2093 5.32961C26.0596 12.4341 12.4341 26.0596 5.32961 43.2093Z"
-                fill="currentColor"
-              />
-            </svg>
-
-            <span
-              className="font-bold text-slate-900 dark:text-slate-50 "
-            >
-              Zunder
-            </span>
-          </Link>
-          <div className="lg:flex hidden  items-center gap-8">
-
-            <ul className="flex text-sm lowercase  items-center   backdrop-blur-sm  px-6 py-2 gap-7">
-            <AnimatePresence>
-              {listLinks.map((link) => (
-                <motion.li
-                  key={link.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  whileHover={{ scale: 1.1 }}
-                  onClick={() => handelActive(link.id)}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.4 }}
-                  className={`text-slate-50 relative flex justify-center items-center hover:text-slate-100 cursor-pointer ${active === link.id ? "text-slate-100" : ""}`}
-                >
-                  <Link href={link.href}>
-                      {link.name}
-                  </Link>
-                  <motion.span
-                  className={`absolute  h-7 px-4  rounded-full min-w-16  w-full bg-slate-100/15 ${active === link.id ? "opacity-100" : "opacity-0"}`}
-                  >
-
-                  </motion.span>
-                </motion.li>
-              ))}
-            </AnimatePresence>
-            </ul>
-            <Link href="/auth/signin">
-              <button
-                className=" hover:scale-105 group bg-[#d4d5f813] text-slate-50 border border-slate-300/20 px-4 py-2 rounded-full backdrop-blur-sm flex justify-center items-center gap-1"
-              >
-                <p>
-                  sign in
-                </p>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={20} height={20} fill={"none"}>
-                  <path d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </Link>
-          </div>
-
-        </nav>
+        <NavBar />
       </div>
       <AnimatePresence>
         <motion.div
@@ -164,7 +80,7 @@ const AuroraHero = () => {
 
         </motion.div>
       </AnimatePresence>
-      <BentoDemo />
+      {/* <BentoDemo /> */}
       <div className="w-full mt-20 flex justify-center items-center flex-col gap-2">
         <p
           className=" text-lg max-w-[33rem] text-center text-[#b4bcd0b9]"
@@ -196,17 +112,17 @@ const AuroraHero = () => {
           <svg
             className=" text-white size-40 "
             viewBox="0 0 180 56" fill="currentColor" role="img" focusable="false"><path d="M34 18.2a2.2 2.2 0 012.2-2.2h8.6a2.2 2.2 0 012.2 2.2v1.7a1.1 1.1 0 01-1.1 1.1H35.1a1.1 1.1 0 01-1.1-1.1v-1.7zM34 25.1a1.1 1.1 0 011.1-1.1h20.7a2.2 2.2 0 012.2 2.2v5.7a1.1 1.1 0 01-1.1 1.1H36.2a2.2 2.2 0 01-2.2-2.2v-5.7zM45 37.1a1.1 1.1 0 011.1-1.1h10.8a1.1 1.1 0 011.1 1.1v.7a2.2 2.2 0 01-2.2 2.2h-8.6a2.2 2.2 0 01-2.2-2.2v-.7zM71.596 30.741h2.311l4.293 7.017h5.256l-4.76-7.512c2.641-.909 4.182-2.945 4.182-5.89 0-4.127-2.89-6.356-7.54-6.356H67v19.758h4.596v-7.017zm0-3.742V21.88h3.494c2.174 0 3.275.936 3.275 2.56 0 1.595-1.1 2.558-3.275 2.558h-3.494zM91.363 38.06c2.89 0 5.531-1.458 6.605-4.237L94.28 32.64c-.413 1.266-1.486 1.926-2.862 1.926-1.678 0-2.862-1.128-3.164-3.11h9.824v-1.155c0-4.1-2.395-7.348-6.797-7.348-4.183 0-7.265 3.247-7.265 7.54 0 4.513 2.972 7.568 7.347 7.568zm-.138-11.694c1.624 0 2.477 1.1 2.505 2.394H88.39c.44-1.596 1.486-2.394 2.834-2.394zM100.573 33.878c0 2.972 1.569 4.018 4.706 4.018 1.046 0 1.871-.083 2.642-.193v-3.605c-.496.055-.743.083-1.266.083-1.101 0-1.734-.22-1.734-1.431v-5.862h2.834v-3.632h-2.834v-4.018h-4.348v4.018h-1.844v3.632h1.844v6.99zM123.672 30.52c0-4.512-3-7.567-7.265-7.567-4.293 0-7.265 3.055-7.265 7.568s2.972 7.54 7.265 7.54c4.265 0 7.265-3.027 7.265-7.54zm-10.154 0c0-2.53 1.128-3.962 2.889-3.962s2.89 1.431 2.89 3.963-1.129 3.962-2.89 3.962c-1.761 0-2.889-1.43-2.889-3.962zM139.527 30.52c0-4.512-2.999-7.567-7.265-7.567-4.293 0-7.265 3.055-7.265 7.568s2.972 7.54 7.265 7.54c4.266 0 7.265-3.027 7.265-7.54zm-10.154 0c0-2.53 1.128-3.962 2.889-3.962 1.762 0 2.89 1.431 2.89 3.963s-1.128 3.962-2.89 3.962c-1.761 0-2.889-1.43-2.889-3.962zM146 18h-4.403v19.758H146V18z" fill="#fff"></path></svg>
-          <img 
+          <img
             className=" text-white size-20 "
-            src="/Stripe.svg" 
+            src="/Stripe.svg"
             alt="Aurora logo"
           />
         </div>
       </div>
       <div className="w-full max-w-7xl px-10 min-h-[30px] flex justify-start items-center relative">
         <img
-        className="w-full h-full rounded-lg object-cover"
-        src="https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/8ab5dc31-5b91-4a8e-477c-afeb53cdd700/f=auto,q=95,fit=scale-down,metadata=none" alt=""  />
+          className="w-full h-full rounded-lg object-cover"
+          src="https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/8ab5dc31-5b91-4a8e-477c-afeb53cdd700/f=auto,q=95,fit=scale-down,metadata=none" alt="" />
       </div>
       <PlansCards />
     </motion.section>

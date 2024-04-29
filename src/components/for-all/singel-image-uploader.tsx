@@ -30,10 +30,11 @@ export function SingleImageDropzoneUsage({ onFileChange }: SingleImageDropzoneUs
     , [file]);
 
   return (
-    <div>
+    <div
+    className='w-full '
+    >
       <SingleImageDropzone
-        height={200}
-        width={355}
+      className='w-full aspect-video max-h-44 h-auto'      
         value={file}
         onChange={(file) => {
           setFile(file);
