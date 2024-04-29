@@ -19,7 +19,7 @@ export default async function RootLayout({
 }>) {
   return (
     <div className={` h-screen  relative w-full grid grid-cols-11 overflow-x-hidden  `}>
-        <div className="w-full  top-0 z-50  sticky bg-slate-50/50 dark:bg-slate-800/30 border border-slate-300/60 dark:border-slate-300/25 border-fix border-l  left-0 col-span-2 h-screen hidden lg:flex justify-start items-start gap-3 flex-col ">
+        <div className="w-full  top-0 z-50  sticky bg-slate-50/50 dark:bg-slate-800/30 border border-slate-300/60 dark:border-slate-300/25 border-fix border-l  left-0 col-span-2 h-full hidden lg:flex justify-start items-start gap-3 flex-col ">
           <div className="w-full px-5 flex z-50 relative justify-between items-center h-20">
           <Link
           href={"/"}
