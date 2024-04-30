@@ -4,6 +4,7 @@ import z from 'zod';
 import useSWR from 'swr';
 import Counter from "@/components/admin/ui/animation/counter";
 import { ProductsShart } from '@/components/prodcuts-ui/charts/product-card-chart-2';
+import CardSkelton from '@/components/prodcuts-ui/card-skelton';
 
 const OrdersDeliveredCardSchema = z.object({
     data: z.object({
@@ -39,7 +40,7 @@ const OrdersDeliveredCardData = () => {
     }
 
     if (!res) {
-        return <div>Loading...</div>;
+        return <CardSkelton />;
     }
 
     return (

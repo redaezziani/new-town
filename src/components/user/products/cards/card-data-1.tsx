@@ -3,6 +3,7 @@ import { ProductsShart } from "@/components/prodcuts-ui/charts/product-card-char
 import z from 'zod';
 import useSWR from 'swr';
 import Counter from "@/components/admin/ui/animation/counter";
+import CardSkelton from "@/components/prodcuts-ui/card-skelton";
 
 const ProductCardSchema = z.object({
     data: z.object({
@@ -39,6 +40,9 @@ const ProductCardDataA = () => {
 
     if (error) {
         return <div>error</div>;
+    }
+    if (!res) {
+        return <CardSkelton />;
     }
 
     return (

@@ -3,10 +3,14 @@
 import { ProductsShart } from "@/components/prodcuts-ui/charts/product-card-chart-3"
 import useSWR from 'swr';
 import Counter from "@/components/admin/ui/animation/counter";
+import CardSkelton from "@/components/prodcuts-ui/card-skelton";
 //@ts-ignore
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const ProductCardDataC = () => {
     const { data: res, error, } = useSWR('/api/users/customer', fetcher, { refreshInterval: 40000 }) as any
+    if (!res) {
+        return <CardSkelton />;
+    }
     return (
         <article
             className="rounded-md hover:shadow-lg hover:border-slate-300/70 transition-all ease-in-out duration-300 lg:col-span-1 md:col-span-2 col-span-1   gap-2 flex-col  flex justify-end items-start min-h-16  border border-slate-300/30  p-2 bg-background"
