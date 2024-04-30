@@ -9,7 +9,7 @@ const ProductCardDataC = () => {
     const { data: res, error, } = useSWR('/api/users/customer', fetcher, { refreshInterval: 40000 }) as any
     return (
         <article
-            className="rounded-none hover:shadow-lg hover:border-slate-300/70 transition-all ease-in-out duration-300   gap-2 flex-col  flex justify-end items-start min-h-16  border border-slate-300/30  p-2 bg-background"
+            className="rounded-md hover:shadow-lg hover:border-slate-300/70 transition-all ease-in-out duration-300 lg:col-span-1 md:col-span-2 col-span-1   gap-2 flex-col  flex justify-end items-start min-h-16  border border-slate-300/30  p-2 bg-background"
         >
             <h2
                 className="text-lg justify-start items-center font-medium text-slate-800 dark:text-white flex gap-1"

@@ -16,17 +16,17 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
             return Response.json({ status: 'error', message: 'User not found' });
         }
 
-        // Get today's date and the date 7 days ago
+        // Get this month's date and the date one month ago
         const today = new Date();
-        const last7Days = new Date(today);
-        last7Days.setDate(today.getDate() - 7);
+        const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+        const lastMonthEnd = new Date(today.getFullYear(), today.getMonth(), 0);
 
-        // Find products created today and in the last 7 days for the user
-        const todayOrders = await db.order.findMany({
+        // Find orders created this month and last month for the user
+        const thisMonthOrders = await db.order.findMany({
             where: {
                 userId: user?.payload.id as string,
                 createdAt: {
-                    gte: new Date(today.setHours(0, 0, 0, 0)),
+                    gte: new Date(today.getFullYear(), today.getMonth(), 1),
                     lte: new Date(today.setHours(23, 59, 59, 999))
                 },
                 status: 'DELIVERED'
@@ -39,12 +39,12 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
             }
         });
 
-        const last7DaysOrders = await db.order.findMany({
+        const lastMonthOrders = await db.order.findMany({
             where: {
                 userId: user?.payload.id as string,
                 createdAt: {
-                    gte: new Date(last7Days.setHours(0, 0, 0, 0)),
-                    lte: new Date(today.setHours(23, 59, 59, 999))
+                    gte: new Date(lastMonth.setHours(0, 0, 0, 0)),
+                    lte: new Date(lastMonthEnd.setHours(23, 59, 59, 999))
                 },
                 status: 'DELIVERED'
             },
@@ -56,30 +56,30 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
             }
         });
 
-        // Get the total price of products created today and in the last 7 days
-        const totalTodayPrice = todayOrders.reduce((acc, product) => acc + product.price, 0);
-        const totalLast7DaysPrice = last7DaysOrders.reduce((acc, product) => acc + product.price, 0);
+        // Get the total price of orders created this month and last month
+        const totalThisMonthPrice = thisMonthOrders.reduce((acc, order) => acc + order.price, 0);
+        const totalLastMonthPrice = lastMonthOrders.reduce((acc, order) => acc + order.price, 0);
 
         // Calculate the percentage if there are orders, otherwise set to 0
-        const percentage = totalLast7DaysPrice !== 0 ?
-            ((totalTodayPrice - totalLast7DaysPrice) / totalLast7DaysPrice) * 100 :
+        const percentage = totalLastMonthPrice !== 0 ?
+            ((totalThisMonthPrice - totalLastMonthPrice) / totalLastMonthPrice) * 100 :
             0;
 
         // Determine percentage status
-        const percentageStatus = totalTodayPrice > totalLast7DaysPrice ? 'positive' : 'negative';
+        const percentageStatus = totalThisMonthPrice > totalLastMonthPrice ? 'positive' : 'negative';
 
         const data = {
-            todayCount: todayOrders.length,
-            last7DaysCount: last7DaysOrders.length,
-            todayOrders,
-            last7DaysOrders,
+            thisMonthCount: thisMonthOrders.length,
+            lastMonthCount: lastMonthOrders.length,
+            thisMonthOrders,
+            lastMonthOrders,
             percentage,
-            totalTodayPrice,
-            totalLast7DaysPrice,
+            totalThisMonthPrice,
+            totalLastMonthPrice,
             percentageStatus
         };
 
-        return Response.json({ status: 'success', data, message: 'Products found' });
+        return Response.json({ status: 'success', data, message: 'Orders found' });
     } catch (error) {
         console.error(error);
         return Response.json({ status: 'error', message: 'An error occurred while processing your request.' });

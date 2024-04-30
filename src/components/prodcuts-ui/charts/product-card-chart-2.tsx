@@ -10,11 +10,10 @@ import {
 
 interface OrderCardProps {
   data: {
-    last7DaysOrders : {
+    thisMonthOrders : {
       id: string, price: number, total: number, createdAt: string ,
     }[],
   }[]
-  status : string
 }
 
 export function ProductsShart({ data }: {data: OrderCardProps}) {
@@ -46,17 +45,17 @@ export function ProductsShart({ data }: {data: OrderCardProps}) {
                 <defs>
                 <linearGradient id="color3" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%"
-                   stopColor={ data.status = "negative" ? "#0ea5e9" : "#0ea5e9"}
+                   stopColor={"#0ea5e9"}
                     stopOpacity={0.4}/>
                   <stop offset="75%" 
-                  stopColor={data.status = "negative" ? "#0ea5e9" : "#0ea5e9"}
+                  stopColor={"#0ea5e9"}
                    stopOpacity={0.05}/>
                 </linearGradient>
                 </defs>
                 <Area
                 dataKey="price"
                 type={'bump'}
-                stroke={data.status = "negative" ? "#0ea5e9" : "#0ea5e9"}
+                stroke={"#0ea5e9"}
                 fill="url(#color3)"
                 className=" stroke-[1.8] fill-current"
               />

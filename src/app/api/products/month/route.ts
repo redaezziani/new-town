@@ -1,8 +1,8 @@
 import { verifyToken } from "@/(db)/lib/auth";
 import db from "@/(db)/secrets";
-import { NextResponse,NextRequest } from "next/server";
-export const dynamic = 'force-dynamic' 
+import { NextResponse, NextRequest } from "next/server";
 
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest, res: NextResponse): Promise<void | Response> {
     try {
@@ -16,44 +16,21 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
             return Response.json({ status: 'error', message: 'User not found' });
         }
 
-        // Get today's date and the date 7 days ago
+        // Get the first day of this month and the last day of last month
         const today = new Date();
-        const last7Days = new Date(today);
-        last7Days.setDate(today.getDate() - 7);
+        const firstDayThisMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        const lastDayLastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
 
-        // Find products created today and in the last 7 days for the user
-        const todayProducts = await db.orderItem.findMany({
+        // Find products created this month and last month for the user
+        const thisMonthProducts = await db.orderItem.findMany({
             where: {
                 userId: user?.payload.id as string,
                 createdAt: {
-                    gte: new Date(today.setHours(0, 0, 0, 0)),
+                    gte: new Date(firstDayThisMonth.setHours(0, 0, 0, 0)),
                     lte: new Date(today.setHours(23, 59, 59, 999))
                 }
             },
-            select  : {
-                id: true,
-                price: true,
-                createdAt: true,
-                product: {
-                    select: {
-                        currency: true,
-                    }
-                },
-                quantity: true
-
-            }
-
-        });
-        
-        const last7DaysProducts = await db.orderItem.findMany({
-            where: {
-                userId: user?.payload.id as string,
-                createdAt: {
-                    gte: new Date(last7Days.setHours(0, 0, 0, 0)), // Corrected usage of last7Days
-                    lte: new Date(today.setHours(23, 59, 59, 999))
-                }
-            },
-            select  : {
+            select: {
                 id: true,
                 price: true,
                 createdAt: true,
@@ -66,27 +43,47 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
             }
         });
 
-        // lets get the bercentage of products created today and in the last 7 days
-        // get the total price of products created today and in the last 7 days
-        const totalTodayPrice = todayProducts.reduce((acc, product) => acc + product.price * product.quantity, 0) || 0
-        const totalLast7DaysPrice = last7DaysProducts.reduce((acc, product) => acc + product.price * product.quantity, 0) || 0
-        // the percentage is the revenue generated today compared to the revenue generated in the last 7 days
-        const percentage = totalTodayPrice / totalLast7DaysPrice * 100 || 0
+        const lastMonthProducts = await db.orderItem.findMany({
+            where: {
+                userId: user?.payload.id as string,
+                createdAt: {
+                    gte: new Date(lastDayLastMonth.setHours(0, 0, 0, 0)),
+                    lte: new Date(firstDayThisMonth.setHours(23, 59, 59, 999))
+                }
+            },
+            select: {
+                id: true,
+                price: true,
+                createdAt: true,
+                product: {
+                    select: {
+                        currency: true,
+                    }
+                },
+                quantity: true
+            }
+        });
+
+        // Get the total price of products created this month and last month
+        const totalThisMonthPrice = thisMonthProducts.reduce((acc, product) => acc + product.price * product.quantity, 0) || 0;
+        const totalLastMonthPrice = lastMonthProducts.reduce((acc, product) => acc + product.price * product.quantity, 0) || 0;
+
+        // Calculate the percentage of revenue generated this month compared to last month
+        const percentage = totalThisMonthPrice / totalLastMonthPrice * 100 || 0;
 
         const data = {
-            todayCount: todayProducts.length,
-            last7DaysCount: last7DaysProducts.length,
-            todayProducts,
-            last7DaysProducts,
+            thisMonthCount: thisMonthProducts.length,
+            lastMonthCount: lastMonthProducts.length,
+            thisMonthProducts,
+            lastMonthProducts,
             percentage,
-            totalTodayPrice,
-            totalLast7DaysPrice
+            totalThisMonthPrice,
+            totalLastMonthPrice
+        };
 
-        }
         return Response.json({ status: 'success', data, message: 'Products found' });
     } catch (error) {
         console.error(error);
         return Response.json({ status: 'error', message: 'An error occurred while processing your request.' });
-
     }
 }

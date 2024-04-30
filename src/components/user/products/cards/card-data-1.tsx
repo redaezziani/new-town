@@ -1,11 +1,14 @@
 'use client'
-import { ProductsShart } from "@/components/prodcuts-ui/charts/product-card-chart-1"
-import z from 'zod'
+import { ProductsShart } from "@/components/prodcuts-ui/charts/product-card-chart-1";
+import z from 'zod';
+import useSWR from 'swr';
+import Counter from "@/components/admin/ui/animation/counter";
+
 const ProductCardSchema = z.object({
     data: z.object({
-        todayCount: z.number(),
-        last7DaysCount: z.number(),
-        todayProducts: z.array(z.object({
+        thisMonthCount: z.number(),
+        lastMonthCount: z.number(),
+        thisMonthProducts: z.array(z.object({
             id: z.string(),
             price: z.number(),
             createdAt: z.string(),
@@ -13,7 +16,7 @@ const ProductCardSchema = z.object({
                 currency: z.string()
             }),
         })),
-        last7DaysProducts: z.array(z.object({
+        lastMonthProducts: z.array(z.object({
             id: z.string(),
             price: z.number(),
             createdAt: z.string(),
@@ -22,24 +25,25 @@ const ProductCardSchema = z.object({
             }),
         })),
         percentage: z.number(),
-        totalTodayPrice: z.number(),
-        totalLast7DaysPrice: z.number()
+        totalThisMonthPrice: z.number(),
+        totalLastMonthPrice: z.number()
     })
-})
-import useSWR from 'swr';
-import Counter from "@/components/admin/ui/animation/counter";
+});
+
+type ProductCardData = z.infer<typeof ProductCardSchema>;
 //@ts-ignore
 const fetcher = (url) => fetch(url).then((res) => res.json());
-type ProductCard = z.infer<typeof ProductCardSchema>
 
 const ProductCardDataA = () => {
-    const { data: res, error, } = useSWR('/api/products/day', fetcher, { refreshInterval: 40000 }) as { data: ProductCard, error: any }
+    const { data: res, error } = useSWR('/api/products/month', fetcher, { refreshInterval: 40000 }) as { data: ProductCardData, error: any };
+
     if (error) {
-        return <div>error</div>
+        return <div>error</div>;
     }
+
     return (
         <article
-            className="rounded-none hover:shadow-lg hover:border-slate-300/70 transition-all ease-in-out duration-300   gap-2 flex-col  flex justify-end items-start min-h-16  border border-slate-300/30  p-2 bg-background"
+            className="rounded-md hover:shadow-lg hover:border-slate-300/70 transition-all ease-in-out duration-300 gap-2 flex-col flex justify-end items-start min-h-16 border border-slate-300/30 p-2 bg-background"
         >
             <h2
                 className="text-lg justify-start items-center font-medium text-slate-800 dark:text-white flex gap-1"
@@ -53,57 +57,57 @@ const ProductCardDataA = () => {
                     <path d="M10 12H12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
                 <p
-                className=" capitalize font-semibold"
+                    className="capitalize font-semibold"
                 >
-                Total Orders
+                    Total Orders
                 </p>
             </h2>
-            <div className="flex w-full  gap-2 justify-between items-center">
+            <div className="flex w-full gap-2 justify-between items-center">
                 <div className="flex flex-col gap-2 justify-start items-start">
                     <h3
-                        className=" text-lg font-bold text-gray-700 dark:text-white"
+                        className="text-lg font-bold text-gray-700 dark:text-white"
                     >
                         <Counter
-                            value={res && res.data.totalTodayPrice || 0}
+                            value={res && res.data.totalThisMonthPrice || 0}
                             direction="up"
                         />
                         {" "}
                         {res
-                            && res.data.todayProducts.length > 0
-                            && res.data.todayProducts[0].product.currency || 'USD'
+                            && res.data.thisMonthCount > 0
+                            && res.data.thisMonthProducts[0].product.currency || 'USD'
                         }
                     </h3>
                     <div
-                        className=" flex justify-start items-center gap-1 text-xs text-gray-500 dark:text-gray-400"
+                        className="flex justify-start items-center gap-1 text-xs text-gray-500 dark:text-gray-400"
                     >
                         <svg
-                            className=" text-[#0ea5e9]"
+                            className="text-[#0ea5e9]"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none">
-                            <path d="M13.5 13L17 9M14 15C14 16.1046 13.1046 17 12 17C10.8954 17 10 16.1046 10 15C10 13.8954 10.8954 13 12 13C13.1046 13 14 13.8954 14 15Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                            <path d="M6 12C6 8.68629 8.68629 6 12 6C13.0929 6 14.1175 6.29218 15 6.80269" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                            <path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="currentColor" stroke-width="1.5" />
+                            <path d="M13.5 13L17 9M14 15C14 16.1046 13.1046 17 12 17C10.8954 17 10 16.1046 10 15C10 13.8954 10.8954 13 12 13C13.1046 13 14 13.8954 14 15Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                            <path d="M6 12C6 8.68629 8.68629 6 12 6C13.0929 6 14.1175 6.29218 15 6.80269" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                            <path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="currentColor" strokeWidth="1.5" />
                         </svg>
                         {!error &&
                             <span
-                                className="font-semibold text-[#0ea5e9] "
+                                className="font-semibold text-[#0ea5e9]"
                             >
                                 {res && res.data?.percentage?.toFixed(2) || 0}%
                             </span>}
                         <span>
-                            last week
+                            Last Month
                         </span>
                     </div>
                 </div>
-                <div className=" w-[65%]">
-                    {res && res.data.last7DaysProducts.length > 1 &&
+                <div className="w-[65%]">
+                    {res && res.data.thisMonthProducts.length > 1 &&
                         <ProductsShart
                             //@ts-ignore
-                            data={res && res.data.todayProducts}
+                            data={res && res.data.thisMonthProducts || []}
                         />}
                 </div>
             </div>
         </article>
-    )
+    );
 }
 
-export default ProductCardDataA
+export default ProductCardDataA;

@@ -17,7 +17,7 @@ const DashboardPage = async () => {
         <ProductCardDataC />
       </div>
       <div className="w-full grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-3 ">
-        <div className="w-full hover:shadow-lg hover:border-slate-300/70 transition-all ease-in-out duration-300  p-3 flex justify-start flex-col items-start gap-2 border aspect-square  rounded-none  col-span-1 overflow-hidden">
+        <div className="w-full hover:shadow-lg hover:border-slate-300/70 transition-all ease-in-out duration-300  p-3 flex justify-start flex-col items-start gap-2 border aspect-square  rounded-md col-span-1  lg:col-span-1 overflow-hidden">
           <h1
             className="text-lg justify-start items-center font-semibold capitalize text-slate-800 dark:text-white flex gap-2"
           >
@@ -34,12 +34,12 @@ const DashboardPage = async () => {
           <PieChartComponent />
         </div>
         <div
-          className="w-full h-full   hover:shadow-lg hover:border-slate-300/70 transition-all ease-in-out duration-300  flex justify-start items-start gap-x-2 gap-y-4 border rounded-none  col-span-2 overflow-hidden">
+          className="w-full h-full   hover:shadow-lg hover:border-slate-300/70 transition-all ease-in-out duration-300  flex justify-start items-start gap-x-2 gap-y-4 border rounded-md col-span-1  lg:col-span-2 overflow-hidden">
           <MixChart />
         </div>
       </div>
       <div className="w-full grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-3 ">
-        <div className="w-full min-h-96   hover:shadow-lg hover:border-slate-300/70 transition-all ease-in-out duration-300  flex justify-start flex-col p-3 items-start gap-x-2 gap-y-4  border rounded-none  col-span-2 overflow-hidden">
+        <div className="w-full  h-96   hover:shadow-lg hover:border-slate-300/70 transition-all ease-in-out duration-300  flex justify-start flex-col p-3 items-start gap-x-2 gap-y-4  border rounded-md col-span-1  lg:col-span-2 overflow-hidden">
           <h2
             className=" flex justify-start items-center gap-1 text-lg font-semibold capitalize text-slate-800 dark:text-white"
           >
@@ -54,7 +54,7 @@ const DashboardPage = async () => {
           </h2>
           <DashLineChart />
         </div>
-        <div className="w-full min-h-72    hover:shadow-lg hover:border-slate-300/70 transition-all ease-in-out duration-300  flex justify-start flex-col p-3 items-start gap-x-2 gap-y-4 border rounded-none  col-span-1 overflow-hidden">
+        <div className="w-full min-h-72    hover:shadow-lg hover:border-slate-300/70 transition-all ease-in-out duration-300  flex justify-start flex-col p-3 items-start gap-x-2 gap-y-4 border rounded-md  col-span-1 overflow-hidden">
           <h2
             className=" flex justify-start items-center gap-1 text-lg font-semibold capitalize text-slate-800 dark:text-white"
           >
@@ -79,7 +79,7 @@ const DashboardPage = async () => {
               </span>
             </div>
             <Progress
-              className=" h-2 rounded-none mt-2 "
+              className=" h-2 rounded-md mt-2 "
               value={33} />
           </div>
           <div className="flex gap-2 w-full justify-start items-start flex-col">
@@ -91,7 +91,7 @@ const DashboardPage = async () => {
                 Adidas UltraBoost 2024
               </span>
             </div>
-            <Progress className="h-2 rounded-none mt-2" value={35} />
+            <Progress className="h-2 rounded-md mt-2" value={35} />
           </div>
           <div className="flex gap-2 w-full justify-start items-start flex-col">
             <div className="flex gap-2 justify-center items-center">
@@ -102,7 +102,7 @@ const DashboardPage = async () => {
                 Apple AirPods Pro 2024
               </span>
             </div>
-            <Progress className="h-2 rounded-none mt-2" value={62} />
+            <Progress className="h-2 rounded-md mt-2" value={62} />
           </div>
           <div className="flex gap-2 w-full justify-start items-start flex-col">
             <div className="flex gap-2 justify-center items-center">
@@ -113,7 +113,7 @@ const DashboardPage = async () => {
                 Samsung Galaxy Watch 2024
               </span>
             </div>
-            <Progress className="h-2 rounded-none mt-2" value={40} />
+            <Progress className="h-2 rounded-md mt-2" value={40} />
           </div>
           <div className="flex gap-2 w-full justify-start items-start flex-col">
             <div className="flex gap-2 justify-center items-center">
@@ -124,7 +124,7 @@ const DashboardPage = async () => {
                 Sony PlayStation 5 2024
               </span>
             </div>
-            <Progress className="h-2 rounded-none mt-2" value={80} />
+            <Progress className="h-2 rounded-md mt-2" value={80} />
           </div>
         </div>
       </div>
