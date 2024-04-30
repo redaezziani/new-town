@@ -80,7 +80,7 @@ const AuroraHero = () => {
 
         </motion.div>
       </AnimatePresence>
-      {/* <BentoDemo /> */}
+      <BentoDemo />
       <div className="w-full mt-20 flex justify-center items-center flex-col gap-2">
         <p
           className=" text-lg max-w-[33rem] text-center text-[#b4bcd0b9]"
