@@ -122,7 +122,7 @@ const AuroraHero = () => {
       <div className="w-full max-w-7xl px-10 min-h-[30px] flex justify-start items-center relative">
         <img
           className="w-full h-full rounded-lg object-cover"
-          src="https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/8ab5dc31-5b91-4a8e-477c-afeb53cdd700/f=auto,q=95,fit=scale-down,metadata=none" alt="" />
+          src="/page.png" alt="" />
       </div>
       <PlansCards />
     </motion.section>
