@@ -45,17 +45,17 @@ export function ProductsShart({ data }: {data: OrderCardProps}) {
                 <defs>
                 <linearGradient id="color3" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%"
-                   stopColor={"#0ea5e9"}
+                   stopColor={"#adf802"}
                     stopOpacity={0.4}/>
                   <stop offset="75%" 
-                  stopColor={"#0ea5e9"}
+                  stopColor={"#adf802"}
                    stopOpacity={0.05}/>
                 </linearGradient>
                 </defs>
                 <Area
                 dataKey="price"
                 type={'bump'}
-                stroke={"#0ea5e9"}
+                stroke={"#adf802"}
                 fill="url(#color3)"
                 className=" stroke-[1.8] fill-current"
               />

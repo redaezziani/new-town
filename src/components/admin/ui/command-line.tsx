@@ -55,17 +55,24 @@ export function CommandSearch() {
         <input
           value={search}
           onChange={() => setOpen(true)}
-          placeholder="Search..."
+          placeholder="Type a command or search..."
           className="w-full  focus:outline-none bg-transparent text-slate-900 dark:text-slate-50"
         />
-        <svg
-          onClick={() => setOpen(true)}
-          className="cursor-pointer text-slate-300 "
-          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none">
-          <path d="M17.5 17.5L22 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20C15.9706 20 20 15.9706 20 11Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-        </svg>
+        <div className="flex text-slate-300 border  bg-slate-300/10 px-2 rounded font-semibold text-sm   justify-center w-16 items-center gap-1">
+          <svg
+            onClick={() => setOpen(true)}
+            className="cursor-pointer "
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16} fill={"none"}>
+            <path d="M15 9V15H9V9H15Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+            <path d="M15 15H18C19.6569 15 21 16.3431 21 18C21 19.6569 19.6569 21 18 21C16.3431 21 15 19.6569 15 18V15Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+            <path d="M9 15.002H6C4.34315 15.002 3 16.3451 3 18.002C3 19.6588 4.34315 21.002 6 21.002C7.65685 21.002 9 19.6588 9 18.002V15.002Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+            <path d="M15 9.00012L15 6.00012C15 4.34327 16.3431 3.00012 18 3.00012C19.6569 3.00012 21 4.34327 21 6.00012C21 7.65698 19.6569 9.00012 18 9.00012H15Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+            <path d="M9 9.00012V6.00012C9 4.34327 7.65685 3.00012 6 3.00012C4.34315 3.00012 3 4.34327 3 6.00012C3 7.65698 4.34315 9.00012 6 9.00012H9Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+          </svg>
+          + j
+        </div>
       </div>
+
       <CommandDialog
         open={open} onOpenChange={() => {
           if (open) {
@@ -186,9 +193,10 @@ export function CommandSearch() {
               }}
             >
               <svg
-              className="mr-2 group-hover:text-primary h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={20} height={20}  fill={"none"}>
-                <path d="M15 6C15 6 9.00001 10.4189 9 12C8.99999 13.5812 15 18 15 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                className="mr-2 group-hover:text-primary h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={20} height={20} fill={"none"}>
+                <path d="M4 12L20 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M8.99996 17C8.99996 17 4.00001 13.3176 4 12C3.99999 10.6824 9 7 9 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               <span
                 className="w-full flex justify-between items-center"

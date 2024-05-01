@@ -9,14 +9,14 @@ import { BentoDemo } from "@/components/home/grid";
 import PlansCards from "@/components/for-all/plans-cards";
 import ShinyButton from "@/components/for-all/button";
 import NavBar from "@/components/home/nav-bar";
-
+import Cookies from "@/components/for-all/cookies"
 const AuroraHero = () => {
-
   return (
     <motion.section
 
       className="relative overflow-x-hidden w-full flex bg-[#000214]  justify-center items-center flex-col gap-2 min-h-screen place-content-center    px-4 py-24 text-gray-800"
     >
+      <Cookies />
       <div className="pointer-events-none fixed inset-0 flex justify-center">
         <div className="hidden h-full w-full max-w-7xl grid-cols-3 gap-3.5 px-4 lg:grid">
           <div className="border-x border-white/[0.035]"></div>
@@ -80,7 +80,7 @@ const AuroraHero = () => {
 
         </motion.div>
       </AnimatePresence>
-      <BentoDemo />
+      {/* <BentoDemo /> */}
       <div className="w-full mt-20 flex justify-center items-center flex-col gap-2">
         <p
           className=" text-lg max-w-[33rem] text-center text-[#b4bcd0b9]"

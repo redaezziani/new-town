@@ -137,9 +137,9 @@ export default class MixChart extends PureComponent {
           strokeDasharray="3 3" />
           <Bar
           
-          dataKey="pv" stackId="a" fill="#0ea5e9" />
-          <Bar dataKey="amt" stackId="a" fill="#0284c7" />
-          <Bar dataKey="uv" fill="#0369a1" />
+          dataKey="pv" stackId="a" fill="#d7eb18" />
+          <Bar dataKey="amt" stackId="a" fill="#adf802" />
+          <Bar dataKey="uv" fill="#93950a" />
         </BarChart>
       </ResponsiveContainer>
     );

@@ -10,7 +10,6 @@ import {
     SelectContent,
     SelectGroup,
     SelectItem,
-    SelectLabel,
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
@@ -65,6 +64,7 @@ const CreateOrder = () => {
         //@ts-ignore
         setData({ ...data, orderItems: [...data.orderItems, orderItem] })
     }
+    
     const { toast } = useToast()
 
     const handleCreateOrder = async () => {
@@ -110,6 +110,23 @@ const CreateOrder = () => {
             setIsLoading(false)
         }
     }
+    const handleKeyDown = React.useCallback((event: KeyboardEvent) => {
+        if (event.ctrlKey &&  event.key === 'l') {
+            setIsOpened(true);
+        }
+    }, []);
+    
+    React.useEffect(() => {
+        // display all the navigator events 
+        window.addEventListener('keydown', handleKeyDown);
+        
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [handleKeyDown]);
+    
+    
+    
     return (
         <Sheet
             open={isOpened}

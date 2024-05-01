@@ -1,76 +1,45 @@
 'use client'
-import React, { PureComponent } from 'react';
-import { LineChart, Line,  CartesianGrid, ResponsiveContainer } from 'recharts';
+import React from 'react';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import useSWR from 'swr';
 
-const data = [
-  {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
-
-export default class DashLineChart extends PureComponent {
-
-  render() {
-    return (
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          width={500}
-          height={300}
-          data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid
-            vertical={false}
-            strokeDasharray="3 3"
-            />            
-          <Line type="monotone" dataKey="pv" stroke="#7dd3fc" />
-          <Line type="monotone" dataKey="uv" stroke="#0369a1"  />
-        </LineChart>
-      </ResponsiveContainer>
-    );
-  }
+interface Chart_Line_Prices {
+  prevMonthPrices: number[];
+  currMonthPrices: number[];
 }
+
+interface Chart_Line_Orders_Data {
+  message: string;
+  status: string;
+  data: Chart_Line_Prices;
+}
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+const DashLineChart: React.FC = () => {
+  const { data: lineOrders, error } = useSWR('/api/users/customer/chart-line-orders', fetcher, { refreshInterval: 10000 }) as { data: Chart_Line_Orders_Data, error: any };
+  
+  if (error) return <div>Error fetching data</div>;
+  if (!lineOrders) return <div>Loading...</div>;
+
+  // Merge the previous and current month prices into a single array with an added 'month' key
+  const chartData = lineOrders.data.prevMonthPrices.map((price, index) => ({ month: index + 1, prevMonthPrice: price, currMonthPrice: lineOrders.data.currMonthPrices[index] }));
+
+  return (
+    <ResponsiveContainer width="100%" height={300}>
+      <LineChart
+        data={chartData}
+        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+      >
+        <CartesianGrid
+        vertical={false}
+        strokeDasharray="3 3" />
+        <Line type="monotone" dataKey="prevMonthPrice" name="Previous Month" stroke="#d7eb18" />
+        <Line type="monotone" dataKey="currMonthPrice" name="Current Month" stroke="#adf802" />
+      </LineChart>
+    </ResponsiveContainer>
+  );
+}
+
+export default DashLineChart;
+
