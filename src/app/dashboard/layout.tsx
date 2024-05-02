@@ -18,7 +18,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className={` h-screen  relative w-full grid grid-cols-11 overflow-x-hidden  `}>
+    <div className={` min-h-screen  relative w-full grid grid-cols-11 overflow-y-hidden overflow-x-hidden  `}>
       
         <div className="w-full  top-0 z-50  sticky bg-zinc-50/90 dark:bg-zinc-900/5   border border-slate-300/60 border-b-transparent dark:border-slate-300/25 border-fix border-l  left-0 col-span-2 h-full hidden lg:flex justify-start items-start gap-3 flex-col ">
           <div className="w-full px-5 flex z-50 relative justify-between items-center h-20">
@@ -42,13 +42,14 @@ export default async function RootLayout({
           </div>
           <SideMenu />
         </div>
-      <div className="w-full overflow-hidden h-fit  min-h-screen flex relative justify-start items-start gap-3 flex-col col-span-11 lg:col-span-9 ">
+      <div className="w-full  flex overflow-y-auto  h-screen justify-start items-start gap-3 flex-col col-span-11 lg:col-span-9 ">
       <div className=" absolute ">
         <Toaster />
       </div>
         <SearchBar />
-        <PathLine />
+        <div className="mt-[8.3rem] w-full">
         {children}
+        </div>
       </div>
       <div className=" flex z-50 lg:hidden fixed right-4 top-3">
       <SideBar />

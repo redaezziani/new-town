@@ -29,7 +29,7 @@ interface AddOrderItemProps {
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const OrderItemSelect: React.FC<AddOrderItemProps> = ({ onOrderItemAdd }) => {
-  const { data: products } = useSWR('/api/products', fetcher, { refreshInterval: 20000 }) as { data: ProductType[], error: Error };
+  const { data: products } = useSWR('/api/products/order-item', fetcher, { refreshInterval: 20000 }) as { data: ProductType[], error: Error };
   // get just the products that are in stock
   //@ts-ignore
   const inStockProducts = products?.data?.filter(product => product.stock > 0) || [];

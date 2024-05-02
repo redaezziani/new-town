@@ -10,6 +10,8 @@ import DeleteProducts from './delete-products';
 import UpdateProduct from './update-product';
 import ActiveBadge from './badges/active';
 import InActiveBadge from './badges/in-active';
+import { Switch } from '@/components/ui/switch';
+import SwitchActive from './update-active';
 
 interface ProductType {
   id: string;
@@ -87,6 +89,18 @@ const ProductsTable = () => {
         alt={row.getValue('name')}
         className=' h-10 w-10 object-cover rounded-full'
       />,
+    },
+    {
+      accessorKey: 'isActive',
+      header: 'Mode',
+      cell: ({ row }) => <div
+        className=' text-slate-600 dark:text-slate-100'
+      >
+        <SwitchActive
+          id={row.getValue('id')}
+          isActive={row.getValue('isActive')}
+        />
+      </div>,
     },
     {
       accessorKey: 'stock',

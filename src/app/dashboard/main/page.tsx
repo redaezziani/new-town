@@ -9,7 +9,7 @@ const DashboardPage = async () => {
 
   return (
     <main
-      className='w-full h-full pb-3 z-10 min-h-screen flex mt-4  px-4   relative justify-start items-start gap-3 flex-col'
+      className='w-full h-full pb-3 z-10 min-h-screen  flex mt-4  px-4   relative justify-start items-start gap-3 flex-col'
     >
       <div className="w-full  grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-3 ">
         <ProductCardDataA />

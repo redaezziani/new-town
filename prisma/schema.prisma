@@ -147,6 +147,7 @@ model products {
   userId      String
   image       String @default("")
   stock       Int   @default(0)
+  isActive    Boolean @default(true)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   deletedAt   DateTime?
