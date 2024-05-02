@@ -60,7 +60,7 @@ const PlansCards = () => {
                 </p>
                 <Link
                 href="/auth/signin"
-                    className="mt-8 block w-full   bg-primary text-slate-100 dark:text-slate-900 rounded-md py-2 text-sm font-semibold  text-center">
+                    className="mt-8 block w-full hover:bg-white/90   bg-white text-slate-900y text-slate-100 dark:text-slate-900 rounded-md py-2 text-sm font-semibold  text-center">
                     Join as a Free member
                 </Link>
             </div>
@@ -106,7 +106,7 @@ const PlansCards = () => {
                 </p>
                 <Button
                     onClick={() => handelCheckout('price_1P6sfAHDE7eZdLsNzNFsZ9xF')}
-                    className="mt-8 block w-full  bg-primary rounded-md py-2 text-sm font-semibold  text-center">
+                    className="mt-8 block w-full hover:bg-white/90  bg-white text-slate-900 rounded-md py-2 text-sm font-semibold  text-center">
                     Join as a Premium member
                 </Button>
             </div>
@@ -176,7 +176,7 @@ const PlansCards = () => {
                 </p>
                 <Button
                     onClick={() => handelCheckout('price_1P6slOHDE7eZdLsNNRgYrCje')}
-                    className="mt-8 block w-full bg-sky-600 hover:bg-sky-600/90 rounded-md py-2 text-sm font-semibold  text-center">
+                    className="mt-8 block w-full bg-primary hover:bg-primary/90 rounded-md py-2 text-sm font-semibold  text-center">
                     Join as a Mega member
                 </Button>
             </div>

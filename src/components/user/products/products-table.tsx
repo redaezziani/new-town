@@ -7,6 +7,9 @@ import { Loader2 } from 'lucide-react';
 
 import CreateProducts from './create-products';
 import DeleteProducts from './delete-products';
+import UpdateProduct from './update-product';
+import ActiveBadge from './badges/active';
+import InActiveBadge from './badges/in-active';
 
 interface ProductType {
   id: string;
@@ -21,7 +24,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 const ProductsTable = () => {
   const { data: res, error } = useSWR('/api/products', fetcher, { refreshInterval: 5000 });
   const [selected, setSelected] = React.useState<string[]>([]);
-  
+
   const handleSelect = (id: string) => {
     if (selected.includes(id)) {
       setSelected(selected.filter((i) => i !== id));
@@ -64,10 +67,10 @@ const ProductsTable = () => {
     {
       accessorKey: 'description',
       header: 'Description',
-      cell: ({ row }) => 
-      <div
-        className=' line-clamp-1 text-slate-600 dark:text-slate-100 max-w-2xl'
-      >{row.getValue('description')}</div>,
+      cell: ({ row }) =>
+        <div
+          className=' line-clamp-1 text-slate-600 dark:text-slate-100 max-w-2xl'
+        >{row.getValue('description')}</div>,
     },
     {
       accessorKey: 'price',
@@ -75,6 +78,15 @@ const ProductsTable = () => {
       cell: ({ row }) => <div
         className=' text-slate-600 dark:text-slate-100'
       >{row.getValue('price')}</div>,
+    },
+    {
+      accessorKey: 'image',
+      header: 'Image',
+      cell: ({ row }) => <img
+        src={row.getValue('image')}
+        alt={row.getValue('name')}
+        className=' h-10 w-10 object-cover rounded-full'
+      />,
     },
     {
       accessorKey: 'stock',
@@ -89,21 +101,33 @@ const ProductsTable = () => {
       cell: ({ row }) => <div className='text-slate-600 dark:text-slate-100'>{row.getValue('currency')}</div>,
     },
     {
-      accessorKey: 'stock',
-      header: 'Status',
+      accessorKey: 'none',
+      header: 'Product Status',
       cell: ({ row }) => (
-        <div
-          className={`rounded-full px-1 min-w-20 py-1 text-center text-xs font-semibold text-white
-           ${
-            // @ts-ignore
-            row.getValue('stock') >= 8 ? 'bg-green-500' : row.getValue('stock') > 0 ? 'bg-amber-500' : 'bg-red-500'}`}
-        >
-          {
-            //@ts-ignore
-          row.getValue('stock') >= 8 ? 'In Stock' : row.getValue('stock') > 0 ? 'Low Stock' : 'Out of Stock'}
-        </div>
+        <>
+        
+        {
+          //@ts-ignore
+        row.getValue('stock') > 0 ? <ActiveBadge /> : <InActiveBadge />}
+        </>
       ),
-      
+
+    },
+    {
+      accessorKey: 'none',
+      header: 'Actions',
+      cell: ({ row }) =>
+        <div>
+          <UpdateProduct
+            id={row.getValue('id')}
+            name={row.getValue('name')}
+            stock={row.getValue('stock')}
+            description={row.getValue('description')}
+            price={row.getValue('price')}
+            currency={row.getValue('currency')}
+            image={row.getValue('image')}
+          />
+        </div>,
     },
 
   ];
@@ -122,17 +146,17 @@ const ProductsTable = () => {
     </div>)
   return (
     <div className="w-full flex justify-start items-start gap-2 flex-col">
-    
-   
-     <DataTable
+
+
+      <DataTable
         //@ts-ignore
         columns={!error && columns}
         data={!error && res.data}
         element={<>
-        <DeleteProducts selected={selected} />
-        <CreateProducts/>
+          <DeleteProducts selected={selected} />
+          <CreateProducts />
         </>}
-        />
+      />
     </div>
   );
 };
@@ -146,7 +170,7 @@ const ProductsTableElement = ({ selected }: ProductsTableProps) => {
     <div className="w-full flex justify-center items-center  gap-4">
       <ProductsTable />
       <DeleteProducts
-      selected={selected}
+        selected={selected}
       />
     </div>
   );

@@ -121,3 +121,4 @@ export async function DELETE(req: NextRequest, res: NextResponse): Promise<void 
         return Response.json({ status: 'error', message: 'An error occurred while processing your request.' });
     }
 }
+

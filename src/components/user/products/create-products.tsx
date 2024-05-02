@@ -2,7 +2,6 @@
 
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { Package2 } from 'lucide-react'
 import React from 'react'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -17,6 +16,7 @@ import {
 } from "@/components/ui/select"
 import { z } from 'zod'
 import { SingleImageDropzoneUsage } from '@/components/for-all/singel-image-uploader';
+import { Textarea } from '@/components/ui/textarea';
 
 type currency = 'USD' | 'EUR' | 'MAD' | 'AED' | 'SAR' | 'QAR' | 'KWD' | 'BHD' | 'OMR'
 
@@ -135,7 +135,7 @@ const CreateProducts = () => {
             >
                 <div
                     onSubmit={handleSubmit}
-                    className='w-full flex mt-10 flex-col gap-3 justify-start items-start'
+                    className='w-full flex mt-10 flex-col gap-4 justify-start items-start'
                 >
                     <div className="w-full gap-2 justify-start items-start">
                         <h2
@@ -144,13 +144,13 @@ const CreateProducts = () => {
                             Create Product
                         </h2>
                         <p
-                            className='text-muted-foreground dark:text-muted-foreground text-sm font-normal'
+                            className=' text-sm font-normal'
                         >
                             Fill the form below to create a new product
                         </p>
                     </div>
                     <Label
-                        className='text-muted-foreground dark:text-muted-foreground mt-5'
+                        className=' mt-5'
                         htmlFor='name'
                     >
                         Name
@@ -159,24 +159,31 @@ const CreateProducts = () => {
                         type='text'
                         name='name'
                         id='name'
+                        placeholder='enter a the name of the product...'
                         value={data.name}
                         onChange={handleChange}
                     />
                     <Label
-                        className='text-muted-foreground dark:text-muted-foreground '
+                        className=' '
                         htmlFor='description'
                     >
                         Description
                     </Label>
-                    <Input
-                        type='text'
+                    <Textarea
                         name='description'
                         id='description'
+                        placeholder='create a description for this product...'
+                        className=' min-h-32'
                         value={data.description}
-                        onChange={handleChange}
+                        onChange={(e)=>{
+                            setData({
+                                ...data,
+                                [e.target.name]: e.target.value
+                            });
+                        }}
                     />
                     <Label
-                        className='text-muted-foreground dark:text-muted-foreground '
+                        className=' '
                         htmlFor='price'
                     >
                         Price
@@ -189,7 +196,7 @@ const CreateProducts = () => {
                         onChange={handleChange}
                     />
                     <Label
-                        className='text-muted-foreground dark:text-muted-foreground '
+                        className=' '
                         htmlFor='stock'
                     >
                         Stock
@@ -246,7 +253,7 @@ const CreateProducts = () => {
                         </SelectContent>
                     </Select>
                     <Label
-                        className='text-muted-foreground dark:text-muted-foreground '
+                        className=' '
                         htmlFor='image'
                     >
                         Image
