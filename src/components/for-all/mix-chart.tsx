@@ -116,8 +116,6 @@ const data = [
 ];
 
 export default class MixChart extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/s/mixed-bar-chart-q4hgc';
-
   render() {
     return (
       <ResponsiveContainer width="100%" height="100%">

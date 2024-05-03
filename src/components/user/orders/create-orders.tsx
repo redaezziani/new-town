@@ -79,18 +79,18 @@ const CreateOrder = () => {
                 body: JSON.stringify(parsData)
             })
             const result = await response.json()
-            if (result.status=='error') {
+            if (result.status === 'error') {
                 toast({
                     variant: "error",
-                    title: "Order Not Created",
-                    description: "Order has not been created",
+                    title: "لم يتم إنشاء الطلب",
+                    description: "لم يتم إنشاء الطلب",
                 })
                 return
             }
             toast({
                 variant: "success",
-                title: "Order Created",
-                description: "Order has been created",
+                title: "تم إنشاء الطلب",
+                description: "تم إنشاء الطلب بنجاح",
             })
             setData({
                 deliveryId: '',
@@ -145,7 +145,7 @@ const CreateOrder = () => {
                     </svg>
                     <span
                         className=' lowercase'
-                    >Create  Order</span>
+                    >إنشاء طلب</span>
 
 
                 </Button>
@@ -161,45 +161,45 @@ const CreateOrder = () => {
                         <h2
                             className='text-lg font-semibold'
                         >
-                            Create Order
+                            إنشاء طلب
                         </h2>
                         <p
                             className='text-muted-foreground dark:text-muted-foreground text-sm font-normal'
                         >
-                            Fill the form below to create a new order
+                            قم بملء النموذج أدناه لإنشاء طلب جديد
                         </p>
                     </div>
                     <Label
                         className='text-muted-foreground dark:text-muted-foreground mt-5'
                         htmlFor='name'
                     >
-                        Name
+                        الاسم
                     </Label>
                     <Input
                         id='name'
                         value={data?.name}
                         //@ts-ignore
                         onChange={(e) => setData({ ...data, name: e.target.value })}
-                        placeholder='Enter your name'
+                        placeholder='أدخل اسمك'
                     />
                     <Label
                         className='text-muted-foreground dark:text-muted-foreground mt-5'
                         htmlFor='address'
                     >
-                        Address
+                        العنوان
                     </Label>
                     <Input
                         id='address'
                         value={data?.address}
                         //@ts-ignore
                         onChange={(e) => setData({ ...data, address: e.target.value })}
-                        placeholder='Enter your address'
+                        placeholder='أدخل عنوانك'
                     />
                     <Label
                         className='text-muted-foreground dark:text-muted-foreground mt-5'
                         htmlFor='phone'
                     >
-                        Phone
+                        الهاتف
                     </Label>
                     <PhoneInput
                         //@ts-ignore
@@ -210,20 +210,20 @@ const CreateOrder = () => {
                         className='text-muted-foreground dark:text-muted-foreground mt-5'
                         htmlFor='email'
                     >
-                        Email
+                        البريد الإلكتروني
                     </Label>
                     <Input
                         id='email'
                         value={data?.email}
                         //@ts-ignore
                         onChange={(e) => setData({ ...data, email: e.target.value })}
-                        placeholder='Enter your email'
+                        placeholder='أدخل بريدك الإلكتروني'
                     />
                     <Label
                         className='text-muted-foreground dark:text-muted-foreground mt-5'
                         htmlFor='delivery'
                     >
-                        Date of delivery
+                        تاريخ التسليم
                     </Label>
                     <CalendarForm
                         //@ts-ignore
@@ -233,7 +233,7 @@ const CreateOrder = () => {
                         className='text-muted-foreground dark:text-muted-foreground mt-5'
                         htmlFor='delivery'
                     >
-                        Delivery
+                        التوصيل
                     </Label>
 
                     <Select
@@ -242,7 +242,7 @@ const CreateOrder = () => {
                         onValueChange={(e) => setData({ ...data, deliveryId: e })}
                     >
                         <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Select a delivery" />
+                            <SelectValue placeholder="اختر طريقة التوصيل" />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>
@@ -267,7 +267,7 @@ const CreateOrder = () => {
                         disabled={isloading}
                         className='w-full mt-5 '
                     >
-                        Create Order
+                        إنشاء طلب
                     </Button>
                 </div>
             </SheetContent>

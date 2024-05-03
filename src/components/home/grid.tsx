@@ -17,37 +17,36 @@ import {
   GlobeIcon,
   InputIcon,
 } from "@radix-ui/react-icons";
-
 const files = [
   {
     name: "bitcoin.pdf",
-    body: "Bitcoin is a cryptocurrency invented in 2008 by an unknown person or group of people using the name Satoshi Nakamoto.",
+    body: "البيتكوين هو عملة رقمية اخترعت في عام 2008 من قبل شخص مجهول أو مجموعة من الأشخاص باستخدام اسم ساتوشي ناكاموتو.",
   },
   {
     name: "finances.xlsx",
-    body: "A spreadsheet or worksheet is a file made of rows and columns that help sort data, arrange data easily, and calculate numerical data.",
+    body: "جدول بيانات أو ورقة عمل هو ملف مكون من صفوف وأعمدة تساعد في فرز البيانات وترتيبها بسهولة وحساب البيانات العددية.",
   },
   {
     name: "logo.svg",
-    body: "Scalable Vector Graphics is an Extensible Markup Language-based vector image format for two-dimensional graphics with support for interactivity and animation.",
+    body: "الرسومات القابلة للتوسيع هي صيغة صور ناقلة قائمة على لغة ترميز وسمية للرسوميات ثنائية الأبعاد مع دعم للتفاعل والرسوم المتحركة.",
   },
   {
     name: "keys.gpg",
-    body: "GPG keys are used to encrypt and decrypt email, files, directories, and whole disk partitions and to authenticate messages.",
+    body: "تُستخدم مفاتيح GPG لتشفير وفك تشفير البريد الإلكتروني والملفات والدلائل وأقسام القرص بأكملها ولمصادقة الرسائل.",
   },
   {
     name: "seed.txt",
-    body: "A seed phrase, seed recovery phrase or backup seed phrase is a list of words which store all the information needed to recover Bitcoin funds on-chain.",
+    body: "عبارة البذور أو عبارة الاستعادة من البذور أو عبارة النسخ الاحتياطي للبذور هي قائمة من الكلمات التي تخزن جميع المعلومات اللازمة لاستعادة أموال البيتكوين على السلسلة.",
   },
 ];
 
 const features = [
   {
     Icon: FileTextIcon,
-    name: "Save your files",
-    description: "We automatically save your files as you type.",
+    name: "حفظ ملفاتك",
+    description: "نحن نحفظ ملفاتك تلقائيًا أثناء كتابتك.",
     href: "/",
-    cta: "Learn more",
+    cta: "تعلم المزيد",
     className: "col-span-3 lg:col-span-1",
     background: (
       <Marquee
@@ -79,17 +78,17 @@ const features = [
   },
   {
     Icon: InputIcon,
-    name: "Full text search",
-    description: "Search through all your files in one place.",
+    name: "بحث نصي كامل",
+    description: "ابحث في جميع ملفاتك في مكان واحد.",
     href: "/",
-    cta: "Learn more",
+    cta: "تعلم المزيد",
     className: "col-span-3 lg:col-span-2",
     background: (
       <Command className="absolute right-10 top-10 w-[70%] origin-top translate-x-0 border transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] group-hover:-translate-x-10">
-        <CommandInput placeholder="Type a command or search..." />
+        <CommandInput placeholder="اكتب أمرًا أو ابحث..." />
         <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Suggestions">
+          <CommandEmpty>لم يتم العثور على نتائج.</CommandEmpty>
+          <CommandGroup heading="اقتراحات">
             <CommandItem>screenshot.png</CommandItem>
             <CommandItem>bitcoin.pdf</CommandItem>
             <CommandItem>finances.xlsx</CommandItem>
@@ -103,10 +102,10 @@ const features = [
   },
   {
     Icon: GlobeIcon,
-    name: "Multilingual",
-    description: "Supports 100+ languages and counting.",
+    name: "متعدد اللغات",
+    description: "يدعم أكثر من 100 لغة ولا يزال العد.",
     href: "/",
-    cta: "Learn more",
+    cta: "تعلم المزيد",
     className: "col-span-3 lg:col-span-2",
     background: (
       <Globe
@@ -116,11 +115,11 @@ const features = [
   },
   {
     Icon: CalendarIcon,
-    name: "Calendar",
-    description: "Use the calendar to filter your files by date.",
+    name: "تقويم",
+    description: "استخدم التقويم لتصفية ملفاتك حسب التاريخ.",
     className: "col-span-3 lg:col-span-1",
     href: "/",
-    cta: "Learn more",
+    cta: "تعلم المزيد",
     background: (
       <Calendar
         mode="single"
@@ -130,7 +129,6 @@ const features = [
     ),
   },
 ];
-
 export function BentoDemo() {
   return (
     <BentoGrid>

@@ -38,16 +38,16 @@ const OrdersTable = () => {
   const columns: ColumnDef<ProductType>[] = [
     {
       accessorKey: 'id',
-      header: 'ID',
+      header: 'معرف',
       cell: ({ row }) => <div
         className=''
       >{row.getValue('id')}</div>,
     },
     {
-      accessorKey: 'name',
-      header: '',
+      accessorKey: 'checkbox',
+      header: 'التحديد',
       cell: ({ row }) => <div
-        className=''
+        className='px-6'
       >
         <Checkbox
           checked={selected.includes(row.getValue('id'))}
@@ -61,7 +61,7 @@ const OrdersTable = () => {
     },
     {
       accessorKey: 'name',
-      header: 'Name',
+      header: 'الاسم',
       cell: ({ row }) => 
       <div
         className=' line-clamp-1 text-slate-600 dark:text-slate-100 max-w-2xl'
@@ -70,38 +70,38 @@ const OrdersTable = () => {
     ,
     {
       accessorKey: 'email',
-      header: 'Email',
+      header: 'البريد الإلكتروني',
       cell: ({ row }) => <div
         className=' text-slate-600 dark:text-slate-100'
       >{row.getValue('email')}</div>,
     },
     {
       accessorKey: 'address',
-      header: 'Address',
+      header: 'العنوان',
       cell: ({ row }) => <div
         className='line-clamp-1 text-slate-600 dark:text-slate-100'
       >{row.getValue('address')}</div>,
     },
     {
       accessorKey: 'phone',
-      header: 'Phone',
+      header: 'الهاتف',
       cell: ({ row }) => <div
         className=' text-slate-600 dark:text-slate-100'
       >{row.getValue('phone')}</div>,
     },
     {
       accessorKey: 'price',
-      header: 'Price',
+      header: 'السعر',
       cell: ({ row }) => <div className='text-slate-600 dark:text-slate-100'>{row.getValue('price')}</div>,
     },
     {
       accessorKey: 'total',
-      header: 'Total',
+      header: 'الإجمالي',
       cell: ({ row }) => <div className='text-slate-600 dark:text-slate-100'>{row.getValue('total')}</div>,
     },
     {
       accessorKey: 'status',
-      header: 'Status',
+      header: 'الحالة',
       cell: ({ row }) => (
         <div
          

@@ -50,7 +50,7 @@ const ProductCardDataA = () => {
             className="rounded-md hover:shadow-lg hover:border-slate-300/70 transition-all ease-in-out duration-300 gap-2 flex-col flex justify-end items-start min-h-16 border border-slate-300/30 p-2 bg-background"
         >
             <h2
-                className="text-lg justify-start items-center font-medium text-slate-800 dark:text-white flex gap-1"
+                className="text-lg justify-start items-center font-medium text-slate-700 dark:text-white flex gap-1"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={20} height={20} fill={"none"}>
                     <path d="M12.5 22H10.8889C6.69863 22 4.6035 22 3.30175 20.7447C2 19.4895 2 17.4692 2 13.4286V8H22V10.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -69,7 +69,7 @@ const ProductCardDataA = () => {
             <div className="flex w-full gap-2 justify-between items-center">
                 <div className="flex flex-col gap-2 justify-start items-start">
                     <h3
-                        className="text-lg font-bold text-gray-700 dark:text-white"
+                        className="text-lg font-bold text-gray-600 dark:text-white"
                     >
                         <Counter
                             value={res && res.data.totalThisMonthPrice || 0}
@@ -86,7 +86,7 @@ const ProductCardDataA = () => {
                             <span
                                 className="font-semibold text-[#adf802]"
                             >
-                                {res && res.data?.percentage?.toFixed(2) || 0}%
+                                %{res && res.data?.percentage?.toFixed(2) || 0}
                             </span>}
                         <span>
                             الشهر الماضي

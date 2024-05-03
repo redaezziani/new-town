@@ -30,7 +30,6 @@ const DashLineChart: React.FC = () => {
     <ResponsiveContainer width="100%" height={300}>
       <LineChart
         data={chartData}
-        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
       >
         <CartesianGrid
         vertical={false}
@@ -45,15 +44,15 @@ const DashLineChart: React.FC = () => {
         tickLine={false}
         axisLine={false}
         tickCount={8}
-        tickFormatter={(value) => `Week ${value}`}
+        tickFormatter={(value) => `شهر ${value}`}
         fontSize={10}
         tickMargin={10}
         dataKey="month" />
         <YAxis
         tickCount={8}
         tickLine={false}
+        tickFormatter={(value) => `${value} $`}
         axisLine={false}
-        tickFormatter={(value) => `$${value}`}
         fontSize={10}
         offset={10}
         />
@@ -63,27 +62,27 @@ const DashLineChart: React.FC = () => {
                   if (active && payload && payload.length) {
                     return (
                       <div className="">
-                        <div
-                          className="relative shadow-lg block bg-[#333] text-white font-semibold px-3 py-2 text-[13px] left-full ml-3 top-0 bottom-0 my-auto h-max w-max rounded before:w-4 before:h-4 before:rotate-45 before:bg-[#333] before:absolute before:z-[-1] before:bottom-0 before:top-0 before:my-auto before:-left-1 before:mx-auto">
-                          <p className="text-[13px] text-primary">
-                          Months Prices 
+                      <div
+                        className="relative shadow-lg block bg-[#333] text-white font-semibold px-3 py-2 text-[13px] left-full ml-3 top-0 bottom-0 my-auto h-max w-max rounded before:w-4 before:h-4 before:rotate-45 before:bg-[#333] before:absolute before:z-[-1] before:bottom-0 before:top-0 before:my-auto before:-left-1 before:mx-auto">
+                        <p className="text-[13px] text-primary">
+                        أسعار الشهر
+                        </p>
+                        {payload.map((item, index) => {
+                        return (
+                          <p key={index} className=" text-xs text-slate-50">
+                          <span className="text-[#fff] flex gap-2  font-semibold">
+                            {item.dataKey === 'prevMonthPrice' ? 'السابقة: ' : 'الحالية: '}
+                            <p>
+                            {item.value as number}
+                            </p>
+                          </span>
                           </p>
-                          {payload.map((item, index) => {
-                            return (
-                              <p key={index} className=" text-xs text-slate-50">
-                                <span className="text-[#fff] flex gap-2  font-semibold">
-                                  {item.dataKey === 'prevMonthPrice' ? 'Previous: ' : 'Current: '}
-                                  <p>
-                                    {item.value as number}
-                                  </p>
-                                </span>
-                              </p>
-                            )
-                          }
-                          )}
-                          
+                        )
+                        }
+                        )}
+                        
 
-                        </div>
+                      </div>
                       </div>
                     )
                   }

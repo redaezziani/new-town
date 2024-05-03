@@ -119,8 +119,8 @@ const CountrySelect = ({
           <CommandList>
             <ScrollArea className="h-72">
               <CommandInput
-               placeholder="Search country..." />
-              <CommandEmpty>No country found.</CommandEmpty>
+               placeholder="ابحث عن الدولة..." />
+              <CommandEmpty>لا توجد دولة متاحة.</CommandEmpty>
               <CommandGroup>
                 {options
                   .filter((x) => x.value)
@@ -142,7 +142,7 @@ const CountrySelect = ({
                       )}
                       <CheckIcon
                         className={cn(
-                          "ml-auto h-4 w-4",
+                          "mr-auto h-4 w-4",
                           option.value === value ? "opacity-100" : "opacity-0",
                         )}
                       />

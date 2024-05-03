@@ -31,13 +31,16 @@ const AuroraHero = () => {
       <div className="absolute z-0 inset-0 blur-[400px] h-28 w-[90%] top-0 bg-white/55 "></div>
 
       <div className=" w-full   fixed top-0 z-40 justify-center flex-col items-center flex mx-auto   ">
-        <div className="w-full text-sm hidden lg:flex border border-t-transparent border-b border-border  p-1.5 justify-center items-center gap-3 bg-[#151830ae]  font-semibold">
+        <div className="w-full hover:scale-105 transition-all ease-in-out duration-500 text-sm hidden lg:flex border border-t-transparent border-b border-border  p-1.5 justify-center items-center gap-3 bg-[#151830ae]  font-semibold">
           <span className=" text-slate-100 p-1">
-            Join our beta program today
+
+            انضم إلى برنامجنا التجريبي اليوم
           </span>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={18} height={18} color={"#ffffff"} fill={"none"}>
-            <path d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <svg
+           xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={20} height={20} color={"#ffffff"} fill={"none"}>
+    <path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M8 12L16 12M8 12C8 11.2998 9.9943 9.99153 10.5 9.5M8 12C8 12.7002 9.9943 14.0085 10.5 14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+</svg>
         </div>
         <NavBar />
       </div>
@@ -54,7 +57,8 @@ const AuroraHero = () => {
               transition={{ duration: 0.3 }}
               whileHover={{ scale: 1.1 }}
               className="text  gap-4  flex justify-center items-center  lowercase text-[#cbd5e1]">
-              Beta Now Live!
+
+              البيتا الآن مباشرة!
               <span>
                 🎉
               </span>
@@ -66,7 +70,8 @@ const AuroraHero = () => {
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.3 }}
             className="max-w-3xl mt-3 bg-gradient-to-br from-slate-50 to-slate-400 bg-clip-text text-center text-3xl font-medium leading-tight text-transparent sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight">
-            Zunder is the future of e-commerce
+
+            زندر هو مستقبل التجارة الإلكترونية
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -74,22 +79,23 @@ const AuroraHero = () => {
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.3 }}
             className="my-4 max-w-xl text-slate-400 text-center text-base leading-relaxed md:text-lg md:leading-relaxed">
-            zunder is a powerful, yet simple to use platform that allows you to
-            manage your store and track your orders with ease.
+
+            زندر هو منصة قوية وسهلة الاستخدام تتيح لك إدارة متجرك وتتبع طلباتك بسهولة.
           </motion.p>
 
         </motion.div>
       </AnimatePresence>
-      {/* <BentoDemo /> */}
+      <BentoDemo />
       <div className="w-full mt-20 flex justify-center items-center flex-col gap-2">
         <p
           className=" text-lg max-w-[33rem] text-center text-[#b4bcd0b9]"
         >
-          Make your store managment easy with Zunder fast and reliable platform and more features.
+
+          اجعل إدارة متجرك سهلة مع منصة زندر السريعة والموثوقة والمزيد من الميزات.
           <span
-            className=" scale-105 flex gap-1 justify-center items-center text-[#ffffff]"
-          >
-            Get started today! by choice one of our plans below.
+            className=" scale-105 flex gap-1 justify-center items-center text-[#ffffff]">
+
+            ابدأ اليوم! باختيار أحد خططنا أدناه.
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={20} height={20} fill={"none"}>
               <path d="M15 2L15.5387 4.39157C15.9957 6.42015 17.5798 8.00431 19.6084 8.46127L22 9L19.6084 9.53873C17.5798 9.99569 15.9957 11.5798 15.5387 13.6084L15 16L14.4613 13.6084C14.0043 11.5798 12.4202 9.99569 10.3916 9.53873L8 9L10.3916 8.46127C12.4201 8.00431 14.0043 6.42015 14.4613 4.39158L15 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
               <path d="M7 12L7.38481 13.7083C7.71121 15.1572 8.84275 16.2888 10.2917 16.6152L12 17L10.2917 17.3848C8.84275 17.7112 7.71121 18.8427 7.38481 20.2917L7 22L6.61519 20.2917C6.28879 18.8427 5.15725 17.7112 3.70827 17.3848L2 17L3.70827 16.6152C5.15725 16.2888 6.28879 15.1573 6.61519 13.7083L7 12Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />

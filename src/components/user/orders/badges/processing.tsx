@@ -9,7 +9,7 @@ const ProcessingBadge = () => {
     <path d="M13.0261 21.948C12.6888 21.9824 12.3464 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 12.6849 21.9311 13.3538 21.8 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
 </svg>
       <span className='capitalize'>
-        processing
+        قيد المعالجة
       </span>
     </span>
   )

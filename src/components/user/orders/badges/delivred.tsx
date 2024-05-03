@@ -8,7 +8,7 @@ const DelivredBadge = () => {
                 <path d="M8 12.5L10.5 15L16 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <span className='capitalize'>
-                Delivred
+                تم التوصيل
             </span>
         </span>
     )

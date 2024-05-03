@@ -7,23 +7,23 @@ const NavBar = () => {
     const [active, setActive] = React.useState(1);
     const listLinks = [{
         id: 1,
-        name: "Hero",
-        href: "#hero",
+        name: "الرئيسية",
+        href: "#الرئيسية",
     },
     {
         id: 2,
-        name: "Features",
-        href: "#features",
+        name: "المميزات",
+        href: "#المميزات",
     },
     {
         id: 3,
-        name: "Pricing",
-        href: "#pricing",
+        name: "الأسعار",
+        href: "#الأسعار",
     },
     {
         id: 4,
-        name: "Contact",
-        href: "#contact",
+        name: "الاتصال",
+        href: "#الاتصال",
     }]
     const handelActive = (id: number) => {
         setActive(id);
@@ -46,7 +46,7 @@ const NavBar = () => {
                 <span
                     className="font-bold text-slate-900 dark:text-slate-50 "
                 >
-                    Zunder
+                    زندر
                 </span>
             </Link>
             <div className="lg:flex hidden  items-center gap-8">
@@ -81,11 +81,8 @@ const NavBar = () => {
                 <Link href="/auth/signin">
                     <MagicButton >
                     <p>
-        sign in
+        تسجيل الدخول
     </p>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={20} height={20} fill={"none"}>
-        <path d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
                     </MagicButton>
                 </Link>
             </div>

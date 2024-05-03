@@ -48,7 +48,7 @@ const OrdersDeliveredCardData = () => {
             className="rounded-md hover:shadow-lg hover:border-slate-300/70 transition-all ease-in-out duration-300 gap-2 flex-col flex justify-end items-start min-h-16 border border-slate-300/30 p-2 bg-background"
         >
             <h2
-                className="text-lg justify-start items-center font-medium text-slate-800 dark:text-white flex gap-1"
+                className="text-lg justify-start items-center font-medium text-slate-700 dark:text-white flex gap-1"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={20} height={20} fill={"none"}>
                     <path d="M12 2C7.58172 2 4 5.13401 4 9H20C20 5.13401 16.4183 2 12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -65,7 +65,7 @@ const OrdersDeliveredCardData = () => {
             <div className="flex w-full gap-2 justify-between items-center">
                 <div className="flex flex-col gap-2 justify-start items-start">
                     <h3
-                        className="text-lg font-bold text-gray-700 dark:text-white"
+                        className="text-lg font-bold text-gray-600 dark:text-white"
                     >
                         <Counter
                             value={res.data.totalThisMonthPrice || 0}
@@ -81,7 +81,7 @@ const OrdersDeliveredCardData = () => {
                         <span
                             className={`font-semibold ${res.data.percentageStatus === 'positive' ? 'text-[#adf802]' : 'text-red-500'}`}
                         >
-                            {res.data.percentage.toFixed(2)}%
+                            %{res.data.percentage.toFixed(2)}
                         </span>
                         <span>
                             الشهر الماضي

@@ -61,16 +61,16 @@ export function CalendarForm({ onValueChange }: CalendarFormProps) {
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-full pl-3 text-left font-normal",
+                        "w-full pr-3 text-left font-normal",
                         !field.value && "text-muted-foreground"
                       )}
                     >
                       {field.value ? (
                         format(field.value, "PPP")
                       ) : (
-                        <span>Pick a date</span>
+                        <span>اختر تاريخًا</span>
                       )}
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                      <CalendarIcon className="mr-auto h-4 w-4 opacity-50" />
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
@@ -80,7 +80,7 @@ export function CalendarForm({ onValueChange }: CalendarFormProps) {
                     selected={field.value}
                     onSelect={field.onChange}
                     disabled={(date) =>
-                     // if date less then today then disable or gr then 2030
+                     // إذا كان التاريخ أقل من اليوم أو أكبر من عام 2030 ، فتعطيله
                         date < new Date() || date > new Date(2030, 0, 1)
                     }
                     initialFocus
@@ -88,7 +88,7 @@ export function CalendarForm({ onValueChange }: CalendarFormProps) {
                 </PopoverContent>
               </Popover>
               <FormDescription>
-                Please select your date of delivery.
+                يرجى تحديد تاريخ التسليم.
               </FormDescription>
               <FormMessage />
             </FormItem>

@@ -49,10 +49,9 @@ const OrderItemSelect: React.FC<AddOrderItemProps> = ({ onOrderItemAdd }) => {
       setSelectedProduct(null);
       setQuantity(1); 
       toast({
-        title: 'Product added',
-        description: `Product added to the order`,
+        title: 'تمت إضافة المنتج',
+        description: 'تمت إضافة المنتج إلى الطلب',
         variant: 'success',
-        
       });
     }
   };
@@ -60,14 +59,14 @@ const OrderItemSelect: React.FC<AddOrderItemProps> = ({ onOrderItemAdd }) => {
   return (
     <div className='flex flex-col gap-4 w-full'>
       <Label className='text-muted-foreground dark:text-muted-foreground mt-5' htmlFor='products'>
-        Products
+        المنتجات
       </Label>
       <div className="flex justify-start items-center gap-3">
         <Select
           onValueChange={(e) => handleSelectChange(e)}
         >
           <SelectTrigger className="w-full">
-            <SelectValue placeholder="Select a product" />
+            <SelectValue placeholder="اختر منتجًا" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup className=''>
@@ -101,7 +100,7 @@ const OrderItemSelect: React.FC<AddOrderItemProps> = ({ onOrderItemAdd }) => {
           max={selectedProduct?.stock}
           value={quantity}
           onChange={(e) => setQuantity(Number(e.target.value))}
-          placeholder='Enter the quantity'
+          placeholder='أدخل الكمية'
         />
         <Button
           onClick={handleOrderItemAdd}
@@ -112,7 +111,7 @@ const OrderItemSelect: React.FC<AddOrderItemProps> = ({ onOrderItemAdd }) => {
             <path d="M15 17.5H22M18.5 21L18.5 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             <path d="M6.5 11L10 3M15 3L17.5 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
-          Add
+          إضافة
         </Button>
       </div>
 
