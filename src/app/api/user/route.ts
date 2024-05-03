@@ -1,4 +1,5 @@
 import { verifyToken } from "@/(db)/lib/auth";
+import db from "@/(db)/secrets";
 import { NextResponse,NextRequest } from "next/server";
 
 
@@ -9,8 +10,22 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
       if (!token) {
       return Response.json({ status: 'error', message: 'No token found' });
     }
-  const user = await verifyToken(token);
-  return Response.json({ status: 'success', data: user?.payload , message: 'user found' });
+  const data = await verifyToken(token)
+  const user = await db.users.findUnique({
+    where: {
+      id: data?.payload.id as string
+    }
+    ,select: {
+      id: true,
+      email: true,
+      name: true,
+      role: true,
+      image: true,
+      createdAt: true,
+      updatedAt: true
+    }
+   });
+  return Response.json({ status: 'success', data: user , message: 'user found' });
     } catch (error) {
         console.error(error);
         return Response.json({ status: 'error', message: 'An error occurred while processing your request.' });

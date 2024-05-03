@@ -79,7 +79,7 @@ const UpdateProduct = ({ id, name, description, price, currency, image, stock }:
             toast({
                 variant: 'success',
                 description: data.message,
-                title: 'success'
+                title: 'نجاح'
             })
 
         } catch (error) {
@@ -106,23 +106,23 @@ const UpdateProduct = ({ id, name, description, price, currency, image, stock }:
             <AlertDialogContent>
                 <AlertDialogHeader>
                     <AlertDialogTitle>
-                        Update the product
+                        تحديث المنتج
                     </AlertDialogTitle>
                     <AlertDialogDescription>
-                        Fill the below to update this product.
+                        قم بملء البيانات التالية لتحديث هذا المنتج.
                     </AlertDialogDescription>
                     <form
                         className=" w-full mt-2 flex flex-col gap-2 justify-start items-start"
                         onSubmit={handleSubmit}>
                         <img
                             src={formData.image ? formData.image : image}
-                            alt="Product Image"
+                            alt="صورة المنتج"
                             className="rounded-md w-20 h-20 object-cover" />
                         <Label
                             className=" w-full"
                             htmlFor="name"
                         >
-                            Product Name
+                            اسم المنتج
                         </Label>
                         <Input
                             defaultValue={name}
@@ -130,13 +130,13 @@ const UpdateProduct = ({ id, name, description, price, currency, image, stock }:
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            placeholder="Product Name"
+                            placeholder="اسم المنتج"
                         />
                         <Label
                             className=" w-full"
                             htmlFor="description"
                         >
-                            Product Description
+                            وصف المنتج
                         </Label>
                         <Textarea
                             defaultValue={description}
@@ -144,39 +144,39 @@ const UpdateProduct = ({ id, name, description, price, currency, image, stock }:
                             value={formData.description}
                             className=" h-32"
                             onChange={handleChange}
-                            placeholder="Product Description"
+                            placeholder="وصف المنتج"
                         />
                         <Label
                             className=" w-full"
                             htmlFor="price"
                         >
-                            Product Price
+                            سعر المنتج
                         </Label>
                         <Input
                             type="number"
                             name="price"
                             value={formData.price}
                             onChange={handleChange}
-                            placeholder="Product Price"
+                            placeholder="سعر المنتج"
                         />
                         <Label
                             className=" w-full"
                             htmlFor="price"
                         >
-                            Product  Stock
+                            مخزون المنتج
                         </Label>
                         <Input
                             type="number"
                             name="stock"
                             value={formData.stock}
                             onChange={handleChange}
-                            placeholder="Product Stock"
+                            placeholder="مخزون المنتج"
                         />
                         <Label
                             className=" w-full"
                             htmlFor="price"
                         >
-                            Product Image
+                            صورة المنتج
                         </Label>
                         <SingleImageDropzoneUsage onFileChange={onImageChange} />
                         <Select
@@ -185,55 +185,55 @@ const UpdateProduct = ({ id, name, description, price, currency, image, stock }:
                             onValueChange={(value) => setFormData({ ...formData, currency: value })}
                         >
                             <SelectTrigger className="w-full">
-                                <SelectValue placeholder="Select a currency" />
+                                <SelectValue placeholder="اختر عملة" />
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
                                     <SelectLabel>
-                                        Currency
+                                        العملة
                                     </SelectLabel>
                                     <SelectItem value="USD">
-                                        USD
+                                        دولار أمريكي
                                     </SelectItem>
                                     <SelectItem value="EUR">
-                                        EUR
+                                        يورو
                                     </SelectItem>
                                     <SelectItem value="MAD">
-                                        MAD
+                                        درهم مغربي
                                     </SelectItem>
                                     <SelectItem value="AED">
-                                        AED
+                                        درهم إماراتي
                                     </SelectItem>
                                     <SelectItem value="SAR">
-                                        SAR
+                                        ريال سعودي
                                     </SelectItem>
                                     <SelectItem value="QAR">
-                                        QAR
+                                        ريال قطري
                                     </SelectItem>
                                     <SelectItem value="KWD">
-                                        KWD
+                                        دينار كويتي
                                     </SelectItem>
                                     <SelectItem value="BHD">
-                                        BHD
+                                        دينار بحريني
                                     </SelectItem>
                                     <SelectItem value="OMR">
-                                        OMR
+                                        ريال عماني
                                     </SelectItem>
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
-                        <AlertDialogFooter
+                        <div
                             className=" w-full flex justify-end items-center gap-2"
                         >
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogCancel>إلغاء</AlertDialogCancel>
                             <Button
                                 type="submit"
                                 isloading={loading}
                                 disabled={loading}
                             >
-                                Update Product
+                                تحديث المنتج
                             </Button>
-                        </AlertDialogFooter>
+                        </div>
                     </form>
                 </AlertDialogHeader>
 

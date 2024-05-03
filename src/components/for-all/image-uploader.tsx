@@ -139,14 +139,14 @@ const SingleImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
             // Upload Icon
             <div className="flex flex-col items-center justify-center text-xs text-gray-400">
               <UploadCloudIcon className="mb-2 h-7 w-7" />
-              <div className="text-gray-400">drag & drop to upload</div>
+              <div className="text-gray-400">اسحب وأسقط للتحميل</div>
               <div className="mt-3">
-                <Button disabled={disabled}>select</Button>
+              <Button disabled={disabled}>اختر</Button>
               </div>
             </div>
-          )}
+            )}
 
-          {/* Remove Image Icon */}
+            {/* أيقونة إزالة الصورة */}
           {imageUrl && !disabled && (
             <div
               className="group absolute right-0 top-0 -translate-y-1/4 translate-x-1/4 transform"

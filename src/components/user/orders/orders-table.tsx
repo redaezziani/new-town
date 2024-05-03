@@ -7,6 +7,10 @@ import { Loader2 } from 'lucide-react';
 
 import CreateOrders from '@/components/user/orders/create-orders';
 import DeleteOrders from '@/components/user/orders/delete-orders';
+import PandingBadge from './badges/pending';
+import ProcessingBadge from './badges/processing';
+import DelivredBadge from './badges/delivred';
+import CancelledBadge from './badges/cancelled';
 
 interface ProductType {
   id: string;
@@ -100,19 +104,12 @@ const OrdersTable = () => {
       header: 'Status',
       cell: ({ row }) => (
         <div
-          className={`rounded-full px-1 max-w-20 py-1 text-center text-xs font-semibold text-white
-           ${
-            // @ts-ignore
-            row.getValue('status') =="PENDING" ? 'bg-amber-500' : row.getValue('status') =="PROCESSING"? 'bg-sky-500' : row.getValue('status') =="DELIVERED" ? 'bg-green-500' : 'bg-red-500' }`}
+         
         >
-          <p
-          className=' lowercase'
-          >
-          {
-            //@ts-ignore
-            row.getValue('status')
-          }
-          </p>
+          {row.getValue('status') === 'PENDING' && <PandingBadge />}
+          {row.getValue('status') === 'PROCESSING' && <ProcessingBadge />}
+          {row.getValue('status') === 'DELIVERED' && <DelivredBadge />}
+          {row.getValue('status') === 'CANCELLED' && <CancelledBadge />}
         </div>
       ),
       

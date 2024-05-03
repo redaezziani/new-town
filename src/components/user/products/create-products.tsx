@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import {
@@ -102,7 +102,18 @@ const CreateProducts = () => {
             setLoading(false)
         }
     }
-
+    useEffect(() => {
+        const listener = (e: KeyboardEvent) => {
+            if (e.ctrlKey && e.key === 'l') {
+                setIsOpened(true)
+            }
+        }
+        window.addEventListener('keydown', listener)
+        return () => {
+            window.removeEventListener('keydown', listener)
+        }
+    }
+        , [])
     return (
         <Sheet
             open={isOpened}
@@ -123,7 +134,7 @@ const CreateProducts = () => {
                     <span
                         className=' lowercase'
                     >
-                        new product
+                        منتج جديد
                     </span>
 
 
@@ -141,25 +152,25 @@ const CreateProducts = () => {
                         <h2
                             className='text-lg font-semibold'
                         >
-                            Create Product
+                            إنشاء منتج
                         </h2>
                         <p
                             className=' text-sm font-normal'
                         >
-                            Fill the form below to create a new product
+                            قم بملء النموذج أدناه لإنشاء منتج جديد
                         </p>
                     </div>
                     <Label
                         className=' mt-5'
                         htmlFor='name'
                     >
-                        Name
+                        الاسم
                     </Label>
                     <Input
                         type='text'
                         name='name'
                         id='name'
-                        placeholder='enter a the name of the product...'
+                        placeholder='أدخل اسم المنتج...'
                         value={data.name}
                         onChange={handleChange}
                     />
@@ -167,12 +178,12 @@ const CreateProducts = () => {
                         className=' '
                         htmlFor='description'
                     >
-                        Description
+                        الوصف
                     </Label>
                     <Textarea
                         name='description'
                         id='description'
-                        placeholder='create a description for this product...'
+                        placeholder='أنشئ وصفًا لهذا المنتج...'
                         className=' min-h-32'
                         value={data.description}
                         onChange={(e)=>{
@@ -186,7 +197,7 @@ const CreateProducts = () => {
                         className=' '
                         htmlFor='price'
                     >
-                        Price
+                        السعر
                     </Label>
                     <Input
                         type='number'
@@ -199,7 +210,7 @@ const CreateProducts = () => {
                         className=' '
                         htmlFor='stock'
                     >
-                        Stock
+                        المخزون
                     </Label>
                     <Input
                         type='number'
@@ -215,39 +226,39 @@ const CreateProducts = () => {
                         onValueChange={(value) => setData({ ...data, currency: value })}
                     >
                         <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Select a currency" />
+                            <SelectValue placeholder="اختر عملة" />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>
                                 <SelectLabel>
-                                    Currency
+                                    العملة
                                 </SelectLabel>
                                 <SelectItem value="USD">
-                                    USD
+                                    دولار أمريكي
                                 </SelectItem>
                                 <SelectItem value="EUR">
-                                    EUR
+                                    يورو
                                 </SelectItem>
                                 <SelectItem value="MAD">
-                                    MAD
+                                    درهم مغربي
                                 </SelectItem>
                                 <SelectItem value="AED">
-                                    AED
+                                    درهم إماراتي
                                 </SelectItem>
                                 <SelectItem value="SAR">
-                                    SAR
+                                    ريال سعودي
                                 </SelectItem>
                                 <SelectItem value="QAR">
-                                    QAR
+                                    ريال قطري
                                 </SelectItem>
                                 <SelectItem value="KWD">
-                                    KWD
+                                    دينار كويتي
                                 </SelectItem>
                                 <SelectItem value="BHD">
-                                    BHD
+                                    دينار بحريني
                                 </SelectItem>
                                 <SelectItem value="OMR">
-                                    OMR
+                                    ريال عماني
                                 </SelectItem>
                             </SelectGroup>
                         </SelectContent>
@@ -256,7 +267,7 @@ const CreateProducts = () => {
                         className=' '
                         htmlFor='image'
                     >
-                        Image
+                        الصورة
                     </Label>
                     <SingleImageDropzoneUsage
                         onFileChange={(url) => setImage(url)}
@@ -267,7 +278,7 @@ const CreateProducts = () => {
                         isloading={loading}
                         className='w-full mt-5 '
                     >
-                        create product
+                        إنشاء المنتج
                     </Button>
                 </div>
             </SheetContent>

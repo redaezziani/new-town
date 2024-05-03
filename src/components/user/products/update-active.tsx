@@ -39,15 +39,15 @@ const SwitchActive = ({ id, isActive }: SwitchActiveProps) => {
 
         if (resData.status === 'error') {
             toast({
-                title: 'Error',
-                description: resData.message,
-                variant: 'error'
+            title: 'خطأ',
+            description: resData.message,
+            variant: 'error'
             })
             setChecked(isActive)
             return
         }
         toast({
-            title: 'Success',
+            title: 'نجاح',
             description: resData.message,
             variant: 'success'
         })

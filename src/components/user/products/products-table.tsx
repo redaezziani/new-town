@@ -38,21 +38,21 @@ const ProductsTable = () => {
   const columns: ColumnDef<ProductType>[] = [
     {
       accessorKey: 'id',
-      header: 'ID',
+      header: 'معرف',
       cell: ({ row }) => <div
         className=''
       >{row.getValue('id')}</div>,
     },
     {
-      accessorKey: 'name',
-      header: '',
+      accessorKey: 'ckeckbox',
+      header: 'التحديد',
       cell: ({ row }) => <div
-        className=''
+        className='px-4'
       >
         <Checkbox
+
           checked={selected.includes(row.getValue('id'))}
           onCheckedChange={(e) =>
-
             handleSelect(row.getValue('id'))
           }
 
@@ -61,29 +61,29 @@ const ProductsTable = () => {
     },
     {
       accessorKey: 'name',
-      header: 'Name',
+      header: 'الاسم',
       cell: ({ row }) => <div
         className='line-clamp-1 text-slate-600 dark:text-slate-100'
       >{row.getValue('name')}</div>,
     },
     {
       accessorKey: 'description',
-      header: 'Description',
+      header: 'الوصف',
       cell: ({ row }) =>
         <div
-          className=' line-clamp-1 text-slate-600 dark:text-slate-100 max-w-2xl'
+          className=' line-clamp-1 text-slate-600 dark:text-slate-100 max-w-lg'
         >{row.getValue('description')}</div>,
     },
     {
       accessorKey: 'price',
-      header: 'Price',
+      header: 'السعر',
       cell: ({ row }) => <div
         className=' text-slate-600 dark:text-slate-100'
       >{row.getValue('price')}</div>,
     },
     {
       accessorKey: 'image',
-      header: 'Image',
+      header: 'الصورة',
       cell: ({ row }) => <img
         src={row.getValue('image')}
         alt={row.getValue('name')}
@@ -92,7 +92,7 @@ const ProductsTable = () => {
     },
     {
       accessorKey: 'isActive',
-      header: 'Mode',
+      header: 'الوضع',
       cell: ({ row }) => <div
         className=' text-slate-600 dark:text-slate-100'
       >
@@ -104,19 +104,22 @@ const ProductsTable = () => {
     },
     {
       accessorKey: 'stock',
-      header: 'Stock',
+      header: 'المخزون',
       cell: ({ row }) => <div
         className=' text-slate-600 dark:text-slate-100'
       >{row.getValue('stock')}</div>,
     },
     {
       accessorKey: 'currency',
-      header: 'Currency',
-      cell: ({ row }) => <div className='text-slate-600 dark:text-slate-100'>{row.getValue('currency')}</div>,
+      header: 'العملة',
+      cell: ({ row }) =>
+      <div className='text-slate-600 dark:text-slate-100'>
+       {row.getValue("currency")==='USD' ? 'دولار' : row.getValue("currency")==='EUR' ? 'يورو' : row.getValue("currency")==='MAD' ? 'درهم' : row.getValue("currency")==='AED' ? 'درهم' : row.getValue("currency")==='SAR' ? 'ريال' : row.getValue("currency")==='QAR' ? 'ريال' : row.getValue("currency")==='KWD' ? 'دينار' : row.getValue("currency")==='BHD' ? 'دينار' : row.getValue("currency")==='OMR' ? 'ريال' : 'غير معروف'}
+      </div>,
     },
     {
       accessorKey: 'none',
-      header: 'Product Status',
+      header: 'حالة المنتج',
       cell: ({ row }) => (
         <>
         
@@ -129,7 +132,7 @@ const ProductsTable = () => {
     },
     {
       accessorKey: 'none',
-      header: 'Actions',
+      header: 'الإجراءات',
       cell: ({ row }) =>
         <div>
           <UpdateProduct
@@ -175,19 +178,5 @@ const ProductsTable = () => {
   );
 };
 
-
-interface ProductsTableProps {
-  selected: string[]
-}
-const ProductsTableElement = ({ selected }: ProductsTableProps) => {
-  return (
-    <div className="w-full flex justify-center items-center  gap-4">
-      <ProductsTable />
-      <DeleteProducts
-        selected={selected}
-      />
-    </div>
-  );
-}
 
 export default ProductsTable;

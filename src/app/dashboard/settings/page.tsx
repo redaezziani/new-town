@@ -1,11 +1,4 @@
 'use client';
-
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button";
 import InfoCardUpdate from "@/components/user/card-info-settings/info-card-update";
 
 import { useState, useEffect } from "react"
@@ -48,7 +41,7 @@ const SettingPage = async () => {
         <div className="flex flex-col  justify-start items-start">
         <img
         className=" size-14 rounded-full"
-        src={user && user.data.profile}
+        src={user && user.data.image}
         alt=""  />
       </div>
         <div className="flex w-full justify-start items-center gap-2 ">
@@ -73,7 +66,7 @@ const SettingPage = async () => {
           {user && <p
             className="text-slate-600 dark:text-slate-50"
           >
-            {user.data.username}
+            {user.data.name}
           </p>}
         </div>
       </div>

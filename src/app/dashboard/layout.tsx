@@ -1,4 +1,3 @@
-import { PathLine } from "@/components/admin/path-line";
 import SearchBar from "@/components/admin/search-bar";
 import { SideBar } from "@/components/admin/side-bar";
 import SideMenu from "@/components/admin/side-menu";
