@@ -79,7 +79,7 @@ const OrdersDeliveredCardData = () => {
                     >
                        
                         <span
-                            className={`font-semibold ${res.data.percentageStatus === 'positive' ? 'text-[#adf802]' : 'text-red-500'}`}
+                            className={`font-semibold text-[#adf802]`}
                         >
                             %{res.data.percentage.toFixed(2)}
                         </span>
