@@ -9,7 +9,6 @@ import {  useState } from 'react'
 import { z } from 'zod'
 import Link from 'next/link';
 import { Eye, EyeOff, ShieldAlert } from 'lucide-react';
-import { ForgetPassword } from '@/components/admin/forget-password';
 import AlertMessage from '@/components/for-all/alert-message';
 import { ResErrType } from '@/app/types/help';
 import { GiSuckeredTentacle } from "react-icons/gi";
@@ -39,7 +38,7 @@ const SignUpPage = () => {
       if (result.password !== formData.get('passwordConfirm') as string) {
         setErr((prev) => ({
           ...prev,
-          password: 'Password does not match'
+          password: 'كلمة المرور غير متطابقة'
         }));
         return;
       }
@@ -90,12 +89,22 @@ const SignUpPage = () => {
   }
   return (
     <div className=" h-screen overflow-hidden px-3 lg:p-0 w-full relative flex justify-center lg:justify-start items-center">
-    
-    <div className="flex relative h-full w-full lg:w-1/2  justify-center items-center flex-col">
-    <div className="  z-50 w-full fixed lg:absolute  top-0 left-0 px-4 py-3 text-white">
+     <div className="w-1/2 h-full py-2 hidden lg:block">
+      <img
+        className=' w-full rounded-l-lg object-cover  aspect-auto'
+        src="/login.jpg" alt="login" />
+      </div>
+      <div className="flex relative h-full w-full lg:w-1/2  justify-center items-center flex-col">
+        <div className="  z-50 w-full fixed lg:absolute  top-0 right-0  px-4 py-3 text-white">
         <Link
           href='/'
-        className=" w-full flex justify-start px-10 gap-2 items-center">
+        className=" w-full flex justify-end px-10 gap-2 items-center">
+            
+            <h2
+              className=" text-slate-900 mr-3 dark:text-slate-50 font-bold"
+            >
+              زاندر أيو
+            </h2>
              <svg 
               className="text-slate-900 ml-3 dark:text-slate-50"
             width="30" height="30" viewBox="0 0 210 210" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -103,11 +112,6 @@ const SignUpPage = () => {
                 fill="currentColor"
               />
             </svg>
-            <h2
-              className=" text-slate-900 ml-3 dark:text-slate-50 font-bold"
-            >
-              zunder io
-            </h2>
           </Link>
         </div>
 
@@ -119,16 +123,15 @@ const SignUpPage = () => {
             <span
               className='text-3xl  font-bold flex justify-start items-center  '
             >
-             Create an account
+             أنشئ حسابًا جديدًا
             </span>
             <p
               className='text-sm font-normal text-slate-400'
             >
-              Become a member - you ll enjoy new products, exclusive deals and offers.
-              please fill in the form to create an account
+              كن عضوًا - ستستمتع بمنتجات جديدة، وعروض حصرية، وصفقات. يرجى تعبئة النموذج لإنشاء حساب
             </p>
             {resErr?.status === 'error' && <AlertMessage
-              title='Error occured'
+              title='حدث خطأ'
               className=' bg-red-500/10 text-red-500'
               icon={<ShieldAlert className=' text-red-500' size={20} />}
               description={resErr.message??''}
@@ -136,7 +139,7 @@ const SignUpPage = () => {
             }
             {
               resErr?.status === 'success' && <AlertMessage
-              title='Success'
+              title='تم بنجاح'
               className=' bg-green-500/10 text-green-500'
               icon={<GiSuckeredTentacle className=' text-green-500' size={20} />}
               description={resErr.message??''}/>
@@ -145,11 +148,11 @@ const SignUpPage = () => {
         <div className="flex mt-7 w-full justify-start items-start flex-col gap-3">
           <Label
             className=' font-semibold'
-            htmlFor="name">Name</Label>
+            htmlFor="name">الاسم</Label>
           <Input
             className=' w-full'
             type="text"
-            placeholder="Enter your name"
+            placeholder="أدخل اسمك"
             autoComplete="name"
             name='name'
           />
@@ -163,12 +166,11 @@ const SignUpPage = () => {
         <div className="flex  w-full justify-start items-start flex-col gap-3">
           <Label
             className=' font-semibold'
-            htmlFor="email">Email</Label>
+            htmlFor="email">البريد الإلكتروني</Label>
           <Input
             className=' w-full'
             type="email"
-            placeholder="
-        Enter your email"
+            placeholder="أدخل البريد الإلكتروني"
             autoComplete="email"
             name='email'
           />
@@ -181,12 +183,12 @@ const SignUpPage = () => {
         <div className="flex w-full justify-start items-start flex-col gap-3">
           <Label
             className=' font-semibold'
-            htmlFor="password">Password</Label>
+            htmlFor="password">كلمة المرور</Label>
           <div className="flex relative w-full justify-start items-center">
             <Input
               className=' w-full z-10'
               type={isHide ? 'password' : 'text'}
-              placeholder="Enter your password"
+              placeholder="أدخل كلمة المرور"
               autoComplete="current-password"
               name='password'
             />
@@ -205,11 +207,11 @@ const SignUpPage = () => {
         <div className="flex w-full justify-start items-start flex-col gap-3">
           <Label
             className=' font-semibold'
-            htmlFor="passwordConfirm">Confirm Password</Label>
+            htmlFor="passwordConfirm">تأكيد كلمة المرور</Label>
           <Input
             className=' w-full'
             type="password"
-            placeholder="Confirm your password"
+            placeholder="تأكيد كلمة المرور"
             autoComplete="current-password"
             name='passwordConfirm'
           />
@@ -230,32 +232,27 @@ const SignUpPage = () => {
             <Label
               className=' font-semibold text-slate-300 group-data-[state=checked]:bg-primary'
             >
-              Keep me signed in
+              ابقني مسجل الدخول
             </Label>
           </div>
         </div>
         <SubmitButton
         
         ispending={isloading} >
-          Sign up
+          سجل الآن
         </SubmitButton>
         <div className="w-full flex justify-center items-center">
           <p
             className=' text-slate-400'
           >
-            Dont have an account? <Link
+            ليس لديك حساب؟ <Link
             href={'/auth/signin'}
-            className=' ml-1 text-primary'>Sign In</Link>
+            className=' ml-1 text-primary'>تسجيل الدخول</Link>
           </p>
         </div>
       </form>
     </div>
-    <div className="w-1/2 h-full py-2 hidden lg:block">
-
-      <img
-        className=' w-full rounded-l-lg object-cover  aspect-auto'
-        src="/login.jpg" alt="login" />
-      </div>
+    
     </div>
   )
 }

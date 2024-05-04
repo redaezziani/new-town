@@ -30,7 +30,7 @@ const PlansCards = () => {
         stripe?.redirectToCheckout({ sessionId });
       };
   return (
-    <div className="sm:flex z-10 w-full mt-20 max-w-7xl sm:flex-col sm:align-center p-10">
+    <div className="sm:flex z-10 w-full mt-20w-full md:max-w-7xl sm:flex-col sm:align-center p-10">
     <div className="relative self-center bg-slate-200 rounded-lg p-0.5 flex">
         <button type="button"
             className="relative  w-1/2 rounded-md py-2 text-sm font-medium whitespace-nowrap focus:outline-none sm:w-auto sm:px-8 bg-slate-50 border-slate-50 dark:border-slate-300/30  shadow-sm">الفوترة الشهرية

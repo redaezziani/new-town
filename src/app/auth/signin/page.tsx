@@ -73,12 +73,22 @@ const SignInPage = () => {
   }
   return (
     <div className=" h-screen py-6 relative  overflow-hidden px-3 lg:p-0 w-full  flex justify-center lg:justify-start items-center">
-     
+      <div className="w-1/2 h-full py-2 hidden lg:block">
+      <img
+        className=' w-full rounded-l-lg object-cover  aspect-auto'
+        src="/login.jpg" alt="login" />
+      </div>
       <div className="flex relative h-full w-full lg:w-1/2  justify-center items-center flex-col">
-        <div className="  z-50 w-full fixed lg:absolute  top-0 left-0 px-4 py-3 text-white">
+        <div className="  z-50 w-full fixed lg:absolute  top-0 right-0  px-4 py-3 text-white">
         <Link
           href='/'
-        className=" w-full flex justify-start px-10 gap-2 items-center">
+        className=" w-full flex justify-end px-10 gap-2 items-center">
+            
+            <h2
+              className=" text-slate-900 mr-3 dark:text-slate-50 font-bold"
+            >
+              زاندر أيو
+            </h2>
              <svg 
               className="text-slate-900 ml-3 dark:text-slate-50"
             width="30" height="30" viewBox="0 0 210 210" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,11 +96,6 @@ const SignInPage = () => {
                 fill="currentColor"
               />
             </svg>
-            <h2
-              className=" text-slate-900 ml-3 dark:text-slate-50 font-bold"
-            >
-              zunder io
-            </h2>
           </Link>
         </div>
         <form
@@ -101,17 +106,16 @@ const SignInPage = () => {
             <span
               className='text-3xl  font-bold flex justify-start items-center  '
             >
-              Welcome back 
+              مرحبًا مجددًا 
              
             </span>
             <p
               className='text-sm font-normal text-slate-400'
             >
-              Become a member - you ll enjoy new products, exclusive deals and offers.
-              please sign in to your account
+              كن عضوًا - ستستمتع بمنتجات جديدة، وعروض حصرية، وصفقات. يرجى تسجيل الدخول إلى حسابك
             </p>
             {resErr?.status === 'error' && <AlertMessage
-              title='Error occured'
+              title='حدث خطأ'
               className=' bg-red-500/10 text-red-500'
               icon={<ShieldAlert className=' text-red-500' size={20} />}
               description={resErr.message??''}
@@ -120,11 +124,11 @@ const SignInPage = () => {
           <div className="flex mt-7 w-full justify-start items-start flex-col gap-2">
             <Label
               className=' font-semibold'
-              htmlFor="email">Email</Label>
+              htmlFor="email">البريد الإلكتروني</Label>
             <Input
               className=' w-full'
               type="email"
-              placeholder="Enter your email"
+              placeholder="أدخل بريدك الإلكتروني"
               autoComplete="email"
               name='email'
             />
@@ -137,18 +141,18 @@ const SignInPage = () => {
           <div className="flex w-full justify-start items-start flex-col gap-2">
             <Label
               className=' font-semibold'
-              htmlFor="password">Password</Label>
+              htmlFor="password">كلمة المرور</Label>
             <div className="flex relative w-full justify-start items-center">
               <Input
                 className=' w-full z-10'
                 type={isHide ? 'password' : 'text'}
-                placeholder="Enter your password"
+                placeholder="أدخل كلمة المرور الخاصة بك"
                 autoComplete="current-password"
                 name='password'
               />
               <div
                 onClick={handelHide}
-                className="flex cursor-pointer z-30 right-3 absolute h-[90%] aspect-square bg-background justify-center items-center">
+                className="flex cursor-pointer z-30 left-3 absolute h-[90%] aspect-square bg-background justify-center items-center">
                 {isHide ? <Eye className='  text-slate-300 ' size={18} /> : <EyeOff className=' text-pretty ' size={18} />}
               </div>
             </div>
@@ -161,7 +165,7 @@ const SignInPage = () => {
               href='/auth/forgot-password'
               className=' transition-all ease-in-out duration-300 text-slate-400 hover:text-slate-600 text-sm font-normal '
             >
-              forgot password?
+              هل نسيت كلمة المرور؟
             </Link>
           </div>
           <div className="flex gap-2 justify-between items-center w-full ">
@@ -174,31 +178,27 @@ const SignInPage = () => {
               <Label
                 className=' text-xs'
               >
-                I want to receive emails about events, product updates and company announcements.
+                أريد تلقي رسائل بريد إلكتروني حول الفعاليات، وتحديثات المنتجات، وإعلانات الشركة.
               </Label>
             </div>
           </div>
           <SubmitButton ispending={isloading} >
-            Sign In
+            تسجيل الدخول
           </SubmitButton>
           
           <div className="w-full flex justify-center items-center">
             <p
-              className=' text-slate-400'
+              className=' text-slate-400 flex gap-1'
             >
-              Dont have an account?
+              ليس لديك حساب؟
               <Link
                 href={'/auth/signup'}
-                className=' ml-1 text-primary'>Sign Up</Link>
+                className=' ml-1 text-primary'>سجل الآن</Link>
             </p>
           </div>
         </form>
       </div>
-      <div className="w-1/2 h-full py-2 hidden lg:block">
-      <img
-        className=' w-full rounded-l-lg object-cover  aspect-auto'
-        src="/login.jpg" alt="login" />
-      </div>
+    
     </div>
   )
 }

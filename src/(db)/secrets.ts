@@ -9,6 +9,7 @@ export const secret = {
     edge_store_secret_key: env.EDGE_STORE_SECRET_KEY,
     stripe_publishable_key: env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY??'',
     stripe_secret_key: env.STRIPE_SECRET_KEY,
+    web_site_scraping_url: env.SCRAPE_WEB_SITE,
 }
 import { createClient } from '@supabase/supabase-js'
 

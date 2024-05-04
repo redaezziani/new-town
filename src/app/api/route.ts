@@ -1,12 +1,10 @@
 'use server';
-import db from "@/(db)/secrets";
 import { NextResponse,NextRequest } from "next/server";
 
 
 export async function GET(req: NextRequest, res: NextResponse): Promise<void | Response> {
     try {
-        const products = await db.products.findMany();
-        return Response.json({ status: 'success', products , message: 'user found' });
+        return Response.json({ status: 'success', message: 'Welcome to the API.' });       
     }
      catch (error) {
         console.error(error);

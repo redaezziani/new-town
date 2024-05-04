@@ -25,7 +25,7 @@ const AuroraHero = () => {
         </div>
       </div>
 
-      <div className=" flex  z-50 md:hidden fixed right-4 top-3">
+      <div className=" flex  z-50 md:hidden fixed left-4 top-3">
         <SideBar />
       </div>
       <div className="absolute z-0 inset-0 blur-[400px] h-28 w-[90%] top-0 bg-white/55 "></div>
@@ -90,7 +90,6 @@ const AuroraHero = () => {
         <p
           className=" text-lg max-w-[33rem] text-center text-[#b4bcd0b9]"
         >
-
           اجعل إدارة متجرك سهلة مع منصة زندر السريعة والموثوقة والمزيد من الميزات.
           <span
             className=" scale-105 flex gap-1 justify-center items-center text-[#ffffff]">

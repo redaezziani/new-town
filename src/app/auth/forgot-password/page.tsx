@@ -1,19 +1,20 @@
 'use client';
+
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { SignInSchema } from '@/app/types/from';
 import { forgetPassword } from '@/(db)/(auth)/user-actions'
 import { useState } from 'react'
 import { z } from 'zod'
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Eye, EyeOff, ShieldAlert } from 'lucide-react';
 import AlertMessage from '@/components/for-all/alert-message';
 import { ResErrType } from '@/app/types/help';
 import { Button } from '@/components/ui/button';
+
 const emailSchema = z.object({
-  email: z.string().email({ message: 'give me a valid email to send you a reset link.' })
+  email: z.string().email({ message: 'الرجاء إدخال بريد إلكتروني صالح لإرسال رابط إعادة تعيين كلمة المرور.' })
 })
+
 const ForgetPage = () => {
   const [err, setErr] = useState('')
   const [isloading, setIsloading] = useState(false);
@@ -23,6 +24,7 @@ const ForgetPage = () => {
     status: '',
     message: ''
   })
+
   const handelSubmit = async () => {
     try {
       setIsloading(true);
@@ -51,29 +53,34 @@ const ForgetPage = () => {
     }
   }
 
-
   return (
     <div className=" h-screen py-6 relative  overflow-hidden px-3 lg:p-0 w-full  flex justify-center lg:justify-start items-center">
-
+      <div className="w-1/2 h-full py-2 hidden lg:block">
+      <img
+        className=' w-full rounded-l-lg object-cover  aspect-auto'
+        src="/login.jpg" alt="login" />
+      </div>
       <div className="flex relative h-full w-full lg:w-1/2  justify-center items-center flex-col">
-        <div className="  z-50 w-full fixed lg:absolute  top-0 left-0 px-4 py-3 text-white">
-          <Link
-            href='/'
-            className=" w-full flex justify-start px-10 gap-2 items-center">
-            <svg
+        <div className="  z-50 w-full fixed lg:absolute  top-0 right-0  px-4 py-3 text-white">
+        <Link
+          href='/'
+        className=" w-full flex justify-end px-10 gap-2 items-center">
+            
+            <h2
+              className=" text-slate-900 mr-3 dark:text-slate-50 font-bold"
+            >
+              زاندر أيو
+            </h2>
+             <svg 
               className="text-slate-900 ml-3 dark:text-slate-50"
-              width="30" height="30" viewBox="0 0 210 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+            width="30" height="30" viewBox="0 0 210 210" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd" d="M5.32961 43.2093C0 56.0745 0 72.3843 0 105.004C0 137.623 0 153.933 5.32961 166.798C12.4341 183.948 26.0596 197.574 43.2093 204.678C56.0745 210.008 72.3843 210.008 105.004 210.008C137.623 210.008 153.933 210.008 166.798 204.678C183.948 197.574 197.574 183.948 204.678 166.798C209.454 155.269 209.95 140.974 210.002 114.653H131.113L89.679 172.547L97.6252 114.653H59.0292L114.653 37.4608L107.274 94.2197H209.999C209.935 68.6209 209.385 54.5717 204.678 43.2093C197.574 26.0596 183.948 12.4341 166.798 5.32961C153.933 0 137.623 0 105.004 0C72.3843 0 56.0745 0 43.2093 5.32961C26.0596 12.4341 12.4341 26.0596 5.32961 43.2093Z"
                 fill="currentColor"
               />
             </svg>
-            <h2
-              className=" text-slate-900 ml-3 dark:text-slate-50 font-bold"
-            >
-              zunder io
-            </h2>
           </Link>
         </div>
+      
         <div
           className="w-full lg:max-w-[33rem] flex justify-start items-start flex-col gap-5"
         >
@@ -91,20 +98,20 @@ const ForgetPage = () => {
               <path d="M12 10.5L12 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </Button>
-          <div className="flex w-full justify-start items-start  flex-col">
+          <div className="flex w-full justify-start items-start flex-col">
             <span
-              className='text-3xl  font-bold flex justify-start items-center  '
+              className='text-2xl gap-3  font-bold flex justify-start items-center  '
             >
-              Forget Password ?
+              هل نسيت كلمة المرور؟
             </span>
             <p
               className='text-sm font-normal text-slate-400'
             >
-              Enter your email address and we will send you a link to reset your password.
+              أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور الخاصة بك.
             </p>
             {resErr?.status === 'error' &&
               <AlertMessage
-                title='Error occured'
+                title='حدث خطأ'
                 className=' bg-red-500/10 text-red-500'
                 icon={
                   <svg
@@ -122,7 +129,7 @@ const ForgetPage = () => {
             {
               resErr?.status === 'success' &&
               <AlertMessage
-                title='Success'
+                title='نجاح'
                 className=' bg-green-500/10 text-green-500'
                 icon={
                   <svg
@@ -135,16 +142,16 @@ const ForgetPage = () => {
                 description={resErr.message ?? ''} />
             }
           </div>
-          <div className="flex mt-7 w-full justify-start items-start flex-col gap-2">
+          <div className="flex mt-7 w-full justify-start items-start flex-col gap-4">
             <Label
               className=' font-semibold'
-              htmlFor="email">Email</Label>
+              htmlFor="email">البريد الإلكتروني</Label>
             <Input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className=' w-full'
               type="email"
-              placeholder="Enter your email"
+              placeholder="أدخل بريدك الإلكتروني"
               autoComplete="email"
               name='email'
             />
@@ -154,7 +161,6 @@ const ForgetPage = () => {
               {err}
             </p>
           </div>
-
           <Button
             onClick={handelSubmit}
             isloading={isloading}
@@ -168,29 +174,24 @@ const ForgetPage = () => {
             <span
               className=' text-sm font-semibold'
             >
-              Send Rest Link
+              إرسال رابط إعادة التعيين
             </span>
           </Button>
-
           <Link
             href={'/'}
             className="w-full duration-500 transition-all ease-in-out gap-2 text-slate-400 hover:text-slate-500  flex justify-center items-center">
+            
+            <p
+            > الرئيسية</p>
             <svg
               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none">
               <path d="M4 12L20 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
               <path d="M8.99996 17C8.99996 17 4.00001 13.3176 4 12C3.99999 10.6824 9 7 9 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            <p
-            >Back to home</p>
           </Link>
         </div>
       </div>
-      <div className="w-1/2 h-full py-2 hidden lg:block">
-
-        <img
-          className=' w-full rounded-l-lg object-cover  aspect-auto'
-          src="/login.jpg" alt="login" />
-      </div>
+     
     </div>
   )
 }

@@ -79,6 +79,7 @@
     "openai": "^4.28.4",
     "plaiceholder": "^3.0.0",
     "prisma": "^5.10.2",
+    "puppeteer": "^22.7.1",
     "react": "^18",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18",
