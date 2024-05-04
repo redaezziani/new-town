@@ -68,7 +68,7 @@ const SettingPage = async () => {
       </div>
     </div>
       <div className="w-full col-span-1 lg:col-span-2  h-full">
-        <InfoCardUpdate user={user.data} />
+        <InfoCardUpdate user={user&&user.data} />
       </div>
      
     </main>
