@@ -49,19 +49,21 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size }), className)}
-        ref={ref}
-        {...props}
+      className={cn(buttonVariants({ variant, size }), className)}
+      ref={ref}
+      {...props}
       >
-        {isloading ? 
-        (<div className="flex justify-start items-center gap-2 font-semibold">
-          <svg
-          
-          xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide animate-spin lucide-loader-circle"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
-          <p>Loading...</p>
-        </div>
-          )
-        : props.children}
+      {isloading ? 
+      (<div className="flex justify-start items-center gap-2 font-semibold">
+        <svg
+        
+        xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide animate-spin lucide-loader-circle"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+        <p>
+        تحميل...
+        </p>
+      </div>
+        )
+      : props.children}
       </Comp>
     );
   }

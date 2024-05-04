@@ -61,9 +61,7 @@ const SideMenu = () => {
                         <path d="M13 12L11 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                     }
-                />
-
-                
+                />                
                 <SideItem
                     title='الإعدادات'
                     path='/dashboard/settings'
