@@ -84,7 +84,10 @@ const ScrapeProduct = ({onScrape}: data) => {
                 <div
                     className=" w-full flex justify-end items-center gap-2"
                 >
-                    <AlertDialogCancel>إلغاء</AlertDialogCancel>
+                    <Button
+                    variant={'outline'}
+                    onClick={() => setIsOpen(false)}
+                    >إلغاء</Button>
                     <Button
                         type="submit"
                         isloading={loading}

@@ -18,7 +18,7 @@ const ScrapePage = () => {
     >
       <div className="flex w-full justify-between items-center gap-3 flex-wrap">
         <h1
-          className="text-3xl font-bold"
+          className="md:text-3xl font-bold"
         >
           صفحة الاستخراج
         </h1>

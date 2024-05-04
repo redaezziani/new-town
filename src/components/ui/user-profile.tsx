@@ -95,7 +95,7 @@ export function UserProfile() {
             </AvatarFallback>
           </Avatar>
           <div
-            className='flex-flex-col gap-2'
+            className=' hidden md:flex flex-col gap-2'
           >
             <p
               className="text-sm font-semibold"
@@ -120,9 +120,7 @@ export function UserProfile() {
       <DropdownMenuContent
         className="w-56 border-slate-300/30">
         <DropdownMenuLabel>
-          {/*
-          all the text is arabic 
-          */}
+          
           القائمة
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
