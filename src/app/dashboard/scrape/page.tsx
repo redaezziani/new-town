@@ -39,6 +39,7 @@ const ScrapePage = () => {
   };
 
   useEffect(() => {
+    console.log('products', products);
     if (products.length > 0) {
       setTotalPages(Math.ceil(products.length / productsPerPage));
     }
