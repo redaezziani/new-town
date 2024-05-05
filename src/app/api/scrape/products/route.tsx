@@ -68,7 +68,7 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
             if (!nextPageExists) {
                 break; // No more pages, exit the loop
             }
-            if (page >= 10) {
+            if (page >= 5) {
                 break; // Limit the number of pages to 5
             }
             page++; // Move to the next page
