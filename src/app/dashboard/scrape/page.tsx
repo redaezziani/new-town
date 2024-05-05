@@ -84,7 +84,7 @@ const ScrapePage = () => {
             Array.from({ length: 5 }).map((_, index) => (
               <div
                 style={{
-                  animationDelay: `${index * 0.3}s`,
+                  animationDelay: `${index * 0.5}s`,
                 }}
                 key={index} className="skeleton w-full animate-pulse col-span-1 flex flex-col gap-2 justify-start items-start relative">
                 <div className="skeleton-image w-full animate-pulse aspect-square rounded-md">
