@@ -36,7 +36,6 @@ const ScrapeProduct = ({ onScrape }: data) => {
             onScrape([],true)
             setLoading(true)
             const res = await axios.get(`/api/scrape/products?search=${search}&type=${type}`,{
-                timeout: 30000 
             })
             onScrape(res.data.products,false)
         } catch (error) {
