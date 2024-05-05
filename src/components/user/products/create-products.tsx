@@ -114,6 +114,35 @@ const CreateProducts = () => {
         }
     }
         , [])
+        useEffect(() => {
+            const listener = (e: ClipboardEvent) => {
+                navigator.clipboard.readText().then(text => {
+
+                    const clipboardData = JSON.parse(text);
+                    const price = parseFloat(clipboardData.price);
+                    setData({
+                        name: clipboardData.name,
+                        description: clipboardData.description,
+                        price: price,
+                        currency: clipboardData.currency,
+                        image: clipboardData.image,
+                        stock: 0
+                    })
+
+                }).catch(err => {
+                   
+                });
+                // get also the image from the clipboard if exists just a url of the image
+
+               
+            };
+            
+            window.addEventListener('paste', listener);
+    
+            return () => {
+                window.removeEventListener('paste', listener);
+            };
+        }, []);
     return (
         <Sheet
             open={isOpened}

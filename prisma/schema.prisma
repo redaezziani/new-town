@@ -178,3 +178,5 @@ model delivery {
   user      users     @relation(fields: [userId], references: [id], onDelete: Cascade)
   order     Order[]
 }
+
+

@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import axios from "axios";
 interface data {
-    onScrape: (e: Product[]) => void
+    onScrape: (products: Product[],isPanding?:boolean) => void
 }
 interface Product {
     title: string;
@@ -33,10 +33,10 @@ const ScrapeProduct = ({ onScrape }: data) => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            onScrape([])
+            onScrape([],true)
             setLoading(true)
             const res = await axios.get(`/api/scrape/products?search=${search}&type=${type}`)
-            onScrape(res.data.products)
+            onScrape(res.data.products,false)
         } catch (error) {
             console.log(error)
         }
@@ -83,7 +83,6 @@ const ScrapeProduct = ({ onScrape }: data) => {
                         placeholder="search for a product..."
                     />
                     <Label
-                    // this is for the type and the type is one this : men , women, kids
                     htmlFor="type"
                     >
                         نوع المنتج
