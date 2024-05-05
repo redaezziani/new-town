@@ -29,12 +29,12 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
             return Response.json({ status: 'error', message: 'Search query is required.' });
         }
         if (!type) {
-            console.log(type)
             return Response.json({ status: 'error', message: 'Type query is required.' });
         }
 
 
         const base_url = `https://www.namshi.com/uae-ar/${type}/search/?q=${search}`;
+        console.log(base_url)
         const products: Product[] = [];
 
         // Fetch the HTML content of the page using Axios
