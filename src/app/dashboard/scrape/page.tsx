@@ -4,6 +4,7 @@ import ProductCard from "@/components/user/scrape/product-card";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { saveAs } from 'file-saver';
+import axios from "axios";
 interface Product {
   title: string;
   brand: string;
@@ -18,7 +19,7 @@ const ScrapePage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [page , setPage] = useState<number>(1);
   const [currentProducts, setCurrentProducts] = useState<Product[] | null>(null);
-  const [productsPerPage, setProductsPerPage] = useState<number>(10);
+  const [productsPerPage, setProductsPerPage] = useState<number>(5);
   const [totalPages, setTotalPages] = useState<number>(0);
   const exportToCSV = () => {
     const csvData = products.map(product => ({
@@ -38,8 +39,24 @@ const ScrapePage = () => {
     saveAs(blob, 'products.csv');
   };
 
+  const getProductsHistory = async () => {
+    try {
+      setLoading(true);
+      const res = await axios.get('/api/scrape/historiq');
+      if (res.data.status === 'error') {
+        return console.log(res.data.message);
+      }
+      setProducts(res.data.products);
+    } catch (error) {
+      console.log(error);
+    }
+    finally {
+      setLoading(false);
+    }
+
+  }
+
   useEffect(() => {
-    console.log('products', products);
     if (products.length > 0) {
       setTotalPages(Math.ceil(products.length / productsPerPage));
     }
@@ -50,7 +67,10 @@ const ScrapePage = () => {
     
   }
   , [products, page, productsPerPage]);
-  
+  useEffect(() => {
+    getProductsHistory();
+  }
+  , []);
   return (
     <main className='w-full flex z-10 overflow-hidden relative justify-start items-start gap-3 flex-col'>
       <div className="flex w-full py-3 justify-between items-center gap-3 flex-wrap">
@@ -108,7 +128,7 @@ const ScrapePage = () => {
             ))
           )}
         </div>
-       {products.length > 0 && ( <div className="flex w-full justify-end items-center gap-2">
+       {products.length > 0 && ( <div className="flex w-full mt-3 justify-end items-center gap-2">
         <Button
             onClick={() => {
               const end = page * productsPerPage;
@@ -121,7 +141,31 @@ const ScrapePage = () => {
           >
             السابق
           </Button> 
-          <span>{page}</span>
+          {/* list of pages */}
+          {Array.from({ length: totalPages }).map((_, index) => {
+            if (index + 1 > page - 3 && index + 1 < page + 3) {
+              return (
+                <Button
+                  onClick={() => {
+                    const end = (index + 1) * productsPerPage;
+                    const start = end - productsPerPage;
+                    setCurrentProducts(products.slice(start, end));
+                    setPage(index + 1);
+                  }}
+                  variant={ 'ghost'}
+                >
+                  {index + 1}
+                </Button>
+              );
+            } else if (index + 1 === page - 3) {
+              return <Button variant={'ghost'}>...</Button>;
+            } else if (index + 1 === page + 3) {
+              return <Button variant={'ghost'}>...</Button>;
+            } else {
+              return null;
+            }
+          })}
+         
           <Button
             onClick={() => {
               const end = page * productsPerPage;

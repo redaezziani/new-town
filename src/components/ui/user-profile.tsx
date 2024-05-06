@@ -113,7 +113,7 @@ export function UserProfile() {
             </p>
           </div>
           <ChevronDown
-            className={`w-4 h-4 transform duration-500 select-none transition-all ease-in-out ${open ? 'rotate-180' : 'rotate-0'}`}
+            className={`w-4 h-4 transform hidden lg:blocks duration-500 select-none transition-all ease-in-out ${open ? 'rotate-180' : 'rotate-0'}`}
           />
         </div>
       </DropdownMenuTrigger>

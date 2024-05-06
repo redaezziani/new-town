@@ -1,6 +1,8 @@
 import { NextResponse, NextRequest } from "next/server";
 import cheerio from 'cheerio';
 import axios from 'axios';
+import { verifyToken } from "@/(db)/lib/auth";
+import db from "@/(db)/secrets";
 
 interface Product {
     title: string;
@@ -16,6 +18,17 @@ enum ProductType {
     women='women',
     kids='kids',
 }
+
+interface productsCreateManyInput {
+    userId: string;
+    title: string;
+    brand: string;
+    selling_price: number;
+    old_price: number;
+    img: string;
+    discount: number;
+}
+
 
 export const dynamic = 'force-dynamic';
 export async function GET(req: NextRequest, res: NextResponse): Promise<void | Response> {
@@ -68,7 +81,7 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
             if (!nextPageExists) {
                 break; // No more pages, exit the loop
             }
-            if (page >= 1) {
+            if (page >= 5) {
                 break; // Limit the number of pages to 5
             }
             page++; // Move to the next page
@@ -81,4 +94,48 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<void | R
         console.error(error);
         return Response.json({ status: 'error', message: 'An error occurred while processing your request.' });
     }
+}
+
+
+export async function POST(req: NextRequest, res: NextResponse): Promise<void | Response> {
+   try {
+    const token = req.cookies.get('token')?.value;
+    if (!token) {
+        return Response.json({ status: 'error', message: 'No token found' });
+    }
+    const user = await verifyToken(token);
+
+    if (!user) {
+        return Response.json({ status: 'error', message: 'User not found' });
+    }
+
+    const {products } = await req.json() as { products: Product[] };
+
+    if (!products) {
+        return Response.json({ status: 'error', message: 'Products are required' });
+    }
+    
+
+    const productsData: productsCreateManyInput[] = products.map(product => ({
+        userId: user.payload.id as string,
+        title: product.title,
+        brand: product.brand,
+        selling_price: parseFloat(product.selling_price),
+        old_price:parseFloat(product.old_price)??0,
+        img: product.img,
+        discount: parseFloat(product.discount)??0
+    }));
+
+    const res = await db.scrape_products.createMany({
+        data: productsData
+    });
+
+    if (res) {
+        return Response.json({ status: 'success', message: 'Products saved successfully.' });
+    }
+    return Response.json({ status: 'error', message: 'An error occurred while processing your request.' });
+   } catch (error) {
+         console.error(error);
+         return Response.json({ status: 'error', message: 'An error occurred while processing your request.' });
+   }
 }

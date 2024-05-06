@@ -50,7 +50,7 @@ export default async function RootLayout({
         {children}
         </div>
       </div>
-      <div className=" flex z-50 lg:hidden fixed right-4 top-3">
+      <div className=" flex z-50 lg:hidden fixed right-4 top-6 cursor-pointer">
       <SideBar />
       </div>
     </div>

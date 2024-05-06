@@ -37,7 +37,19 @@ const ScrapeProduct = ({ onScrape }: data) => {
             setLoading(true)
             const res = await axios.get(`/api/scrape/products?search=${search}&type=${type}`,{
             })
+            if (res.data.status === 'error') {
+              onScrape([],false)
+              return  console.log(res.data.message)
+            }
             onScrape(res.data.products,false)
+
+            const products = res.data.products
+            const res2 = await axios.post('/api/scrape/products', {
+                products
+            })
+            if (res2.data.status === 'error') {
+                return console.log(res.data.message)
+            }
         } catch (error) {
             console.log(error)
         }
@@ -71,7 +83,7 @@ const ScrapeProduct = ({ onScrape }: data) => {
                 </AlertDialogHeader>
                 <form
                     onSubmit={handleSubmit}
-                    className="w-full flex flex-col gap-2 justify-start items-start"
+                    className="w-full flex flex-col gap-4 justify-start items-start"
                 >
                     <Label>
                         البحث عن منتج
@@ -81,7 +93,7 @@ const ScrapeProduct = ({ onScrape }: data) => {
                         onChange={(e) => setSearch(e.target.value)}
                         type="text"
                         name="name"
-                        placeholder="search for a product..."
+                        placeholder="ادخل اسم المنتج ..."
                     />
                     <Label
                     htmlFor="type"

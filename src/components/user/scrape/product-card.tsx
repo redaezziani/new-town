@@ -38,7 +38,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                 <img src={product.img} alt={product.title} className="w-full aspect-square object-cover rounded-md" />
             </div>
             <div className="flex flex-col py-2 gap-2 justify-start items-start">
-                <h2 className="text-lg font-bold">{product.title}</h2>
+                <h2 className="text-lg font-bold line-clamp-1">{product.title}</h2>
                 <p className="text-sm">{product.brand}</p>
                 <p className="text-sm line-through text-destructive">{product.old_price}</p>
                 <p className="text-sm text-green-500">{product.selling_price}</p>
