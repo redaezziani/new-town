@@ -156,6 +156,8 @@
   @apply scrollbar-thin;
 }
 
-
+body{
+  font-family: 'Roboto', sans-serif;
+}
 
 

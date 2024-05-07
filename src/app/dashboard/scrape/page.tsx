@@ -19,7 +19,7 @@ const ScrapePage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [page , setPage] = useState<number>(1);
   const [currentProducts, setCurrentProducts] = useState<Product[] | null>(null);
-  const [productsPerPage, setProductsPerPage] = useState<number>(5);
+  const [productsPerPage, setProductsPerPage] = useState<number>(10);
   const [totalPages, setTotalPages] = useState<number>(0);
   const exportToCSV = () => {
     const csvData = products.map(product => ({
@@ -141,7 +141,6 @@ const ScrapePage = () => {
           >
             السابق
           </Button> 
-          {/* list of pages */}
           {Array.from({ length: totalPages }).map((_, index) => {
             if (index + 1 > page - 3 && index + 1 < page + 3) {
               return (
