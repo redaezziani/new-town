@@ -18,7 +18,7 @@ export const middleware= async (request: NextRequest) => {
     }
     const authRouteRegex = new RegExp('^/auth/*');
     if (isVerified && authRouteRegex.test(path)) {
-        return NextResponse.redirect(new URL('/dashboard', request.nextUrl).toString());
+        return NextResponse.redirect(new URL('/dashboard/main', request.nextUrl).toString());
     }
     
     return NextResponse.next();    
